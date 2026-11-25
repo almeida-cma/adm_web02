@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistência Técnica de Computadores | TechFix — Manutenção e Otimização</title>
+  <meta name="description" content="Serviços de manutenção e otimização de computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias. Solicite agora.">
+  <meta name="keywords" content="assistência técnica de computadores, manutenção de notebook, consertar notebook, otimização de PC">
+  <meta name="author" content="TechFix Assistência Técnica">
+  <link rel="canonical" href="https://techfix.com.br/assistencia-tecnica-computadores">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Assistência Técnica de Computadores | TechFix">
+  <meta property="og:description" content="Manutenção e otimização de computadores e notebooks. Orçamento rápido e garantia de 90 dias.">
+  <meta property="og:url" content="https://techfix.com.br/assistencia-tecnica-computadores">
+  <meta property="og:locale" content="pt_BR">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230284c7'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>T</text></svg>">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "TechFix Assistência Técnica",
+    "description": "Assistência técnica especializada em computadores e notebooks.",
+    "url": "https://techfix.com.br",
+    "telephone": "+55-11-99999-9999",
+    "priceRange": "$$",
+    "address": {"@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"},
+    "openingHours": "Mo-Fr 09:00-18:00, Sa 09:00-13:00"
+  }
+  </script>
+
+  <style>
+    :root{
+      --azul:#0284c7; --azul-escuro:#0369a1; --azul-claro:#e0f2fe;
+      --verde:#16a34a; --verde-claro:#dcfce7;
+      --texto:#0f172a; --texto-suave:#475569; --texto-claro:#94a3b8;
+      --fundo:#ffffff; --fundo-alt:#f8fafc; --borda:#e2e8f0;
+      --sombra:0 4px 14px rgba(0,0,0,.08);
+      --sombra-hover:0 10px 28px rgba(2,132,199,.18);
+      --radius:14px; --radius-sm:8px;
+      --transicao:all .2s ease;
+      --max:1100px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--fundo);color:var(--texto);line-height:1.65;font-size:16px;}
+    img,svg{display:block;max-width:100%;}
+    a{color:var(--azul);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .skip-link{position:absolute;left:-9999px;top:0;background:var(--azul);color:#fff;padding:12px 20px;border-radius:0 0 8px 0;font-weight:700;z-index:1000;}
+    .skip-link:focus{left:0;}
+    :focus-visible{outline:3px solid var(--azul);outline-offset:2px;}
+
+    .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--borda);}
+    .header-inner{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;color:var(--texto);text-decoration:none;}
+    .logo:hover{text-decoration:none;}
+    .logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--azul),#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.1rem;}
+    .logo-text small{display:block;font-size:.68rem;color:var(--texto-suave);font-weight:600;}
+    .nav-principal{display:flex;gap:4px;align-items:center;}
+    .nav-principal a{color:var(--texto-suave);font-weight:600;font-size:.9rem;padding:8px 14px;border-radius:var(--radius-sm);transition:var(--transicao);text-decoration:none;}
+    .nav-principal a:hover{background:var(--azul-claro);color:var(--azul-escuro);text-decoration:none;}
+    .btn-cta-header{background:var(--azul);color:#fff!important;padding:10px 20px!important;border-radius:30px;font-weight:800;font-size:.88rem;transition:var(--transicao);text-decoration:none;display:inline-block;}
+    .btn-cta-header:hover{background:var(--azul-escuro);text-decoration:none;transform:translateY(-1px);}
+    .menu-toggle{display:none;background:none;border:2px solid var(--borda);padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;font-size:1.2rem;color:var(--texto);}
+
+    .hero{background:linear-gradient(135deg,var(--azul-claro) 0%,#f0f9ff 100%);padding:60px 20px 50px;}
+    .hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;}
+    .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;color:var(--texto);margin-bottom:14px;font-weight:900;letter-spacing:-.5px;}
+    .hero h1 span{color:var(--azul);}
+    .hero p{font-size:1.02rem;color:var(--texto-suave);margin-bottom:22px;max-width:520px;}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+    .btn-primario{background:var(--azul);color:#fff;padding:14px 28px;border-radius:30px;font-weight:800;font-size:.95rem;border:none;cursor:pointer;transition:var(--transicao);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;}
+    .btn-primario:hover{background:var(--azul-escuro);transform:translateY(-2px);box-shadow:var(--sombra-hover);text-decoration:none;}
+    .btn-secundario{background:#fff;color:var(--azul);padding:14px 28px;border-radius:30px;font-weight:800;font-size:.95rem;border:2px solid var(--azul);cursor:pointer;transition:var(--transicao);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;}
+    .btn-secundario:hover{background:var(--azul-claro);text-decoration:none;}
+    .hero-illustration{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--sombra);border:1px solid var(--borda);}
+    .hero-illustration h3{font-size:.9rem;color:var(--azul-escuro);margin-bottom:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+    .check-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .check-list li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--texto-suave);}
+    .check-list li::before{content:'✓';background:var(--verde);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;flex-shrink:0;}
+
+    section{padding:60px 20px;}
+    .section-inner{max-width:var(--max);margin:0 auto;}
+    .section-title{font-size:1.6rem;font-weight:900;color:var(--texto);margin-bottom:8px;text-align:center;letter-spacing:-.3px;}
+    .section-sub{text-align:center;color:var(--texto-suave);font-size:.95rem;margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto;}
+
+    .servicos{background:var(--fundo-alt);}
+    .servicos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+    .servico-card{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:24px 22px;transition:var(--transicao);}
+    .servico-card:hover{border-color:var(--azul);box-shadow:var(--sombra-hover);transform:translateY(-3px);}
+    .servico-icon{width:48px;height:48px;border-radius:12px;background:var(--azul-claro);color:var(--azul-escuro);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;}
+    .servico-card h3{font-size:1.05rem;color:var(--texto);margin-bottom:8px;font-weight:800;}
+    .servico-card p{font-size:.88rem;color:var(--texto-suave);line-height:1.6;}
+
+    .conteudo{background:#fff;}
+    .artigo{max-width:760px;margin:0 auto;}
+    .artigo-meta{display:flex;gap:14px;font-size:.8rem;color:var(--texto-claro);margin-bottom:18px;flex-wrap:wrap;}
+    .artigo-meta span{display:flex;align-items:center;gap:4px;}
+    .artigo h2{font-size:1.5rem;color:var(--texto);margin-bottom:14px;font-weight:900;line-height:1.3;letter-spacing:-.3px;}
+    .artigo p{font-size:.98rem;color:var(--texto-suave);margin-bottom:14px;line-height:1.75;}
+    .artigo h3{font-size:1.1rem;color:var(--texto);margin:24px 0 10px;font-weight:800;}
+    .artigo ol,.artigo ul{padding-left:22px;color:var(--texto-suave);font-size:.95rem;line-height:1.8;margin-bottom:14px;}
+    .artigo ol li,.artigo ul li{margin-bottom:8px;}
+    .artigo ol li strong,.artigo ul li strong{color:var(--texto);}
+    .artigo .destaque{background:var(--azul-claro);border-left:4px solid var(--azul);padding:14px 18px;border-radius:var(--radius-sm);font-size:.92rem;color:var(--azul-escuro);margin:18px 0;}
+    .artigo .cta-inline{background:linear-gradient(135deg,var(--azul),#7c3aed);color:#fff;padding:20px 24px;border-radius:var(--radius);text-align:center;margin:24px 0;}
+    .artigo .cta-inline p{color:#e0f2fe;margin-bottom:12px;font-size:.92rem;}
+    .artigo .cta-inline .btn-primario{background:#fff;color:var(--azul);}
+    .artigo .cta-inline .btn-primario:hover{background:#f0f9ff;}
+
+    .contato{background:var(--fundo-alt);}
+    .form-card{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--sombra);}
+    .form-card h3{font-size:1.2rem;color:var(--texto);margin-bottom:6px;text-align:center;font-weight:900;}
+    .form-card .form-sub{text-align:center;color:var(--texto-suave);font-size:.88rem;margin-bottom:22px;}
+    .campo{margin-bottom:16px;}
+    .campo label{display:block;font-size:.82rem;font-weight:800;color:var(--texto);margin-bottom:6px;}
+    .campo input,.campo select,.campo textarea{width:100%;padding:12px 14px;border:2px solid var(--borda);border-radius:var(--radius-sm);font-size:.92rem;font-family:inherit;color:var(--texto);background:#fff;transition:var(--transicao);}
+    .campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 3px rgba(2,132,199,.15);}
+    .campo textarea{min-height:90px;resize:vertical;}
+    .campo .erro{color:#dc2626;font-size:.76rem;margin-top:4px;display:none;}
+    .campo.invalido input,.campo.invalido select,.campo.invalido textarea{border-color:#dc2626;}
+    .campo.invalido .erro{display:block;}
+    .form-card .btn-primario{width:100%;justify-content:center;margin-top:8px;}
+    .form-sucesso{display:none;background:var(--verde-claro);border:2px solid var(--verde);color:#166534;padding:16px 20px;border-radius:var(--radius-sm);font-size:.9rem;font-weight:700;text-align:center;margin-top:14px;}
+    .form-sucesso.show{display:block;animation:fade .3s ease;}
+    @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+    .site-footer{background:#0f172a;color:#cbd5e1;padding:48px 20px 24px;}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+    .footer-col h4{font-size:.92rem;color:#fff;margin-bottom:12px;font-weight:800;}
+    .footer-col p,.footer-col a{font-size:.86rem;color:#94a3b8;line-height:1.7;display:block;margin-bottom:6px;text-decoration:none;}
+    .footer-col a:hover{color:#38bdf8;text-decoration:none;}
+    .footer-bottom{max-width:var(--max);margin:0 auto;padding-top:20px;border-top:1px solid #1e293b;text-align:center;font-size:.8rem;color:#64748b;}
+
+    @media (max-width:820px){.hero-inner{grid-template-columns:1fr;gap:28px;}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media (max-width:640px){
+      .nav-principal{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--borda);flex-direction:column;padding:12px;gap:4px;box-shadow:var(--sombra);}
+      .nav-principal.aberto{display:flex;}
+      .nav-principal a{width:100%;padding:12px 16px;}
+      .menu-toggle{display:block;}
+      .btn-cta-header{display:none;}
+      .footer-inner{grid-template-columns:1fr;}
+      section{padding:44px 16px;}
+      .hero{padding:40px 16px 36px;}
+    }
+
+    .debug-fab{
+      position:fixed; bottom:20px; right:20px; z-index:9999;
+      width:56px; height:56px; border-radius:50%;
+      background:linear-gradient(135deg,#7c3aed,#a855f7); color:#fff;
+      border:none; cursor:pointer; font-size:1.4rem;
+      box-shadow:0 8px 24px rgba(124,58,237,.45);
+      display:flex; align-items:center; justify-content:center;
+      transition:transform .2s;
+    }
+    .debug-fab:hover{transform:scale(1.08);}
+    .debug-panel{
+      position:fixed; bottom:90px; right:20px; z-index:9998;
+      width:340px; max-width:calc(100vw - 40px);
+      background:#0f172a; color:#e2e8f0;
+      border:2px solid #7c3aed; border-radius:14px;
+      padding:16px; font-size:.8rem;
+      box-shadow:0 12px 40px rgba(0,0,0,.5);
+      display:none;
+    }
+    .debug-panel.show{display:block; animation:fade .2s ease;}
+    .debug-panel h4{font-size:.85rem;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+    .debug-panel .stat{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed #334155;font-size:.78rem;}
+    .debug-panel .stat:last-of-type{border:none;}
+    .debug-panel .stat strong{color:#38bdf8;}
+    .debug-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;}
+    .debug-actions button{
+      background:#1e293b; border:1px solid #334155; color:#cbd5e1;
+      padding:8px 6px; border-radius:6px; font-size:.72rem; font-weight:700;
+      cursor:pointer; font-family:inherit; transition:.2s;
+    }
+    .debug-actions button:hover{background:#334155;color:#fff;border-color:#7c3aed;}
+    .debug-actions button.danger{border-color:#dc2626;color:#fca5a5;}
+    .debug-actions button.danger:hover{background:#450a0a;}
+    .debug-actions button.primary{background:#7c3aed;color:#fff;border-color:#7c3aed;}
+    .debug-actions button.primary:hover{background:#6d28d9;}
+    .debug-panel textarea{
+      width:100%; height:120px; background:#070c16; border:1px solid #334155;
+      border-radius:6px; padding:8px; color:#e2e8f0; font-family:monospace;
+      font-size:.68rem; margin-top:10px; resize:vertical;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="TechFix — página inicial" data-track="logo">
+        <span class="logo-mark" aria-hidden="true">T</span>
+        <span class="logo-text">TechFix<small>Assistência Técnica</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <nav class="nav-principal" id="navPrincipal" aria-label="Menu principal">
+        <a href="#servicos" data-track="nav-servicos">Serviços</a>
+        <a href="#conteudo" data-track="nav-conteudo">Dicas</a>
+        <a href="#contato" data-track="nav-contato">Contato</a>
+        <a href="#contato" class="btn-cta-header" data-track="cta-header">Solicitar orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <section class="hero" id="hero" data-section="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <h1 id="hero-title">Seu computador <span>lento</span>? A gente resolve.</h1>
+          <p>Assistência técnica especializada em computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias.</p>
+          <div class="hero-actions">
+            <a href="#contato" class="btn-primario" data-track="cta-hero-primario">Solicitar orçamento agora →</a>
+            <a href="#conteudo" class="btn-secundario" data-track="cta-hero-secundario">Ver dicas grátis</a>
+          </div>
+        </div>
+        <aside class="hero-illustration" aria-label="Diferenciais da TechFix">
+          <h3>Por que a TechFix?</h3>
+          <ul class="check-list">
+            <li>Orçamento sem compromisso</li>
+            <li>Atendimento em até 24h</li>
+            <li>Garantia de 90 dias</li>
+            <li>Técnicos certificados</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="servicos" id="servicos" data-section="servicos" aria-labelledby="servicos-title">
+      <div class="section-inner">
+        <h2 class="section-title" id="servicos-title">O que fazemos</h2>
+        <p class="section-sub">Do diagnóstico à solução, cuidamos do seu equipamento com transparência e agilidade.</p>
+        <div class="servicos-grid">
+          <article class="servico-card">
+            <div class="servico-icon" aria-hidden="true">🔧</div>
+            <h3>Manutenção preventiva</h3>
+            <p>Limpeza interna, troca de pasta térmica e revisão geral para evitar problemas futuros.</p>
+          </article>
+          <article class="servico-card">
+            <div class="servico-icon" aria-hidden="true">⚡</div>
+            <h3>Otimização de desempenho</h3>
+            <p>Upgrade de SSD, aumento de memória RAM e ajustes para o computador voar.</p>
+          </article>
+          <article class="servico-card">
+            <div class="servico-icon" aria-hidden="true">🛡️</div>
+            <h3>Remoção de vírus</h3>
+            <p>Limpeza de malware, instalação de antivírus e configuração de segurança.</p>
+          </article>
+          <article class="servico-card">
+            <div class="servico-icon" aria-hidden="true">💾</div>
+            <h3>Recuperação de dados</h3>
+            <p>Recuperamos arquivos importantes de HDs, SSDs e pendrives com segurança.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="conteudo" id="conteudo" data-section="conteudo" aria-labelledby="artigo-title">
+      <div class="section-inner">
+        <article class="artigo">
+          <div class="artigo-meta">
+            <span>📅 Atualizado em novembro de 2026</span>
+            <span>⏱️ 4 min de leitura</span>
+            <span>✍️ Equipe TechFix</span>
+          </div>
+          <h2 id="artigo-title">Seu notebook está lento? 5 maneiras de melhorar o desempenho sem comprar outro</h2>
+          <p>Seu notebook está lento? Antes de pensar em comprar um novo, existem cinco ajustes simples que podem devolver a velocidade do seu computador — e nenhum deles exige trocar de máquina.</p>
+
+          <div class="destaque">
+            💡 <strong>Dica rápida:</strong> comece pelas opções 1 e 2. Elas são gratuitas e resolvem a maioria dos casos de lentidão.
+          </div>
+
+          <h3>1. Limpe arquivos temporários e a lixeira</h3>
+          <p>Com o tempo, o computador acumula arquivos temporários que ocupam espaço e deixam tudo mais lento. Use a limpeza de disco do próprio sistema e esvazie a lixeira.</p>
+
+          <h3>2. Desinstale programas que você não usa</h3>
+          <p>Vá em Configurações → Aplicativos e remova tudo que você não abre há meses. Cada programa instalado consome recursos mesmo quando está parado.</p>
+
+          <h3>3. Atualize o sistema operacional</h3>
+          <p>Atualizações corrigem falhas de segurança e melhoram o desempenho. Deixe o sistema atualizar sempre que possível.</p>
+
+          <h3>4. Aumente a memória RAM (se possível)</h3>
+          <p>Se você abre muitas abas e programas ao mesmo tempo, a RAM pode ser o gargalo. Verifique se o seu modelo permite upgrade.</p>
+
+          <h3>5. Troque o HD por um SSD</h3>
+          <p>O upgrade que mais acelera. Um SSD pode deixar o computador até 5x mais rápido na inicialização e na abertura de programas.</p>
+
+          <div class="cta-inline">
+            <p>Quer saber qual dessas opções resolve o seu caso?</p>
+            <a href="#contato" class="btn-primario" data-track="cta-artigo">Solicitar orçamento agora →</a>
+          </div>
+
+          <p><strong>Conclusão:</strong> antes de gastar com um computador novo, vale a pena investir em manutenção e upgrades. Na maioria dos casos, o resultado é surpreendente — e o custo é muito menor.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contato" id="contato" data-section="contato" aria-labelledby="contato-title">
+      <div class="section-inner">
+        <h2 class="section-title" id="contato-title">Solicite seu orçamento</h2>
+        <p class="section-sub">Preencha o formulário e nossa equipe entra em contato em até 24h. Sem compromisso.</p>
+
+        <div class="form-card">
+          <h3>Orçamento rápido e gratuito</h3>
+          <p class="form-sub">Leva menos de 1 minuto para preencher.</p>
+
+          <form id="formOrcamento" novalidate>
+            <div class="campo" id="campoNome">
+              <label for="nome">Nome completo *</label>
+              <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+              <span class="erro">Por favor, informe seu nome.</span>
+            </div>
+            <div class="campo" id="campoEmail">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="Ex: joao@email.com" required>
+              <span class="erro">Por favor, informe um e-mail válido.</span>
+            </div>
+            <div class="campo" id="campoTelefone">
+              <label for="telefone">Telefone / WhatsApp *</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="Ex: (11) 99999-9999" required>
+              <span class="erro">Por favor, informe um telefone válido.</span>
+            </div>
+            <div class="campo">
+              <label for="servico">Tipo de serviço</label>
+              <select id="servico" name="servico">
+                <option value="">Selecione...</option>
+                <option>Manutenção preventiva</option>
+                <option>Otimização de desempenho</option>
+                <option>Remoção de vírus</option>
+                <option>Recuperação de dados</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="personaHint">Você se identifica como (opcional, para fins didáticos):</label>
+              <select id="personaHint" name="personaHint">
+                <option value="">Prefiro não dizer</option>
+                <option value="estudante">Estudante</option>
+                <option value="empresa">Empresa / Escritório</option>
+                <option value="curioso">Curioso / Pesquisando</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="mensagem">Descreva o problema (opcional)</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Ex: Meu notebook está muito lento para abrir programas."></textarea>
+            </div>
+            <button type="submit" class="btn-primario" data-track="form-submit">Solicitar orçamento agora →</button>
+            <div class="form-sucesso" id="formSucesso" role="status">✅ Orçamento solicitado! Entraremos em contato em até 24h.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>TechFix Assistência Técnica</h4>
+        <p>Assistência técnica especializada em computadores e notebooks, com atendimento rápido e garantia de 90 dias.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#servicos" data-track="footer-servicos">Serviços</a>
+        <a href="#conteudo" data-track="footer-conteudo">Dicas</a>
+        <a href="#contato" data-track="footer-contato">Contato</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>📞 (11) 99999-9999</p>
+        <p>✉️ contato@techfix.com.br</p>
+        <p>📍 São Paulo — SP</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 TechFix Assistência Técnica — Projeto demonstrativo do curso técnico.</div>
+  </footer>
+
+  <button class="debug-fab" id="debugFab" aria-label="Abrir painel de analytics" title="Painel de Analytics">📊</button>
+  <div class="debug-panel" id="debugPanel" role="dialog" aria-label="Painel de Analytics">
+    <h4>📊 Analytics local (didático)</h4>
+    <div class="stat"><span>Eventos registrados</span><strong id="statEventos">0</strong></div>
+    <div class="stat"><span>Sessão</span><strong id="statSessao">—</strong></div>
+    <div class="stat"><span>Tempo na página</span><strong id="statTempo">0s</strong></div>
+    <div class="stat"><span>Scroll máximo</span><strong id="statScroll">0%</strong></div>
+    <div class="stat"><span>Seção mais vista</span><strong id="statSecao">—</strong></div>
+    <div class="stat"><span>Formulários enviados</span><strong id="statForms">0</strong></div>
+    <div class="debug-actions">
+      <button type="button" class="primary" id="btnExportar">⬇️ Exportar JSON</button>
+      <button type="button" id="btnAtualizar">🔄 Atualizar</button>
+      <button type="button" id="btnVerJSON">👁️ Ver JSON</button>
+      <button type="button" class="danger" id="btnLimpar">🗑️ Limpar</button>
+    </div>
+    <textarea id="jsonPreview" readonly placeholder="Clique em 'Ver JSON' para inspecionar os eventos..."></textarea>
+  </div>
+
+  <script>
+  (function(){
+    var CHAVE = 'techfix_analytics';
+    var sessaoId = 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+    var inicioSessao = Date.now();
+    var scrollMax = 0;
+    var tempoPorSecao = {};
+    var secaoAtual = null;
+    var inicioSecao = null;
+    var formIniciado = false;
+    var formEnviado = false;
+    var formsEnviados = 0;
+
+    function lerEventos(){
+      try {
+        var raw = localStorage.getItem(CHAVE);
+        return raw ? JSON.parse(raw) : [];
+      } catch(e){ return []; }
+    }
+    function salvarEventos(arr){
+      try { localStorage.setItem(CHAVE, JSON.stringify(arr)); } catch(e){}
+    }
+    function registrar(tipo, dados){
+      var arr = lerEventos();
+      var evento = {
+        sessao: sessaoId,
+        tipo: tipo,
+        timestamp: Date.now(),
+        url: location.href,
+        viewport: { w: window.innerWidth, h: window.innerHeight },
+        scrollY: window.scrollY,
+        dados: dados || {}
+      };
+      arr.push(evento);
+      salvarEventos(arr);
+      atualizarPainel();
+    }
+
+    registrar('page_view', { titulo: document.title });
+
+    window.addEventListener('scroll', function(){
+      var doc = document.documentElement;
+      var altura = doc.scrollHeight - window.innerHeight;
+      var pct = altura > 0 ? Math.round((window.scrollY / altura) * 100) : 0;
+      if(pct > scrollMax){
+        scrollMax = pct;
+        if(pct % 25 === 0){
+          registrar('scroll', { profundidade: pct });
+        }
+      }
+    }, { passive: true });
+
+    document.addEventListener('click', function(e){
+      var alvo = e.target.closest('[data-track]');
+      if(alvo){
+        registrar('cta_click', {
+          track: alvo.getAttribute('data-track'),
+          texto: (alvo.textContent || '').trim().slice(0, 60),
+          x: e.clientX,
+          y: e.clientY
+        });
+      }
+    });
+
+    document.addEventListener('click', function(e){
+      if(e.target.closest('.debug-panel') || e.target.closest('.debug-fab')) return;
+      registrar('click', {
+        x: e.clientX,
+        y: e.clientY,
+        scrollY: window.scrollY,
+        seletor: e.target.tagName.toLowerCase() + (e.target.id ? '#' + e.target.id : '') + (e.target.className && typeof e.target.className === 'string' ? '.' + e.target.className.split(' ')[0] : '')
+      });
+    });
+
+    var secoes = document.querySelectorAll('[data-section]');
+    if('IntersectionObserver' in window && secoes.length){
+      var observer = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(entrada){
+          var nome = entrada.target.getAttribute('data-section');
+          if(entrada.isIntersecting){
+            if(secaoAtual && inicioSecao){
+              var dur = Math.round((Date.now() - inicioSecao) / 1000);
+              tempoPorSecao[secaoAtual] = (tempoPorSecao[secaoAtual] || 0) + dur;
+              registrar('time_on_section', { secao: secaoAtual, duracao_s: dur });
+            }
+            secaoAtual = nome;
+            inicioSecao = Date.now();
+          } else if(secaoAtual === nome && inicioSecao){
+            var dur2 = Math.round((Date.now() - inicioSecao) / 1000);
+            tempoPorSecao[nome] = (tempoPorSecao[nome] || 0) + dur2;
+            registrar('time_on_section', { secao: nome, duracao_s: dur2 });
+            secaoAtual = null;
+            inicioSecao = null;
+          }
+        });
+      }, { threshold: 0.5 });
+      secoes.forEach(function(s){ observer.observe(s); });
+    }
+
+    function mascararEmail(e){
+      if(!e || e.indexOf('@') === -1) return '***';
+      var partes = e.split('@');
+      var usuario = partes[0];
+      var dominio = partes[1];
+      var visivel = usuario.slice(0, 2);
+      return visivel + '***@' + dominio;
+    }
+    function mascararTelefone(t){
+      var nums = t.replace(/\D/g, '');
+      if(nums.length < 10) return '***';
+      return '(' + nums.slice(0,2) + ') ' + nums.slice(2,3) + '****-' + nums.slice(-4);
+    }
+
+    var form = document.getElementById('formOrcamento');
+    if(form){
+      form.addEventListener('input', function(){
+        if(!formIniciado){
+          formIniciado = true;
+          registrar('form_start', {});
+        }
+      });
+      form.addEventListener('submit', function(){
+        formEnviado = true;
+        formsEnviados++;
+        var nome = document.getElementById('nome').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var telefone = document.getElementById('telefone').value.trim();
+        var servico = document.getElementById('servico').value;
+        var mensagem = document.getElementById('mensagem').value.trim();
+        var personaHint = document.getElementById('personaHint') ? document.getElementById('personaHint').value : '';
+
+        registrar('form_submit', {
+          nome_mascarado: nome ? nome.split(' ')[0] + ' ***' : '***',
+          email_mascarado: mascararEmail(email),
+          telefone_mascarado: mascararTelefone(telefone),
+          servico: servico || '(não selecionado)',
+          tamanho_mensagem: mensagem.length,
+          persona_hint: personaHint || '(não informado)',
+          tem_mensagem: mensagem.length > 0
+        });
+      });
+    }
+
+    var personaHintEl = document.getElementById('personaHint');
+    if(personaHintEl){
+      personaHintEl.addEventListener('change', function(){
+        if(this.value){
+          registrar('persona_declared', { persona: this.value });
+        }
+      });
+    }
+
+    window.addEventListener('beforeunload', function(){
+      if(formIniciado && !formEnviado){
+        registrar('form_abandon', {});
+      }
+      if(secaoAtual && inicioSecao){
+        var durFim = Math.round((Date.now() - inicioSecao) / 1000);
+        tempoPorSecao[secaoAtual] = (tempoPorSecao[secaoAtual] || 0) + durFim;
+      }
+      var total = Math.round((Date.now() - inicioSessao) / 1000);
+      registrar('exit', {
+        duracao_total_s: total,
+        scroll_max: scrollMax,
+        tempo_por_secao: tempoPorSecao,
+        form_iniciado: formIniciado,
+        form_enviado: formEnviado
+      });
+    });
+
+    var fab = document.getElementById('debugFab');
+    var painel = document.getElementById('debugPanel');
+    var btnExportar = document.getElementById('btnExportar');
+    var btnAtualizar = document.getElementById('btnAtualizar');
+    var btnVerJSON = document.getElementById('btnVerJSON');
+    var btnLimpar = document.getElementById('btnLimpar');
+    var jsonPreview = document.getElementById('jsonPreview');
+
+    fab.addEventListener('click', function(){
+      painel.classList.toggle('show');
+      atualizarPainel();
+    });
+    btnAtualizar.addEventListener('click', atualizarPainel);
+    btnVerJSON.addEventListener('click', function(){
+      var arr = lerEventos();
+      jsonPreview.value = JSON.stringify(arr, null, 2);
+    });
+    btnExportar.addEventListener('click', function(){
+      var arr = lerEventos();
+      var blob = new Blob([JSON.stringify(arr, null, 2)], {type:'application/json'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'techfix-analytics-' + sessaoId + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+    btnLimpar.addEventListener('click', function(){
+      if(confirm('Apagar todos os eventos registrados? Essa ação não pode ser desfeita.')){
+        localStorage.removeItem(CHAVE);
+        jsonPreview.value = '';
+        atualizarPainel();
+      }
+    });
+
+    function atualizarPainel(){
+      var arr = lerEventos();
+      document.getElementById('statEventos').textContent = arr.length;
+      document.getElementById('statSessao').textContent = sessaoId.slice(-8);
+      var total = Math.round((Date.now() - inicioSessao) / 1000);
+      document.getElementById('statTempo').textContent = total + 's';
+      document.getElementById('statScroll').textContent = scrollMax + '%';
+      var maxSecao = '—'; var maxTempo = 0;
+      Object.keys(tempoPorSecao).forEach(function(k){
+        if(tempoPorSecao[k] > maxTempo){ maxTempo = tempoPorSecao[k]; maxSecao = k; }
+      });
+      document.getElementById('statSecao').textContent = maxSecao + (maxTempo ? ' (' + maxTempo + 's)' : '');
+      var forms = arr.filter(function(e){ return e.tipo === 'form_submit'; }).length;
+      document.getElementById('statForms').textContent = forms;
+    }
+    setInterval(atualizarPainel, 2000);
+  })();
+
+  var menuToggle = document.getElementById('menuToggle');
+  var navPrincipal = document.getElementById('navPrincipal');
+  menuToggle.addEventListener('click', function(){
+    var aberto = navPrincipal.classList.toggle('aberto');
+    menuToggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    menuToggle.textContent = aberto ? '✕' : '☰';
+  });
+  navPrincipal.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      if(window.innerWidth <= 640){
+        navPrincipal.classList.remove('aberto');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      }
+    });
+  });
+
+  var form = document.getElementById('formOrcamento');
+  var formSucesso = document.getElementById('formSucesso');
+  function validarEmail(email){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+  function validarTelefone(tel){ var nums = tel.replace(/\D/g, ''); return nums.length >= 10 && nums.length <= 11; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nome = document.getElementById('nome').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var telefone = document.getElementById('telefone').value.trim();
+    var valido = true;
+    document.querySelectorAll('.campo').forEach(function(c){ c.classList.remove('invalido'); });
+    if(nome.length < 2){ document.getElementById('campoNome').classList.add('invalido'); valido = false; }
+    if(!validarEmail(email)){ document.getElementById('campoEmail').classList.add('invalido'); valido = false; }
+    if(!validarTelefone(telefone)){ document.getElementById('campoTelefone').classList.add('invalido'); valido = false; }
+    if(valido){
+      formSucesso.classList.add('show');
+      setTimeout(function(){ form.reset(); }, 100);
+      setTimeout(function(){ formSucesso.classList.remove('show'); }, 6000);
+    } else {
+      var primeiro = document.querySelector('.campo.invalido input, .campo.invalido select, .campo.invalido textarea');
+      if(primeiro) primeiro.focus();
+    }
+  });
+  document.querySelectorAll('.campo input, .campo select, .campo textarea').forEach(function(input){
+    input.addEventListener('input', function(){
+      var campo = input.closest('.campo');
+      if(campo) campo.classList.remove('invalido');
+    });
+  });
+  </script>
+</body>
+</html>

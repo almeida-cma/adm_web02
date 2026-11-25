@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 Tema 02 • Estratégia de Conteúdo Avançada</title>
+<title>📚 Tema 02 • Estratégia de Conteúdo Avançada — Guia Rápido</title>
 <style>
   :root{
     --bg:#0b1220; --surface:#151f36; --surface-2:#1c2a44;
@@ -15,23 +15,19 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
     background:radial-gradient(circle at 10% 12%,#1e3a8a 0%,var(--bg) 65%);
-    color:var(--text);min-height:100vh;line-height:1.65;padding:20px 14px 80px;}
-  .container{max-width:1000px;margin:0 auto;}
+    color:var(--text);min-height:100vh;line-height:1.6;padding:20px 14px 80px;}
+  .container{max-width:900px;margin:0 auto;}
   .header{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 45%,#7c3aed 100%);
-    border-radius:var(--radius);padding:32px 22px;text-align:center;
-    box-shadow:0 12px 35px rgba(0,0,0,.4);margin-bottom:20px;}
-  .header h1{font-size:clamp(1.3rem,3.5vw,1.85rem);font-weight:900;letter-spacing:-.5px;
-    color:#fff;margin-bottom:6px;display:flex;align-items:center;justify-content:center;
-    gap:8px;flex-wrap:wrap;}
+    border-radius:var(--radius);padding:28px 22px;text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.4);margin-bottom:18px;}
+  .header h1{font-size:clamp(1.3rem,3.5vw,1.7rem);font-weight:900;letter-spacing:-.5px;
+    color:#fff;margin-bottom:6px;}
   .header h1 span{color:#fef08a;}
-  .header p{color:#e0f2fe;font-size:.94rem;max-width:760px;margin:0 auto;}
-  .header-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;}
-  .header-badges span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);
-    padding:4px 12px;border-radius:30px;font-size:.72rem;font-weight:700;color:#fff;}
-  .header .fonte{margin-top:12px;font-size:.7rem;color:#fef08a;opacity:.85;font-style:italic;}
-  .tabs-nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:18px;scrollbar-width:thin;}
+  .header p{color:#e0f2fe;font-size:.9rem;max-width:680px;margin:0 auto;}
+  .header .aviso{margin-top:12px;font-size:.76rem;color:#fef08a;opacity:.9;}
+  .tabs-nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;scrollbar-width:thin;}
   .tab-btn{background:var(--surface);color:var(--text-muted);border:1px solid var(--border);
-    padding:11px 16px;border-radius:30px;font-size:.82rem;font-weight:700;
+    padding:9px 14px;border-radius:30px;font-size:.78rem;font-weight:700;
     cursor:pointer;white-space:nowrap;transition:var(--trans);font-family:inherit;}
   .tab-btn:hover{color:#fff;background:var(--surface-2);}
   .tab-btn.active{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;
@@ -40,117 +36,60 @@
   .tab-content.active{display:block;}
   @keyframes fade{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
   .card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);
-    padding:24px 22px;margin-bottom:20px;box-shadow:0 8px 22px rgba(0,0,0,.3);}
-  .card h2{font-size:1.24rem;color:#fff;margin-bottom:14px;display:flex;align-items:center;
+    padding:22px 20px;margin-bottom:16px;box-shadow:0 8px 22px rgba(0,0,0,.3);}
+  .card h2{font-size:1.15rem;color:#fff;margin-bottom:12px;display:flex;align-items:center;
     gap:10px;border-left:5px solid var(--primary);padding-left:12px;line-height:1.35;}
-  .card h3{font-size:1rem;color:var(--primary);margin:20px 0 10px;display:flex;align-items:center;gap:6px;}
-  .card h3:first-of-type{margin-top:6px;}
-  .card p{color:var(--text-muted);font-size:.93rem;margin-bottom:10px;}
+  .card h3{font-size:.92rem;color:var(--primary);margin:16px 0 6px;display:flex;align-items:center;gap:6px;}
+  .card h3:first-of-type{margin-top:0;}
+  .card p{color:var(--text-muted);font-size:.9rem;margin-bottom:8px;}
   .card p strong{color:#fff;}
-  .card ul{padding-left:22px;color:var(--text-muted);font-size:.92rem;line-height:1.75;margin-bottom:10px;}
+  .card ul{padding-left:20px;color:var(--text-muted);font-size:.88rem;line-height:1.7;margin-bottom:8px;}
   .card li strong{color:#fff;}
-  .callout{border-left:5px solid var(--accent);padding:14px 18px;border-radius:10px;
-    background:rgba(245,158,11,.1);color:#fef3c7;font-size:.9rem;line-height:1.7;margin:14px 0;}
-  .callout.azul{background:rgba(56,189,248,.1);border-color:var(--primary);color:#e0f2fe;}
-  .callout.verde{background:rgba(16,185,129,.12);border-color:var(--ok);color:#d1fae5;}
-  .callout.rosa{background:rgba(236,72,153,.12);border-color:var(--pink);color:#fce7f3;}
-  .callout.roxo{background:rgba(139,92,246,.12);border-color:var(--purple);color:#ede9fe;}
+  .bloco{background:#0f182c;border:1px solid var(--border);border-left:4px solid var(--primary);
+    border-radius:10px;padding:14px 16px;margin:10px 0;}
+  .bloco.oque{border-left-color:var(--primary);}
+  .bloco.porque{border-left-color:var(--accent);}
+  .bloco.exemplo{border-left-color:var(--ok);}
+  .bloco .tag{font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px;
+    display:block;margin-bottom:6px;}
+  .bloco.oque .tag{color:var(--primary);}
+  .bloco.porque .tag{color:var(--accent);}
+  .bloco.exemplo .tag{color:var(--ok);}
+  .bloco p,.bloco ul{font-size:.86rem;color:var(--text-muted);margin-bottom:4px;}
+  .bloco p:last-child,.bloco ul:last-child{margin-bottom:0;}
+  .mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:10px 0;}
+  .mini{background:#0f182c;border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+  .mini strong{font-size:.84rem;color:#fff;display:block;margin-bottom:2px;}
+  .mini small{font-size:.76rem;color:var(--text-muted);line-height:1.4;display:block;}
+  .callout{background:rgba(56,189,248,.1);border-left:4px solid var(--primary);
+    border-radius:8px;padding:10px 14px;font-size:.84rem;color:#e0f2fe;
+    line-height:1.6;margin:10px 0;}
   .callout strong{color:#fff;}
-  .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0;}
-  .mini-card{background:#0f182c;border:1px solid var(--border);border-radius:10px;
-    padding:14px 16px;transition:var(--trans);}
-  .mini-card:hover{border-color:var(--primary);transform:translateY(-2px);}
-  .mini-card .tag{font-size:.68rem;font-weight:900;color:var(--primary);text-transform:uppercase;
-    letter-spacing:.5px;display:block;margin-bottom:4px;}
-  .mini-card h4{font-size:.92rem;color:#fff;margin-bottom:4px;}
-  .mini-card p{font-size:.82rem;color:var(--text-muted);margin:0;line-height:1.5;}
-  .progresso-bar{background:#0f172a;border-radius:10px;padding:10px 16px;margin-bottom:16px;
-    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
-    color:#e2e8f0;font-size:.82rem;}
-  .barra-fundo{flex:1;height:8px;background:#334155;border-radius:4px;overflow:hidden;min-width:120px;}
-  .barra-preench{height:100%;width:0%;background:linear-gradient(90deg,#38bdf8,#10b981);transition:width .3s;}
-  .questao{background:#0f182c;border:1px solid var(--border);border-left:4px solid var(--primary);
-    border-radius:10px;padding:16px 18px;margin-bottom:14px;transition:var(--trans);}
-  .questao.respondida{border-left-color:var(--ok);background:#0d1e1b;}
-  .q-cabecalho{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.55;
-    display:flex;gap:10px;align-items:flex-start;}
-  .q-num{background:var(--primary);color:#042f2e;width:26px;height:26px;border-radius:50%;
-    display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;
-    font-weight:900;flex-shrink:0;margin-top:1px;}
-  .q-origem{font-size:.68rem;background:rgba(139,92,246,.15);color:#c4b5fd;
-    padding:2px 8px;border-radius:10px;font-weight:700;letter-spacing:.5px;
-    display:inline-block;margin-left:8px;text-transform:uppercase;}
-  .q-opcoes{display:flex;flex-direction:column;gap:6px;}
-  .q-op{background:#0b1120;border:2px solid var(--border);padding:10px 14px;
-    border-radius:8px;font-size:.86rem;cursor:pointer;text-align:left;
-    display:flex;align-items:center;gap:10px;color:var(--text);transition:var(--trans);font-family:inherit;}
-  .q-op:hover:not(:disabled){border-color:var(--primary);background:#132238;transform:translateX(2px);}
-  .q-op strong{color:var(--primary);flex-shrink:0;}
-  .q-op.certa{background:#064e3b!important;border-color:var(--ok)!important;color:#d1fae5;}
-  .q-op.errada{background:#450a0a!important;border-color:var(--no)!important;color:#fecaca;}
-  .q-op:disabled{cursor:default;}
-  .q-feedback{display:none;background:#0d1627;border-left:4px solid var(--ok);border-radius:8px;
-    padding:12px 14px;margin-top:12px;font-size:.85rem;color:var(--text-muted);line-height:1.65;}
-  .q-feedback.show{display:block;animation:fade .2s ease;}
-  .q-feedback.erro{border-color:var(--no);}
-  .btn{background:linear-gradient(135deg,var(--primary-dark),#2563eb);color:#fff;
-    border:none;padding:12px 24px;border-radius:30px;font-size:.9rem;font-weight:800;
-    cursor:pointer;transition:var(--trans);font-family:inherit;
-    display:inline-flex;align-items:center;gap:6px;}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,.4);}
-  .btn.sec{background:#1e293b;border:1px solid var(--border);color:#cbd5e1;}
-  .btn.sec:hover{border-color:var(--primary);color:#fff;}
-  .btn.verde{background:linear-gradient(135deg,#059669,#10b981);}
-  .botoes-centro{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
-  .resultado-box{display:none;background:linear-gradient(135deg,#0f766e,#0d9488);
-    border:2px solid #14b8a6;border-radius:16px;padding:22px;margin-top:20px;
-    text-align:center;color:#fff;}
-  .resultado-box.show{display:block;animation:fade .3s ease;}
-  .resultado-box .nota{font-size:2.8rem;font-weight:900;margin:8px 0;}
-  .resultado-box .msg{font-size:.96rem;margin-bottom:14px;}
-  .resultado-box .detalhe{background:rgba(0,0,0,.25);padding:14px 16px;border-radius:10px;
-    font-size:.82rem;text-align:left;line-height:1.65;max-height:280px;overflow-y:auto;margin-top:12px;}
-  .card-aluno{background:#0f182c;border:2px solid var(--border);border-left:6px solid var(--primary);
-    border-radius:12px;padding:14px 18px;margin-bottom:16px;}
-  .card-aluno h4{font-size:.94rem;color:#fff;margin-bottom:8px;}
-  .card-aluno .campos{display:grid;grid-template-columns:2fr 1fr;gap:8px;}
-  .campo-input{width:100%;padding:9px 12px;background:#0b1120;border:1px solid var(--border);
-    border-radius:8px;color:#fff;font-size:.86rem;font-family:inherit;outline:none;}
-  .campo-input:focus{border-color:var(--primary);}
-  .footer-card{background:var(--surface);border-radius:var(--radius);padding:22px;
-    margin-top:24px;text-align:center;border:2px solid var(--border);}
-  .footer-card h4{font-size:.94rem;color:#fff;margin-bottom:10px;}
-  .footer-card a{display:inline-flex;align-items:center;gap:10px;background:#0f182c;
-    border:1px solid var(--ok);padding:10px 18px;border-radius:10px;
-    color:var(--text);text-decoration:none;font-size:.86rem;transition:var(--trans);}
-  .footer-card a:hover{background:#0d1e1b;border-color:#34d399;}
-  @media (max-width:720px){
-    .card-aluno .campos{grid-template-columns:1fr;}
-    .card{padding:18px 14px;}
-    .card h2{font-size:1.1rem;}
+  .link-lab{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.12);
+    border:1px solid var(--ok);color:#d1fae5;padding:6px 14px;border-radius:20px;
+    font-size:.78rem;font-weight:800;text-decoration:none;margin-top:8px;transition:var(--trans);}
+  .link-lab:hover{background:rgba(16,185,129,.25);color:#fff;}
+  .footer-card{background:var(--surface);border-radius:var(--radius);padding:20px;
+    margin-top:20px;text-align:center;border:2px solid var(--border);}
+  .footer-card h4{font-size:.9rem;color:#fff;margin-bottom:8px;}
+  .footer-card p{font-size:.82rem;color:var(--text-muted);margin-bottom:12px;}
+  .footer-card a{display:inline-flex;align-items:center;gap:8px;background:#0f182c;
+    border:1px solid var(--primary);padding:10px 18px;border-radius:10px;
+    color:var(--text);text-decoration:none;font-size:.84rem;font-weight:700;transition:var(--trans);}
+  .footer-card a:hover{background:#0c2a45;border-color:#38bdf8;}
+  @media (max-width:600px){
+    .card{padding:16px 14px;}
+    .card h2{font-size:1rem;}
   }
 </style>
 </head>
 <body>
 <div class="container">
+
   <header class="header">
     <h1>📚 Tema <span>02</span> • Estratégia de Conteúdo Avançada</h1>
-    <p>Personas, objetivos SMART, jornada do consumidor, tópicos, conteúdo de qualidade, distribuição, personalização, SEO, engajamento, iteração, tendências e concorrência.</p>
-    <div class="header-badges">
-      <span>🎭 Personas</span>
-      <span>🎯 SMART</span>
-      <span>🗺️ Jornada</span>
-      <span>💡 Tópicos</span>
-      <span>✍️ Conteúdo</span>
-      <span>📢 Distribuição</span>
-      <span>🎯 Personalização</span>
-      <span>🔍 SEO</span>
-      <span>❤️ Engajamento</span>
-      <span>🔄 Iteração</span>
-      <span>🚀 Tendências</span>
-      <span>🕵️ Concorrência</span>
-    </div>
-    <div class="fonte">Base: apostila oficial Proz • Administração de Websites • Tema 02</div>
+    <p>Guia rápido para consulta durante o projeto. Cada aba tem o essencial: o que é, por que importa e um exemplo.</p>
+    <div class="aviso">⏱️ Leitura completa: ~15 min • Depois, mãos à obra no projeto integrador.</div>
   </header>
 
   <nav class="tabs-nav">
@@ -165,776 +104,272 @@
     <button class="tab-btn" data-aba="aba-engajamento">❤️ 9. Engajamento</button>
     <button class="tab-btn" data-aba="aba-iteracao">🔄 10. Iteração</button>
     <button class="tab-btn" data-aba="aba-tendencias">🚀 11. Tendências</button>
-    <button class="tab-btn" data-aba="aba-quiz">📝 12. Quiz</button>
+    <button class="tab-btn" data-aba="aba-concorrencia">🕵️ 12. Concorrência</button>
   </nav>
 
+  <!-- ABA 1 — PERSONAS -->
   <div id="aba-personas" class="tab-content active">
     <section class="card">
-      <h2>🎭 Análise de Público-Alvo e Personas</h2>
-      <p>A apostila define: "a análise aprofundada permite adaptar o conteúdo para atender às necessidades e preferências do público de maneira mais eficaz."</p>
-
-      <h3>5 passos do processo (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">Passo 1</span><h4>📊 Coleta de Dados</h4><p>"Reúna dados demográficos, como idade, gênero, localização, bem como informações comportamentais e psicográficas, como interesses, valores, desafios e objetivos."</p></div>
-        <div class="mini-card"><span class="tag">Passo 2</span><h4>🔍 Pesquisa de Mercado</h4><p>"Pesquisas para identificar tendências de mercado, preferências do público, padrões de consumo e necessidades não atendidas."</p></div>
-        <div class="mini-card"><span class="tag">Passo 3</span><h4>✂️ Segmentação</h4><p>"Divida o público em segmentos distintos com base em características semelhantes, permitindo abordagens mais direcionadas."</p></div>
-        <div class="mini-card"><span class="tag">Passo 4</span><h4>🎭 Criação de Personas</h4><p>"Representações fictícias dos diferentes segmentos, atribuindo nomes, características, objetivos e desafios a cada uma."</p></div>
-        <div class="mini-card"><span class="tag">Passo 5</span><h4>💗 Empatia</h4><p>"Coloque-se no lugar das personas para entender suas motivações, preocupações e expectativas em relação ao conteúdo."</p></div>
+      <h2>🎭 Personas</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>Persona é um <strong>cliente fictício</strong> que representa um grupo real do seu público. Tem nome, idade, rotina, objetivo e dor.</p>
       </div>
-
-      <h3>5 razões pelas quais isso importa</h3>
-      <ul>
-        <li><strong>Personalização Eficaz:</strong> "criar conteúdo altamente relevante e personalizado, o que aumenta a probabilidade de engajamento"</li>
-        <li><strong>Comunicação Direcionada:</strong> "mensagens adaptadas às necessidades específicas de cada persona têm mais probabilidade de ressoar"</li>
-        <li><strong>Identificação de Oportunidades:</strong> "ajuda a identificar necessidades não atendidas ou nichos de mercado"</li>
-        <li><strong>Redução do Desperdício:</strong> "evita desperdício de recursos ao direcionar esforços para públicos que realmente têm interesse"</li>
-        <li><strong>Conexão Emocional:</strong> "conteúdo que fala diretamente aos interesses e desafios das personas cria uma conexão emocional mais forte"</li>
-      </ul>
-
-      <h3>5 benefícios das personas</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">Benefício</span><h4>🎯 Foco Estratégico</h4><p>"Concentrar os esforços e recursos na criação de conteúdo que atenda às necessidades específicas do público."</p></div>
-        <div class="mini-card"><span class="tag">Benefício</span><h4>📖 Direção de Conteúdo</h4><p>"Orientam a criação de tópicos, formatos e abordagens que ressoam com cada persona."</p></div>
-        <div class="mini-card"><span class="tag">Benefício</span><h4>📢 Segmentação de Marketing</h4><p>"Facilitam a segmentação de campanhas de marketing para alcançar os grupos mais relevantes."</p></div>
-        <div class="mini-card"><span class="tag">Benefício</span><h4>🎬 Criação de Personagens</h4><p>"Personas se tornam personagens concretos para quem você está criando."</p></div>
-        <div class="mini-card"><span class="tag">Benefício</span><h4>🧠 Decisão Informada</h4><p>"Ajudam a tomar decisões estratégicas baseadas em insights detalhados sobre o público."</p></div>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Sem persona, você escreve para "todo mundo" — e não fala com ninguém. Com persona, cada conteúdo tem um destinatário claro.</p>
       </div>
-      <div class="callout azul">💡 <strong>Conclusão da apostila:</strong> "essa compreensão profunda do público permite personalizar o conteúdo, comunicar mensagens relevantes e construir conexões autênticas, resultando em um engajamento mais profundo e impactante."</div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>João, 19 anos, estudante.</strong> Usa notebook todo dia, pesquisa no celular, tem pouco dinheiro e não pode ficar sem o computador. Dor: lentidão na semana de provas.</p>
+      </div>
+      <a href="lab.html#lab01" class="link-lab">🧪 Praticar no Lab 01</a>
     </section>
   </div>
 
+  <!-- ABA 2 — SMART -->
   <div id="aba-smart" class="tab-content">
     <section class="card">
-      <h2>🎯 Definição de Objetivos Claros (Metas SMART)</h2>
-      <p>"Envolve estabelecer metas específicas, mensuráveis, alcançáveis, relevantes e com prazo (SMART) que guiarão o planejamento, a execução e a avaliação de suas ações."</p>
-
-      <h3>Os 5 componentes SMART (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">S</span><h4>🎯 Específico (Specific)</h4><p>"Seja preciso sobre o que deseja alcançar. Um objetivo específico responde às perguntas: O quê? Quem? Onde? Por quê? Como?"</p></div>
-        <div class="mini-card"><span class="tag">M</span><h4>📊 Mensurável (Measurable)</h4><p>"Defina critérios que permitam avaliar o progresso e determinar quando o objetivo foi alcançado. Estabeleça indicadores claros de sucesso."</p></div>
-        <div class="mini-card"><span class="tag">A</span><h4>✅ Alcançável (Achievable)</h4><p>"Seja realista em relação ao alcance do objetivo. Certifique-se de que você tenha os recursos, o tempo e as capacidades necessárias."</p></div>
-        <div class="mini-card"><span class="tag">R</span><h4>🎯 Relevante (Relevant)</h4><p>"O objetivo deve ser relevante para sua estratégia geral e contribuir para seus objetivos maiores. Alinhado com missão e visão."</p></div>
-        <div class="mini-card"><span class="tag">T</span><h4>⏱️ Com Prazo (Time-Bound)</h4><p>"Defina um prazo claro para atingir o objetivo. Isso cria um senso de urgência e ajuda a manter o foco e o comprometimento."</p></div>
+      <h2>🎯 Objetivos SMART</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>Meta SMART é um objetivo com 5 qualidades: <strong>Específico, Mensurável, Alcançável, Relevante e com Prazo</strong>.</p>
       </div>
-
-      <h3>5 razões para ter objetivos claros</h3>
-      <ul>
-        <li><strong>Direção e Foco:</strong> "fornecem uma direção clara para seus esforços, evitando a dispersão de recursos e energia"</li>
-        <li><strong>Avaliação de Progresso:</strong> "metas mensuráveis permitem monitorar o progresso e ajustar estratégias"</li>
-        <li><strong>Motivação:</strong> "aumenta a motivação da equipe, uma vez que todos entendem o propósito"</li>
-        <li><strong>Tomada de Decisão Informada:</strong> "ajudam a tomar decisões alinhadas com a visão geral da estratégia"</li>
-        <li><strong>Medição de Sucesso:</strong> "objetivos bem definidos permitem medir e comunicar o sucesso de forma tangível"</li>
-      </ul>
-
-      <h3>Exemplo completo da apostila</h3>
-      <div class="callout">
-        <strong>Objetivo:</strong> "Aumentar o tráfego orgânico do site em 25% nos próximos seis meses."<br>
-        <strong>Específico:</strong> aumentar o tráfego orgânico (visitas não pagas de mecanismos de busca).<br>
-        <strong>Mensurável:</strong> 25% de aumento no número de visitantes vindos de mecanismos de busca.<br>
-        <strong>Alcançável:</strong> baseado em análise de tendências de tráfego e histórico de crescimento.<br>
-        <strong>Relevante:</strong> alinhado com a estratégia de expansão da presença online.<br>
-        <strong>Com Prazo:</strong> nos próximos seis meses.
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>"Quero crescer" não é meta. "Quero 30 orçamentos em 60 dias" é meta — dá para medir, acompanhar e saber se funcionou.</p>
       </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>Meta:</strong> conseguir 30 solicitações de orçamento pelo site em 60 dias.<br>
+        <strong>S</strong> formulário de orçamento • <strong>M</strong> 30 pedidos • <strong>A</strong> 0,5/dia • <strong>R</strong> meta principal do negócio • <strong>T</strong> 60 dias.</p>
+      </div>
+      <a href="lab.html#lab02" class="link-lab">🧪 Praticar no Lab 02</a>
     </section>
   </div>
 
+  <!-- ABA 3 — JORNADA -->
   <div id="aba-jornada" class="tab-content">
     <section class="card">
-      <h2>🗺️ Mapeamento da Jornada do Consumidor</h2>
-      <p>"Envolve a visualização e compreensão das etapas pelas quais um consumidor passa desde o momento em que descobre um problema ou necessidade até a conclusão de uma compra ou alcance de um objetivo."</p>
-
-      <h3>As 5 etapas da jornada (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">Etapa 1</span><h4>👀 Conscientização</h4><p>"O consumidor reconhece uma necessidade ou problema e começa a procurar informações sobre possíveis soluções."</p></div>
-        <div class="mini-card"><span class="tag">Etapa 2</span><h4>🔍 Consideração</h4><p>"O consumidor explora opções e compara diferentes soluções para tomar uma decisão informada."</p></div>
-        <div class="mini-card"><span class="tag">Etapa 3</span><h4>✅ Decisão</h4><p>"O consumidor toma a decisão de compra e seleciona a solução que melhor atende às suas necessidades."</p></div>
-        <div class="mini-card"><span class="tag">Etapa 4</span><h4>📦 Pós-Compra</h4><p>"O consumidor avalia sua experiência e satisfação com o produto ou serviço adquirido."</p></div>
-        <div class="mini-card"><span class="tag">Etapa 5</span><h4>🏆 Lealdade e Advocacia</h4><p>"Alguns consumidores podem se tornar defensores da marca, compartilhando experiências positivas."</p></div>
+      <h2>🗺️ Jornada do Consumidor</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>É o caminho que o cliente percorre em 5 etapas: <strong>Conscientização → Consideração → Decisão → Pós-Compra → Lealdade</strong>.</p>
       </div>
-
-      <h3>5 benefícios do mapeamento</h3>
-      <ul>
-        <li><strong>Entendimento Profundo:</strong> "compreender as emoções, dúvidas e decisões dos consumidores em cada estágio"</li>
-        <li><strong>Personalização:</strong> "criação de conteúdo altamente direcionado para atender às necessidades de cada estágio"</li>
-        <li><strong>Otimização de Conteúdo:</strong> "identificar lacunas no conteúdo disponível e oportunidades para criar conteúdo relevante"</li>
-        <li><strong>Identificação de Pontos de Contato:</strong> "revela os pontos de contato onde os consumidores interagem com a marca"</li>
-        <li><strong>Melhoria da Experiência do Cliente:</strong> "criar uma experiência mais fluida e agradável, desde a descoberta até a pós-compra"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: linha anti-envelhecimento</h3>
-      <ol style="padding-left:22px;color:var(--text-muted);font-size:.92rem;line-height:1.8;">
-        <li><strong style="color:#fff;">Conscientização:</strong> "consumidora pesquisa 'como reduzir rugas' e encontra um artigo informativo"</li>
-        <li><strong style="color:#fff;">Consideração:</strong> "lê avaliações de diferentes produtos e assiste a vídeos de influenciadoras"</li>
-        <li><strong style="color:#fff;">Decisão:</strong> "com base em avaliações positivas, escolhe um creme e faz a compra online"</li>
-        <li><strong style="color:#fff;">Pós-Compra:</strong> "deixa uma avaliação positiva e compartilha sua experiência nas redes sociais"</li>
-        <li><strong style="color:#fff;">Lealdade e Advocacia:</strong> "se inscreve no boletim informativo da marca e recomenda o produto a amigos"</li>
-      </ol>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Cada etapa pede um conteúdo diferente. Artigo informativo no início, comparativo no meio, prova social na decisão.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>1.</strong> Pesquisa "consertar notebook lento" → <strong>2.</strong> compara avaliações → <strong>3.</strong> pede orçamento → <strong>4.</strong> avalia o atendimento → <strong>5.</strong> indica para colegas.</p>
+      </div>
+      <a href="lab.html#lab03" class="link-lab">🧪 Praticar no Lab 03</a>
     </section>
   </div>
 
+  <!-- ABA 4 — TÓPICOS -->
   <div id="aba-topicos" class="tab-content">
     <section class="card">
-      <h2>💡 Seleção de Tópicos Estratégicos</h2>
-      <p>"Envolve a identificação e escolha cuidadosa dos temas e tópicos que serão abordados no conteúdo, levando em consideração os interesses, necessidades e objetivos do público-alvo, bem como as metas da estratégia de marketing e negócios."</p>
-
-      <h3>7 passos (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🔍 Pesquisa de Palavras-Chave</h4><p>"Pesquisa abrangente de palavras-chave relacionadas ao seu setor, produtos ou serviços."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>📈 Análise de Tendências</h4><p>"Esteja atento às tendências emergentes, notícias e temas quentes dentro do seu nicho."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>🎯 Alinhamento com Objetivos</h4><p>"Tópicos alinhados com a estratégia de conteúdo e com a missão da marca."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>👥 Atendimento às Necessidades</h4><p>"Tópicos que resolvam problemas, respondam a perguntas frequentes ou forneçam informações valiosas."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>🎨 Diversificação</h4><p>"Variedade de tópicos para atender às diferentes fases da jornada do consumidor."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>✨ Originalidade</h4><p>"Tópicos com ângulo único ou abordagem original para se destacar da concorrência."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>⏳ Relevância a Longo Prazo</h4><p>"Tópicos com relevância duradoura, em vez de modismos passageiros."</p></div>
+      <h2>💡 Tópicos Estratégicos</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>São os assuntos que você escolhe publicar. Um bom tópico atende a 7 critérios: palavra-chave, tendência, objetivo, necessidade do público, variedade, originalidade e relevância duradoura.</p>
       </div>
-
-      <h3>5 benefícios da seleção estratégica</h3>
-      <ul>
-        <li><strong>Direcionamento do Conteúdo:</strong> "criar conteúdo relevante e valioso, aumentando o engajamento"</li>
-        <li><strong>Alinhamento com Objetivos de Negócios:</strong> "tópicos estratégicos contribuem para o crescimento e o sucesso"</li>
-        <li><strong>SEO e Visibilidade:</strong> "palavras-chave relevantes melhoram a otimização, aumentando a visibilidade"</li>
-        <li><strong>Posicionamento como Autoridade:</strong> "escolher tópicos em que a marca possua expertise ajuda a construir a reputação"</li>
-        <li><strong>Satisfação do Público:</strong> "abordar tópicos que atendam às necessidades gera satisfação e fidelização"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: empresa de fitness</h3>
-      <p>5 tópicos sugeridos: rotinas de treino em casa, nutrição saudável, equipamentos de treino, dicas de motivação, entrevistas com especialistas.</p>
-
-      <div class="callout azul">💡 <strong>Conclusão da apostila:</strong> "ao selecionar esses tópicos, a empresa está atendendo às necessidades e interesses de seu público-alvo, posicionando-se como uma fonte confiável."</div>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Tópico popular não basta. Precisa ter a ver com a persona, com a marca e com o que dá para manter no longo prazo.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>5 tópicos de assistência técnica:</strong> sinais de manutenção • acelerar notebook • HD x SSD • evitar vírus • aumentar vida útil.</p>
+      </div>
+      <a href="lab.html#lab04" class="link-lab">🧪 Praticar no Lab 04</a>
     </section>
   </div>
 
+  <!-- ABA 5 — CONTEÚDO -->
   <div id="aba-conteudo" class="tab-content">
     <section class="card">
-      <h2>✍️ Criação de Conteúdo de Qualidade</h2>
-      <p>"Envolve a produção de materiais valiosos, relevantes e envolventes que atendam às necessidades do público-alvo, oferecendo informações úteis, entretenimento ou soluções para problemas específicos."</p>
-
-      <h3>Os 10 princípios da apostila</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🎯 Relevância</h4><p>"Diretamente relevante para o público-alvo, abordando seus interesses, necessidades e desafios."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>💎 Valor</h4><p>"Fornecer valor real, seja através de informações educativas, entretenimento, inspiração ou solução de problemas."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>✨ Originalidade</h4><p>"Único e com perspectiva ou abordagem original para se destacar da concorrência."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>✔️ Precisão</h4><p>"A precisão e a veracidade das informações são fundamentais para construir confiança e credibilidade."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>🎬 Engajamento</h4><p>"Envolvente e estimulante, incentivando os leitores a interagir, compartilhar e participar."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>💡 Clareza</h4><p>"Comunicação clara e fácil de entender, evitando jargões ou linguagem excessivamente técnica."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>📐 Formato Atrativo</h4><p>"Escolhido de acordo com as preferências do público (texto, vídeo, infográfico, podcast)."</p></div>
-        <div class="mini-card"><span class="tag">8</span><h4>📖 Narrativa</h4><p>"Storytelling para criar conexões emocionais e manter o interesse do público."</p></div>
-        <div class="mini-card"><span class="tag">9</span><h4>👀 Escaneabilidade</h4><p>"Títulos, subtítulos, listas e parágrafos curtos facilitam a leitura e compreensão."</p></div>
-        <div class="mini-card"><span class="tag">10</span><h4>📢 Chamadas à Ação</h4><p>"Chamadas à ação relevantes para incentivar o engajamento ou direcionar a próxima ação."</p></div>
+      <h2>✍️ Conteúdo de Qualidade</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>Conteúdo de qualidade segue 10 princípios: <strong>relevância, valor, originalidade, precisão, engajamento, clareza, formato atrativo, narrativa, escaneabilidade e CTA</strong>.</p>
       </div>
-
-      <h3>6 benefícios da qualidade</h3>
-      <ul>
-        <li><strong>Engajamento e Retenção:</strong> "mantém os leitores envolvidos e encoraja o retorno"</li>
-        <li><strong>Construção de Autoridade:</strong> "estabelece a marca como uma autoridade confiável no setor"</li>
-        <li><strong>SEO e Visibilidade:</strong> "conteúdo relevante e bem otimizado melhora a visibilidade nos mecanismos de busca"</li>
-        <li><strong>Geração de Leads:</strong> "pode atrair leads qualificados, interessados nos produtos ou serviços"</li>
-        <li><strong>Compartilhamento Social:</strong> "conteúdo interessante é mais propenso a ser compartilhado"</li>
-        <li><strong>Fidelização de Clientes:</strong> "conteúdo útil e educativo ajuda a construir relacionamentos duradouros"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: guia de viagem</h3>
-      <p>"Guia completo sobre 'Dicas para Viajar com Orçamento Limitado'" — incluindo estratégias de economia, hospedagem acessível, voos baratos, sugestões para economizar, formatado em visual atraente com imagens e infográficos.</p>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Conteúdo ruim afasta. Conteúdo bom constrói autoridade, gera confiança e faz o leitor voltar.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>"Seu notebook está lento? 5 maneiras de melhorar o desempenho sem comprar outro"</strong> — tem título claro, promessa concreta, lista escaneável e CTA no fim.</p>
+      </div>
+      <a href="lab.html#lab05" class="link-lab">🧪 Praticar no Lab 05</a>
     </section>
   </div>
 
+  <!-- ABA 6 — DISTRIBUIÇÃO -->
   <div id="aba-distribuicao" class="tab-content">
     <section class="card">
       <h2>📢 Distribuição Multicanal</h2>
-      <p>"Refere-se à estratégia de promover e compartilhar o conteúdo por meio de diversos canais de comunicação, como redes sociais, e-mail marketing, mecanismos de busca, mídia paga e outras plataformas online e offline."</p>
-
-      <h3>6 princípios da apostila</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🎯 Identificação de Canais</h4><p>"Escolha os canais de distribuição mais relevantes para o seu público-alvo."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>🎨 Adaptação do Conteúdo</h4><p>"O formato, a linguagem e a abordagem podem variar de acordo com a plataforma."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>📅 Programação Estratégica</h4><p>"Planeje uma programação consistente e estratégica para compartilhar em diferentes momentos."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>✂️ Segmentação</h4><p>"Características demográficas, interesses e comportamentos ajudam a entregar o conteúdo certo."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>💰 Amplificação Paga</h4><p>"Considere investir em publicidade paga para aumentar o alcance e a visibilidade."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>🔄 Integração Online/Offline</h4><p>"Explore oportunidades de integrar com eventos, feiras e materiais impressos."</p></div>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>É publicar o mesmo conteúdo em vários canais — blog, Instagram, YouTube, e-mail, Google Meu Negócio — adaptando o formato para cada um.</p>
       </div>
-
-      <h3>6 benefícios da distribuição multicanal</h3>
-      <ul>
-        <li><strong>Maior Alcance:</strong> "amplia sua presença online e alcança uma audiência mais ampla"</li>
-        <li><strong>Engajamento:</strong> "diferentes canais têm diferentes formas de interação"</li>
-        <li><strong>Diversificação de Audiência:</strong> "cada canal tem um público exclusivo"</li>
-        <li><strong>Visibilidade Aprimorada:</strong> "aparecer em várias plataformas aumenta a visibilidade"</li>
-        <li><strong>Resposta às Preferências:</strong> "oferecer em diferentes formatos e canais atende às preferências"</li>
-        <li><strong>Aproveitamento de Oportunidades:</strong> "alcance orgânico nas redes sociais, tráfego direcionado dos mecanismos de busca, engajamento pessoal em eventos"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: vídeo tutorial de maquiagem</h3>
-      <p>1. YouTube → 2. Instagram (teasers) → 3. Blog (artigo + vídeo) → 4. E-mail Marketing → 5. Facebook/Twitter/Pinterest → 6. Parcerias com influenciadores → 7. Eventos (telas).</p>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Quem não vê no Instagram pode ver no blog. Combinar canais aumenta alcance e atinge públicos diferentes.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>Artigo no blog</strong> (completo) + <strong>carrossel no Instagram</strong> (resumo) + <strong>e-mail para clientes antigos</strong> (dica + oferta).</p>
+      </div>
+      <a href="lab.html#lab06" class="link-lab">🧪 Praticar no Lab 06</a>
     </section>
   </div>
 
+  <!-- ABA 7 — PERSONALIZAÇÃO -->
   <div id="aba-personalizacao" class="tab-content">
     <section class="card">
       <h2>🎯 Personalização e Segmentação</h2>
-      <p>"Entregar mensagens, produtos ou serviços altamente relevantes e adaptados às necessidades e preferências individuais de cada segmento do público-alvo."</p>
-
-      <h3>7 princípios da apostila</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🎯 Segmentação de Público-Alvo</h4><p>"Dividir o público em grupos com características semelhantes: demografia, interesses, comportamento de compra."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>📊 Segmentação Comportamental</h4><p>"Baseada nos comportamentos passados, como compras anteriores ou interações com conteúdo."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>✍️ Personalização de Conteúdo</h4><p>"Criar e entregar conteúdo sob medida para cada segmento, abordando suas necessidades específicas."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>📧 E-mails Personalizados</h4><p>"Conteúdo relevante, recomendações de produtos ou ofertas com base nas preferências do destinatário."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>🛒 Recomendações de Produtos</h4><p>"Algoritmos para sugerir produtos com base nas compras anteriores e histórico de navegação."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>📣 Anúncios Segmentados</h4><p>"Anúncios relevantes para cada grupo de público, com base em dados demográficos, comportamentais ou geográficos."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>🖥️ Experiência Personalizada</h4><p>"Adaptar a interface de um site ou aplicativo com base nas preferências do usuário."</p></div>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p><strong>Segmentar</strong> é dividir o público em grupos. <strong>Personalizar</strong> é adaptar a mensagem para cada grupo ou pessoa.</p>
       </div>
-
-      <h3>6 benefícios</h3>
-      <ul>
-        <li><strong>Relevância:</strong> "mensagens personalizadas e conteúdo sob medida são mais relevantes, aumentando o engajamento"</li>
-        <li><strong>Engajamento Aprimorado:</strong> "cria uma experiência mais envolvente, aumentando a interação e a conexão"</li>
-        <li><strong>Satisfação do Cliente:</strong> "atender às necessidades individuais gera maior satisfação e fidelidade"</li>
-        <li><strong>Aumento de Conversões:</strong> "oferecer produtos alinhados aos interesses aumenta as chances de conversão"</li>
-        <li><strong>Redução de Ruído:</strong> "segmentação mais precisa reduz o risco de enviar mensagens irrelevantes"</li>
-        <li><strong>Economia de Recursos:</strong> "distribuição direcionada é mais eficiente e econômica"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: loja de e-commerce</h3>
-      <p>Segmentação demográfica + histórico de compras → E-mails personalizados → anúncios segmentados → página inicial adaptada → ofertas especiais.</p>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Mensagem genérica é ignorada. Mensagem certa para a pessoa certa converte muito mais.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>Para estudante:</strong> "Não fique sem notebook na semana de provas."<br>
+        <strong>Para empresa:</strong> "Evite paradas na equipe com suporte ágil."</p>
+      </div>
+      <a href="lab.html#lab07" class="link-lab">🧪 Praticar no Lab 07</a>
     </section>
   </div>
 
+  <!-- ABA 8 — SEO -->
   <div id="aba-seo" class="tab-content">
     <section class="card">
-      <h2>🔍 SEO Avançado e Otimização On-Page</h2>
-      <p>"Abordagem mais aprofundada e estratégica para otimizar o conteúdo e as páginas de um site, visando melhorar sua visibilidade nos mecanismos de busca e atrair tráfego qualificado."</p>
-
-      <h3>7 elementos de SEO Avançado (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🔍 Análise de Palavras-Chave</h4><p>"Palavras-chave altamente relevantes e de alto desempenho: volume de pesquisa, concorrência e intenção do usuário."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>🦎 Cauda Longa</h4><p>"Palavras-chave mais específicas e longas, com menos concorrência e tráfego altamente segmentado."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>⚙️ SEO Técnico</h4><p>"Otimização de velocidade, estrutura de URLs, uso de marcadores semânticos."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>🔗 Link Building</h4><p>"Links de alta qualidade e relevantes para aumentar a autoridade do site."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>📝 Otimização de Snippets</h4><p>"Meta descrições e títulos de página atraentes e otimizados para atrair cliques."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>🖼️ Otimização de Imagens</h4><p>"Imagens com títulos descritivos e atributos ALT para melhorar a experiência e o SEO."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>📚 Estratégias de Conteúdo</h4><p>"Conteúdo abrangente e interligado para fortalecer a autoridade em torno de um tópico."</p></div>
+      <h2>🔍 SEO On-Page</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>SEO é otimizar a página para aparecer no Google. O básico: <strong>título com palavra-chave (até 60 caracteres)</strong>, <strong>meta description (até 160)</strong> e <strong>URL curta e amigável</strong>.</p>
       </div>
-
-      <h3>9 elementos de Otimização On-Page (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🔗 URLs Amigáveis</h4><p>"URLs descritivas e amigáveis para o usuário e para os mecanismos de busca."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>🏷️ Títulos e Cabeçalhos</h4><p>"H1, H2, H3 relevantes e otimizados com palavras-chave."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>✍️ Conteúdo de Qualidade</h4><p>"Conteúdo de alta qualidade, bem pesquisado e aprofundado."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>🎯 Uso Estratégico de Palavras-Chave</h4><p>"Palavras-chave de forma natural e estratégica ao longo do conteúdo."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>📐 Estrutura de Conteúdo</h4><p>"Seções claras e hierárquicas para facilitar a leitura."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>🔗 Links Internos</h4><p>"Links internos relevantes para direcionar os visitantes a outras partes do site."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>⚡ Velocidade</h4><p>"Garantir que as páginas carreguem rapidamente."</p></div>
-        <div class="mini-card"><span class="tag">8</span><h4>📱 Responsividade</h4><p>"Site responsivo e adaptado a dispositivos móveis."</p></div>
-        <div class="mini-card"><span class="tag">9</span><h4>🏷️ Marcadores Semânticos</h4><p>"Usar marcadores semânticos, como schema.org, para fornecer informações adicionais."</p></div>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Aparecer no Google é a forma mais barata de atrair visitantes todos os dias, sem pagar anúncio.</p>
       </div>
-
-      <h3>5 benefícios</h3>
-      <ul>
-        <li><strong>Melhor Visibilidade:</strong> "aumenta a chance de aparecer nos resultados de pesquisa relevantes"</li>
-        <li><strong>Tráfego Qualificado:</strong> "atrair pessoas com interesse real no conteúdo ou produtos"</li>
-        <li><strong>Autoridade e Relevância:</strong> "contribuem para construir a autoridade do site e sua relevância em um nicho"</li>
-        <li><strong>Experiência do Usuário:</strong> "páginas otimizadas oferecem melhor experiência, com maior retenção"</li>
-        <li><strong>Concorrência:</strong> "vantagem competitiva, permitindo que seu site se destaque"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: loja de produtos naturais</h3>
-      <p>Página "Suplementos para Energia e Vitalidade": pesquisa de cauda longa ("suplementos naturais para aumentar a energia") + conteúdo abrangente + títulos otimizados + URL descritiva + links internos + imagens com ALT + velocidade + marcadores semânticos.</p>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>Título:</strong> Assistência Técnica de Computadores | TechFix<br>
+        <strong>URL:</strong> /assistencia-tecnica-computadores<br>
+        <strong>Description:</strong> Manutenção e otimização de computadores. Orçamento rápido e garantia de 90 dias.</p>
+      </div>
+      <a href="lab.html#lab09" class="link-lab">🧪 Praticar no Lab 09</a>
     </section>
   </div>
 
+  <!-- ABA 9 — ENGAJAMENTO -->
   <div id="aba-engajamento" class="tab-content">
     <section class="card">
-      <h2>❤️ Engajamento do Público</h2>
-      <p>"Criar conexões significativas e interações ativas entre uma marca e seu público-alvo. Essa abordagem envolve a criação de conteúdo envolvente, interativo e valioso, que motive os consumidores a se envolverem, interagirem e participarem das conversas e atividades da marca."</p>
-
-      <h3>9 táticas para o engajamento (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🎮 Conteúdo Interativo</h4><p>"Enquetes, pesquisas, quizzes e conteúdo gerado pelo usuário."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>❓ Perguntas e Respostas</h4><p>"Sessões de perguntas e respostas ao vivo nas redes sociais ou webinars."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>📖 Histórias e Narrativas</h4><p>"Storytelling para compartilhar histórias autênticas e emocionais que ressoem com a audiência."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>🏆 Concursos e Desafios</h4><p>"Concursos e desafios que incentivem os seguidores a participar e compartilhar suas próprias criações."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>⚡ Resposta Rápida</h4><p>"Responder prontamente a comentários, mensagens e interações nas redes sociais."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>🎬 Uso de Vídeo</h4><p>"Vídeos ao vivo, transmissões ou conteúdo gravado para criar uma conexão mais direta e imersiva."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>🎯 Personalização</h4><p>"Mensagens personalizadas que se conectem aos interesses e necessidades individuais dos seguidores."</p></div>
-        <div class="mini-card"><span class="tag">8</span><h4>🌱 Envolvimento em Causas</h4><p>"Associar-se a causas sociais ou ambientais e incentivar os seguidores a se envolverem."</p></div>
-        <div class="mini-card"><span class="tag">9</span><h4>🗳️ Enquetes e Votações</h4><p>"Pedir opiniões do público em decisões da marca, como escolha de produtos, cores ou nomes."</p></div>
+      <h2>❤️ Engajamento</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>É fazer o público <strong>interagir</strong>: curtir, comentar, compartilhar, responder enquete. Toda publicação precisa de uma <strong>chamada para ação (CTA)</strong> clara.</p>
       </div>
-
-      <h3>6 razões pelas quais o engajamento importa</h3>
-      <ul>
-        <li><strong>Conexões Mais Fortes:</strong> "cria um senso de comunidade e pertencimento"</li>
-        <li><strong>Fidelidade e Lealdade:</strong> "público engajado é mais propenso a se tornar clientes fiéis"</li>
-        <li><strong>Alcance Orgânico:</strong> "aumenta a visibilidade do conteúdo nas redes sociais"</li>
-        <li><strong>Feedback Valioso:</strong> "interações e comentários podem fornecer insights valiosos"</li>
-        <li><strong>Humanização da Marca:</strong> "cria uma imagem mais humana e autêntica, gerando confiança"</li>
-        <li><strong>Maior Impacto:</strong> "quando o público compartilha, a mensagem atinge um público mais amplo"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: marca de alimentos saudáveis</h3>
-      <p>Enquetes de preferência + histórias de clientes + desafio de receitas + resposta rápida + vídeos ao vivo de chefs + causa social.</p>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Engajamento cria imagem humana e autêntica da marca. Sem interação, o conteúdo morre no vácuo.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>CTA:</strong> "Solicite seu orçamento agora!"<br>
+        <strong>Pergunta:</strong> "Qual seu maior problema com o computador hoje? Comente abaixo."</p>
+      </div>
+      <a href="lab.html#lab10" class="link-lab">🧪 Praticar no Lab 10</a>
     </section>
   </div>
 
+  <!-- ABA 10 — ITERAÇÃO -->
   <div id="aba-iteracao" class="tab-content">
     <section class="card">
-      <h2>🔄 Análise e Iteração Constantes</h2>
-      <p>"Envolve a contínua avaliação, monitoramento e ajuste das ações e campanhas com base em dados e insights. Essa prática permite otimizar as estratégias, melhorar o desempenho e garantir que os objetivos sejam alcançados de maneira eficaz e eficiente."</p>
-
-      <h3>9 componentes da apostila</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>📊 Coleta de Dados</h4><p>"Ferramentas analíticas para coletar dados sobre desempenho, comportamento do usuário, tráfego do site."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>📈 Métricas Relevantes</h4><p>"Métricas-chave alinhadas aos objetivos: taxa de abertura de e-mails, CTR, tempo de permanência."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>👁️ Monitoramento Contínuo</h4><p>"Acompanhar regularmente o desempenho em tempo real para identificar tendências e padrões."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>🔬 Análise de Dados</h4><p>"Identificar pontos fortes, áreas de melhoria, padrões de comportamento e oportunidades."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>💡 Identificação de Insights</h4><p>"Extrair insights valiosos para compreender o que está funcionando, o que não está e por quê."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>📚 Aprendizado Contínuo</h4><p>"Aprender com os sucessos e desafios anteriores para informar decisões futuras."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>⚙️ Ajustes e Otimizações</h4><p>"Ajustes nas estratégias, campanhas, conteúdo e abordagens para melhorar o desempenho."</p></div>
-        <div class="mini-card"><span class="tag">8</span><h4>🧪 Experimentação</h4><p>"Testar diferentes abordagens, mensagens, formatos e canais para descobrir o que ressoa melhor."</p></div>
-        <div class="mini-card"><span class="tag">9</span><h4>💬 Feedback do Público</h4><p>"Usar feedback direto dos consumidores para informar e orientar as iterações."</p></div>
+      <h2>🔄 Análise e Iteração</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>É o ciclo de <strong>medir → analisar → ajustar → testar de novo</strong>. Nove componentes: coleta, métricas, monitoramento, análise, insights, aprendizado, ajustes, experimentação e feedback.</p>
       </div>
-
-      <h3>5 benefícios</h3>
-      <ul>
-        <li><strong>Otimização Contínua:</strong> "identificar oportunidades de otimização e melhorar o desempenho ao longo do tempo"</li>
-        <li><strong>Adaptação às Mudanças:</strong> "ajustar estratégias rapidamente em resposta a mudanças no mercado e nas tendências"</li>
-        <li><strong>Maximização do ROI:</strong> "alocar recursos de forma mais eficiente e direcionada"</li>
-        <li><strong>Aprendizado e Inovação:</strong> "insights podem informar inovações e melhorias"</li>
-        <li><strong>Alinhamento com o Público:</strong> "manter uma estratégia alinhada às necessidades em constante evolução"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: e-commerce</h3>
-      <p>Coleta de dados → monitoramento regular → análise (posts com dicas de uso engajam mais) → ajustes (criar mais desse formato) → testes A/B em e-mails → feedback dos clientes → otimização da página de checkout.</p>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Sem dados, ajuste vira chute. Sem ajuste, dados não geram resultado. O ciclo nunca termina — cada volta melhora.</p>
+      </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p>Medir CTR do título • testar A/B duas CTAs • revisar a cada 2 semanas • simplificar formulário se conversão cair.</p>
+      </div>
+      <a href="lab.html#lab08" class="link-lab">🧪 Praticar no Lab 08</a>
     </section>
   </div>
 
+  <!-- ABA 11 — TENDÊNCIAS -->
   <div id="aba-tendencias" class="tab-content">
     <section class="card">
-      <h2>🚀 Tendências Futuras e Inovação</h2>
-      <p>"Estar atento a essas tendências permite que as empresas se preparem para o futuro e se destaquem no mercado."</p>
-
-      <h3>As 10 tendências da apostila</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🎬 Vídeo Dominante</h4><p>"Transmissões ao vivo, histórias em vídeo e vídeos interativos."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>🤖 IA e Automação</h4><p>"Personalização de conteúdo, automação de marketing, chatbots e análise de dados avançada."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>🥽 RA e RV</h4><p>"Experiências imersivas e interativas, como experimentar produtos virtualmente antes de comprar."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>🗣️ Voz e Assistentes</h4><p>"Alexa, Google Assistant e Siri exigirão otimização para respostas diretas e conversacionais."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>🛒 E-commerce Social</h4><p>"Compras diretas e experiências de compra interativas nas redes sociais."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>👥 UGC</h4><p>"Conteúdo Gerado pelo Usuário continuará sendo uma forma poderosa de envolvimento."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>🌱 Sustentabilidade</h4><p>"Consumidores valorizam cada vez mais marcas comprometidas com sustentabilidade e responsabilidade social."</p></div>
-        <div class="mini-card"><span class="tag">8</span><h4>🔒 Privacidade de Dados</h4><p>"Regulamentações mais rígidas e necessidade de transparência nas práticas de coleta e uso."</p></div>
-        <div class="mini-card"><span class="tag">9</span><h4>🎯 Personalização Contextual</h4><p>"Personalização mais contextual e em tempo real, com base no comportamento e localização."</p></div>
-        <div class="mini-card"><span class="tag">10</span><h4>🆕 Novas Plataformas</h4><p>"Novas plataformas sociais, formatos e tecnologias exigirão adaptação e experimentação contínuas."</p></div>
+      <h2>🚀 Tendências Futuras</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>10 tendências: <strong>vídeo dominante, IA, RA/RV, busca por voz, e-commerce social, UGC, sustentabilidade, privacidade, personalização contextual e novas plataformas</strong>.</p>
       </div>
-
-      <h3>5 razões pelas quais acompanhar tendências importa</h3>
-      <ul>
-        <li><strong>Vantagem Competitiva:</strong> "identificar tendências e adotar inovações antes da concorrência"</li>
-        <li><strong>Relevância Contínua:</strong> "ficar à frente das tendências garante que a marca continue relevante"</li>
-        <li><strong>Maior Engajamento:</strong> "estratégias inovadoras capturam a atenção dos consumidores"</li>
-        <li><strong>Melhor Experiência do Usuário:</strong> "tecnologias inovadoras podem melhorar a satisfação"</li>
-        <li><strong>Crescimento Sustentável:</strong> "inovação orientada por tendências pode impulsionar o crescimento a longo prazo"</li>
-      </ul>
-
-      <h3>Exemplo da apostila: empresa de moda online</h3>
-      <p>Realidade Aumentada (app) + vídeos interativos + e-commerce social + personalização contextual + compromisso sustentável.</p>
-
-      <h2 style="margin-top:28px;">🕵️ Monitoramento da Concorrência</h2>
-      <p>"Envolve acompanhar e analisar as atividades, estratégias e desempenho de concorrentes diretos e indiretos."</p>
-
-      <h3>As 6 razões para monitorar (conforme apostila)</h3>
-      <ul>
-        <li><strong>Benchmarking:</strong> "comparar suas práticas com as dos concorrentes ajuda a avaliar o desempenho e identificar áreas de melhoria"</li>
-        <li><strong>Identificação de Oportunidades:</strong> "observar o que concorrentes fazem pode revelar oportunidades de nicho"</li>
-        <li><strong>Estratégia de Preços:</strong> "acompanhar preços ajuda a ajustar suas estratégias de preços e promoções"</li>
-        <li><strong>Inovação e Criatividade:</strong> "ver o que concorrentes fazem pode inspirar inovações criativas"</li>
-        <li><strong>Antecipação de Tendências:</strong> "observar as atividades dos concorrentes pode ajudar a prever tendências emergentes"</li>
-        <li><strong>Melhores Práticas:</strong> "identificar práticas eficazes usadas por concorrentes pode ajudá-lo a melhorar"</li>
-      </ul>
-
-      <h3>9 pontos de monitoramento (conforme apostila)</h3>
-      <div class="cards-grid">
-        <div class="mini-card"><span class="tag">1</span><h4>🎯 Identificar Concorrentes</h4><p>"Liste concorrentes diretos e aqueles que operam em nichos semelhantes."</p></div>
-        <div class="mini-card"><span class="tag">2</span><h4>👁️ Atividades Online</h4><p>"Siga nas redes sociais, assine boletins, monitore sites e blogs."</p></div>
-        <div class="mini-card"><span class="tag">3</span><h4>📝 Análise de Conteúdo</h4><p>"Observe o tipo de conteúdo: blogs, vídeos, infográficos."</p></div>
-        <div class="mini-card"><span class="tag">4</span><h4>🔍 Estratégias de SEO</h4><p>"Analise as palavras-chave que eles estão direcionando."</p></div>
-        <div class="mini-card"><span class="tag">5</span><h4>❤️ Engajamento Social</h4><p>"Observe a frequência e o tipo de interações nas redes sociais."</p></div>
-        <div class="mini-card"><span class="tag">6</span><h4>📢 Campanhas de Marketing</h4><p>"Anúncios pagos, promoções e lançamentos de produtos."</p></div>
-        <div class="mini-card"><span class="tag">7</span><h4>🎪 Presença em Eventos</h4><p>"Participação em feiras, conferências e eventos do setor."</p></div>
-        <div class="mini-card"><span class="tag">8</span><h4>💬 Feedback dos Clientes</h4><p>"Avaliações e comentários sobre os produtos ou serviços."</p></div>
-        <div class="mini-card"><span class="tag">9</span><h4>💰 Comparação de Preços</h4><p>"Compare os preços dos produtos ou serviços oferecidos."</p></div>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Nem toda tendência serve para toda marca. É preciso avaliar relevância para a persona — senão vira desperdício.</p>
       </div>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p><strong>Para o João (estudante):</strong> vídeo curto é alta relevância. <strong>Para empresa B2B:</strong> busca por voz pode ser baixa. Avalie caso a caso.</p>
+      </div>
+      <a href="lab.html#lab11" class="link-lab">🧪 Praticar no Lab 11</a>
     </section>
   </div>
 
-  <div id="aba-quiz" class="tab-content">
+  <!-- ABA 12 — CONCORRÊNCIA -->
+  <div id="aba-concorrencia" class="tab-content">
     <section class="card">
-      <h2>📝 Quiz do Tema 02 — 15 questões</h2>
-      <p>As <strong>10 primeiras questões</strong> vêm diretamente da <em>Atividade de Fixação</em> da apostila. As <strong>5 últimas</strong> são de aprofundamento sobre o conteúdo do PDF.</p>
-      <div class="card-aluno">
-        <h4>👤 Identificação (para o relatório)</h4>
-        <div class="campos">
-          <input type="text" id="nomeAluno" class="campo-input" placeholder="Seu nome completo">
-          <input type="text" id="turmaAluno" class="campo-input" placeholder="Turma">
-        </div>
+      <h2>🕵️ Monitoramento da Concorrência</h2>
+      <div class="bloco oque">
+        <span class="tag">O que é</span>
+        <p>É observar o que os concorrentes fazem em 9 critérios: site, blog, SEO, redes, vídeo, avaliações, preço, atendimento e garantia.</p>
       </div>
-      <div class="progresso-bar">
-        <span>Respondidas: <strong id="txtProgresso">0 de 15</strong></span>
-        <div class="barra-fundo"><div class="barra-preench" id="barraProgresso"></div></div>
+      <div class="bloco porque">
+        <span class="tag">Por que importa</span>
+        <p>Não é para copiar — é para encontrar <strong>lacunas</strong> e se diferenciar. Copiar literalmente é a pior estratégia.</p>
       </div>
-      <div id="listaQuestoes"></div>
-      <div class="botoes-centro">
-        <button type="button" class="btn verde" onclick="verResultado()">✅ Calcular resultado</button>
-        <button type="button" class="btn sec" onclick="limparQuiz()">🔄 Limpar</button>
+      <div class="bloco exemplo">
+        <span class="tag">Exemplo rápido</span>
+        <p>Concorrente tem blog ativo mas nenhum vídeo. <strong>Oportunidade:</strong> criar vídeos tutoriais e SEO para "consertar notebook".</p>
       </div>
-      <div class="resultado-box" id="caixaResultado">
-        <h3>📊 Seu resultado</h3>
-        <div class="nota" id="notaFinal">0 / 15</div>
-        <div class="msg" id="mensagemFinal"></div>
-        <div id="detalheResultado" class="detalhe"></div>
-        <div class="botoes-centro" style="margin-top:14px;">
-          <button type="button" class="btn sec" onclick="copiarRelatorio()" id="btnCopiar">📋 Copiar relatório</button>
-        </div>
-      </div>
+      <a href="lab.html#lab12" class="link-lab">🧪 Praticar no Lab 12</a>
     </section>
   </div>
 
+  <!-- CTA FINAL -->
   <div class="footer-card">
-    <h4>📋 Envio oficial do relatório</h4>
-    <a href="https://forms.gle/zbUB57A4FteUDsKSA" target="_blank" rel="noopener">
-      <span style="font-size:1.3rem;">📝</span>
-      <div style="text-align:left;">
-        <strong style="color:#fff;display:block;font-size:.86rem;">Enviar relatório do Tema 02</strong>
-        <small style="color:var(--text-muted);font-size:.7rem;">Cole o resultado copiado acima no formulário</small>
-      </div>
-    </a>
+    <h4>🚀 Pronto para aplicar?</h4>
+    <p>Você já viu o essencial. Agora vá para o projeto integrador e use os 12 labs como apoio.</p>
+    <a href="projeto.html" target="_blank">🚀 Abrir Projeto Integrador</a>
   </div>
+
 </div>
 
 <script>
-function ativarAba(id){
-  var btn = document.querySelector('.tab-btn[data-aba="' + id + '"]');
-  var pane = document.getElementById(id);
-  if(!btn || !pane) return false;
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
-  btn.classList.add('active');
-  pane.classList.add('active');
-  return true;
-}
-
 document.querySelectorAll('.tab-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
-    ativarAba(btn.dataset.aba);
-    if(history.replaceState){
-      history.replaceState(null, '', '#' + btn.dataset.aba);
-    }
-    window.scrollTo({top:0, behavior:'smooth'});
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
+    btn.classList.add('active');
+    var alvo = document.getElementById(btn.dataset.aba);
+    if(alvo) alvo.classList.add('active');
   });
-});
-
-var QUESTOES = [
-  { id:'q1', origem:'atividade oficial',
-    pergunta:'Como o refinamento das personas pode contribuir para uma estratégia de conteúdo mais eficaz?',
-    opcoes:[
-      {l:'A', t:'O refinamento mantém a persona relevante mesmo quando o comportamento do público muda, permitindo conteúdo realmente personalizado, comunicação direcionada e conexão emocional.', ok:true},
-      {l:'B', t:'Personas nunca devem ser atualizadas.', ok:false},
-      {l:'C', t:'Refinar é só trocar o nome da persona.', ok:false},
-      {l:'D', t:'Refinamento não impacta a estratégia.', ok:false}
-    ],
-    exp:'A apostila: "revisitar as personas é um processo fundamental para garantir que elas permaneçam relevantes e atualizadas com as mudanças nas preferências".'
-  },
-  { id:'q2', origem:'atividade oficial',
-    pergunta:'Por que é importante estabelecer objetivos claros em uma estratégia de gestão de conteúdo?',
-    opcoes:[
-      {l:'A', t:'Porque metas SMART dão direção e foco, permitem avaliar progresso, motivam a equipe, orientam decisões e permitem medir o sucesso.', ok:true},
-      {l:'B', t:'Não é importante.', ok:false},
-      {l:'C', t:'Só servem para relatórios.', ok:false},
-      {l:'D', t:'Objetivos claros impedem a criatividade.', ok:false}
-    ],
-    exp:'A apostila lista exatamente esses 5 benefícios: direção e foco, avaliação de progresso, motivação, decisão informada e medição de sucesso.'
-  },
-  { id:'q3', origem:'atividade oficial',
-    pergunta:'Como o mapeamento da jornada do consumidor ajuda a criar conteúdo mais relevante?',
-    opcoes:[
-      {l:'A', t:'Permitindo compreender as emoções, dúvidas e decisões em cada estágio, criando conteúdo específico para cada etapa e identificando lacunas.', ok:true},
-      {l:'B', t:'Apenas listando produtos.', ok:false},
-      {l:'C', t:'Forçando o mesmo conteúdo em todos os estágios.', ok:false},
-      {l:'D', t:'Jornada não tem relação com conteúdo.', ok:false}
-    ],
-    exp:'A apostila: "ajuda a compreender as emoções, dúvidas e decisões dos consumidores em cada estágio, permitindo uma abordagem mais precisa".'
-  },
-  { id:'q4', origem:'atividade oficial',
-    pergunta:'Qual é a importância da pesquisa avançada de palavras-chave na seleção de tópicos estratégicos?',
-    opcoes:[
-      {l:'A', t:'É irrelevante.', ok:false},
-      {l:'B', t:'Identifica termos relevantes e populares, ajudando a escolher tópicos que atendem à intenção do público e alinham com objetivos de negócio.', ok:true},
-      {l:'C', t:'Só se aplica a e-commerce.', ok:false},
-      {l:'D', t:'Substitui a análise de tendências.', ok:false}
-    ],
-    exp:'A apostila lista a pesquisa de palavras-chave como primeira etapa da seleção de tópicos.'
-  },
-  { id:'q5', origem:'atividade oficial',
-    pergunta:'Como o uso de storytelling pode melhorar a criação de conteúdo de qualidade?',
-    opcoes:[
-      {l:'A', t:'Torna conteúdo monótono.', ok:false},
-      {l:'B', t:'Usa narrativas envolventes para criar conexões emocionais, mantendo o interesse do público e construindo relacionamento com a marca.', ok:true},
-      {l:'C', t:'Substitui a necessidade de informação.', ok:false},
-      {l:'D', t:'Só se aplica a vídeos.', ok:false}
-    ],
-    exp:'A apostila lista storytelling como um dos 10 princípios: "utilizar storytelling para criar conexões emocionais e manter o interesse do público".'
-  },
-  { id:'q6', origem:'atividade oficial',
-    pergunta:'Quais são os benefícios de promover conteúdo por meio de distribuição multicanal?',
-    opcoes:[
-      {l:'A', t:'Apenas evitar esforço.', ok:false},
-      {l:'B', t:'Maior alcance, engajamento em diferentes formas, diversificação de audiência, visibilidade aprimorada, resposta às preferências do público e aproveitamento de oportunidades.', ok:true},
-      {l:'C', t:'Distribuição multicanal cansa o público.', ok:false},
-      {l:'D', t:'Só funciona para grandes empresas.', ok:false}
-    ],
-    exp:'A apostila lista exatamente esses 6 benefícios na seção de Distribuição Multicanal.'
-  },
-  { id:'q7', origem:'atividade oficial',
-    pergunta:'Como a personalização e segmentação podem aumentar o engajamento do público?',
-    opcoes:[
-      {l:'A', t:'Enviando a mesma mensagem para todos.', ok:false},
-      {l:'B', t:'Entregando mensagens e conteúdo sob medida para cada segmento, aumentando relevância, conexão e satisfação individual.', ok:true},
-      {l:'C', t:'Ignorando dados de comportamento.', ok:false},
-      {l:'D', t:'Personalização reduz engajamento.', ok:false}
-    ],
-    exp:'A apostila: "a personalização cria uma experiência mais envolvente, aumentando a interação e a conexão com a marca".'
-  },
-  { id:'q8', origem:'atividade oficial',
-    pergunta:'Quais são os principais elementos de uma estratégia de SEO avançado e otimização on-page?',
-    opcoes:[
-      {l:'A', t:'Apenas palavras-chave.', ok:false},
-      {l:'B', t:'SEO Avançado: análise de palavras-chave, cauda longa, SEO técnico, link building, snippets, imagens e estratégias de conteúdo. On-page: URLs, títulos, conteúdo de qualidade, palavras-chave, estrutura, links internos, velocidade, responsividade e marcadores semânticos.', ok:true},
-      {l:'C', t:'Comprar seguidores.', ok:false},
-      {l:'D', t:'Apenas link building.', ok:false}
-    ],
-    exp:'A apostila separa 7 elementos de SEO avançado e 9 elementos de otimização on-page.'
-  },
-  { id:'q9', origem:'atividade oficial',
-    pergunta:'De que maneiras as estratégias de engajamento do público podem ser aprimoradas?',
-    opcoes:[
-      {l:'A', t:'Só postando mais.', ok:false},
-      {l:'B', t:'Envolvendo o público com conteúdo interativo, Q&A, storytelling, concursos, resposta rápida, vídeo, personalização, causas sociais e enquetes.', ok:true},
-      {l:'C', t:'Ignorando comentários.', ok:false},
-      {l:'D', t:'Só com publicidade paga.', ok:false}
-    ],
-    exp:'A apostila lista 9 táticas de engajamento.'
-  },
-  { id:'q10', origem:'atividade oficial',
-    pergunta:'Como a análise e interação constantes contribuem para o aprimoramento contínuo da estratégia de conteúdo?',
-    opcoes:[
-      {l:'A', t:'Não contribuem.', ok:false},
-      {l:'B', t:'Coletando dados, monitorando métricas, analisando o que funciona, ajustando com base em insights e testando continuamente.', ok:true},
-      {l:'C', t:'Só servem para relatórios.', ok:false},
-      {l:'D', t:'Dependem apenas de intuição.', ok:false}
-    ],
-    exp:'A apostila: "a análise constante permite identificar oportunidades de otimização e melhorar o desempenho ao longo do tempo".'
-  },
-  { id:'q11', origem:'aprofundamento',
-    pergunta:'Segundo a apostila, quais são as 5 etapas do mapeamento da jornada do consumidor?',
-    opcoes:[
-      {l:'A', t:'Conscientização, Consideração, Decisão, Pós-Compra, Lealdade e Advocacia.', ok:true},
-      {l:'B', t:'Compra, Pós-Compra, Devolução, Reembolso, Avaliação.', ok:false},
-      {l:'C', t:'Descoberta, Comparação, Compra, Entrega, Feedback.', ok:false},
-      {l:'D', t:'Início, Meio, Fim, Recomeço, Repetição.', ok:false}
-    ],
-    exp:'A apostila lista exatamente essas 5 etapas: Conscientização → Consideração → Decisão → Pós-Compra → Lealdade e Advocacia.'
-  },
-  { id:'q12', origem:'aprofundamento',
-    pergunta:'Segundo a apostila, quais são os componentes das Metas SMART?',
-    opcoes:[
-      {l:'A', t:'Simples, Mínimo, Aceitável, Rápido, Tolerável.', ok:false},
-      {l:'B', t:'Específico (Specific), Mensurável (Measurable), Alcançável (Achievable), Relevante (Relevant), Com Prazo (Time-Bound).', ok:true},
-      {l:'C', t:'Só Específico e Rápido.', ok:false},
-      {l:'D', t:'Simples, Medido, Alegre, Real, Testado.', ok:false}
-    ],
-    exp:'A apostila define exatamente assim os 5 componentes do SMART.'
-  },
-  { id:'q13', origem:'aprofundamento',
-    pergunta:'Segundo a apostila, quantas tendências futuras e inovação são listadas?',
-    opcoes:[
-      {l:'A', t:'3', ok:false},
-      {l:'B', t:'5', ok:false},
-      {l:'C', t:'10 (vídeo, IA, RA/RV, voz, e-commerce social, UGC, sustentabilidade, privacidade, personalização contextual, novas plataformas)', ok:true},
-      {l:'D', t:'20', ok:false}
-    ],
-    exp:'A apostila lista exatamente 10 tendências futuras na seção de Tendências Futuras e Inovação.'
-  },
-  { id:'q14', origem:'aprofundamento',
-    pergunta:'Segundo a apostila, qual é a diferença entre SEO Avançado e Otimização On-Page?',
-    opcoes:[
-      {l:'A', t:'São conceitos idênticos.', ok:false},
-      {l:'B', t:'SEO Avançado trata de análise de palavras-chave, técnicas, link building e snippets (visão estratégica); On-Page trata de URLs, títulos, conteúdo, palavras-chave, estrutura, velocidade, responsividade e marcadores semânticos (estrutura da página).', ok:true},
-      {l:'C', t:'On-Page não existe mais.', ok:false},
-      {l:'D', t:'SEO Avançado só se aplica a e-commerce.', ok:false}
-    ],
-    exp:'A apostila separa claramente os dois blocos: SEO Avançado (7 elementos estratégicos/técnicos) e Otimização On-Page (9 elementos estruturais).'
-  },
-  { id:'q15', origem:'aprofundamento',
-    pergunta:'Segundo a apostila, qual o principal benefício do monitoramento da concorrência?',
-    opcoes:[
-      {l:'A', t:'Apenas espionar concorrentes.', ok:false},
-      {l:'B', t:'Benchmarking, identificação de oportunidades, estratégia de preços, inovação, antecipação de tendências e melhores práticas — permitindo ajustar suas próprias estratégias de forma mais eficaz.', ok:true},
-      {l:'C', t:'Copiar literalmente o conteúdo.', ok:false},
-      {l:'D', t:'Substituir a análise de dados.', ok:false}
-    ],
-    exp:'A apostila lista exatamente esses 6 benefícios na seção sobre Monitoramento da Concorrência.'
-  }
-];
-
-var respostasAluno = {};
-
-function renderizarQuestoes(){
-  var lista = document.getElementById('listaQuestoes');
-  lista.innerHTML = '';
-  QUESTOES.forEach(function(q, idx){
-    var div = document.createElement('div');
-    div.className = 'questao';
-    div.id = q.id;
-    var origemTag = '<span class="q-origem">' + q.origem + '</span>';
-    var opcoesHtml = '';
-    q.opcoes.forEach(function(op){
-      opcoesHtml += '<button type="button" class="q-op" data-q="' + q.id + '" data-l="' + op.l + '" data-ok="' + op.ok + '">' +
-                    '<strong>' + op.l + ')</strong><span>' + op.t + '</span></button>';
-    });
-    div.innerHTML = '<div class="q-cabecalho"><span class="q-num">' + (idx + 1) + '</span><div><span>' + q.pergunta + '</span>' + origemTag + '</div></div>' +
-                    '<div class="q-opcoes">' + opcoesHtml + '</div>' +
-                    '<div class="q-feedback" id="fb-' + q.id + '"></div>';
-    lista.appendChild(div);
-  });
-
-  document.querySelectorAll('.q-op').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var qId = btn.dataset.q;
-      var q = QUESTOES.find(function(x){ return x.id === qId; });
-      var card = document.getElementById(qId);
-      if(card.classList.contains('respondida')) return;
-      var ehCerta = (btn.dataset.ok === 'true');
-      card.querySelectorAll('.q-op').forEach(function(b){
-        b.disabled = true;
-        if(b.dataset.ok === 'true') b.classList.add('certa');
-        else if(b === btn) b.classList.add('errada');
-      });
-      var fb = document.getElementById('fb-' + qId);
-      fb.classList.add('show');
-      if(ehCerta){
-        fb.innerHTML = '<strong>✅ Correto!</strong> ' + q.exp;
-      } else {
-        fb.classList.add('erro');
-        fb.innerHTML = '<strong>❌ Resposta correta é a letra <strong>' + q.opcoes.find(function(o){ return o.ok; }).l + '</strong>.</strong> ' + q.exp;
-      }
-      card.classList.add('respondida');
-      respostasAluno[qId] = { ok:ehCerta, letra:btn.dataset.l };
-      atualizarProgresso();
-    });
-  });
-}
-
-function atualizarProgresso(){
-  var respondidas = Object.keys(respostasAluno).length;
-  var total = QUESTOES.length;
-  var pct = Math.round((respondidas / total) * 100);
-  document.getElementById('txtProgresso').innerText = respondidas + ' de ' + total;
-  document.getElementById('barraProgresso').style.width = pct + '%';
-}
-
-function verResultado(){
-  var respondidas = Object.keys(respostasAluno).length;
-  if(respondidas < QUESTOES.length){
-    if(!confirm('Você ainda tem ' + (QUESTOES.length - respondidas) + ' questão(ões) sem responder. Ver resultado mesmo assim?')) return;
-  }
-  var acertos = 0;
-  var detalhe = '';
-  QUESTOES.forEach(function(q, idx){
-    var resp = respostasAluno[q.id];
-    if(resp && resp.ok){
-      acertos++;
-      detalhe += '<div style="margin-bottom:6px;">✅ <strong>Q' + (idx + 1) + ':</strong> ' + resp.letra + ' (correta)</div>';
-    } else {
-      var correta = q.opcoes.find(function(o){ return o.ok; }).l;
-      var marcou = resp ? resp.letra : 'em branco';
-      detalhe += '<div style="margin-bottom:6px;">❌ <strong>Q' + (idx + 1) + ':</strong> marcou ' + marcou + ' (correta: ' + correta + ')</div>';
-    }
-  });
-  var pct = Math.round((acertos / QUESTOES.length) * 100);
-  var msg = '';
-  if(pct >= 85) msg = '🏆 Excelente! Você dominou a Estratégia de Conteúdo Avançada. Pode avançar para o Tema 03.';
-  else if(pct >= 65) msg = '👏 Bom rendimento! Reveja as questões erradas e siga em frente.';
-  else if(pct >= 40) msg = '📖 Vale a pena reler a aula antes de seguir. Alguns conceitos precisam reforço.';
-  else msg = '🔄 Vamos com calma. Releia cada aba deste material e refaça o quiz.';
-  document.getElementById('notaFinal').innerText = acertos + ' / ' + QUESTOES.length;
-  document.getElementById('mensagemFinal').innerText = msg + ' (Aproveitamento: ' + pct + '%)';
-  document.getElementById('detalheResultado').innerHTML = detalhe;
-  document.getElementById('caixaResultado').classList.add('show');
-  document.getElementById('caixaResultado').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function limparQuiz(){
-  if(!confirm('Apagar todas as respostas e recomeçar?')) return;
-  respostasAluno = {};
-  document.querySelectorAll('.questao').forEach(function(q){
-    q.classList.remove('respondida');
-    q.querySelectorAll('.q-op').forEach(function(b){
-      b.disabled = false;
-      b.classList.remove('certa','errada');
-    });
-    var fb = q.querySelector('.q-feedback');
-    fb.classList.remove('show','erro');
-    fb.innerHTML = '';
-  });
-  document.getElementById('caixaResultado').classList.remove('show');
-  atualizarProgresso();
-}
-
-function copiarRelatorio(){
-  var nome = document.getElementById('nomeAluno').value.trim() || 'Estudante';
-  var turma = document.getElementById('turmaAluno').value.trim() || 'Turma não informada';
-  var acertos = Object.values(respostasAluno).filter(function(r){ return r.ok; }).length;
-  var total = QUESTOES.length;
-  var pct = Math.round((acertos / total) * 100);
-  var linhas = '====================================================\n';
-  linhas += 'RELATÓRIO TEMA 02 — ESTRATÉGIA DE CONTEÚDO AVANÇADA\n';
-  linhas += 'Disciplina: Administração de Websites\n';
-  linhas += 'Aluno: ' + nome + '\n';
-  linhas += 'Turma: ' + turma + '\n';
-  linhas += 'Data: ' + new Date().toLocaleString('pt-BR') + '\n';
-  linhas += 'Nota: ' + acertos + ' / ' + total + ' (' + pct + '%)\n';
-  linhas += '----------------------------------------------------\n';
-  linhas += 'DETALHAMENTO:\n';
-  QUESTOES.forEach(function(q, idx){
-    var resp = respostasAluno[q.id];
-    var status = (resp && resp.ok) ? '[ACERTO]' : '[ERRO]';
-    var correta = q.opcoes.find(function(o){ return o.ok; }).l;
-    var marcou = resp ? resp.letra : 'branco';
-    linhas += 'Q' + (idx + 1) + ' [' + q.origem + ']: ' + status + ' (marcou: ' + marcou + ' | correta: ' + correta + ')\n';
-  });
-  linhas += '====================================================';
-  var btn = document.getElementById('btnCopiar');
-  if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(linhas).then(function(){
-      btn.innerText = '✅ Copiado!';
-      setTimeout(function(){ btn.innerText = '📋 Copiar relatório'; }, 1800);
-    });
-  } else {
-    var ta = document.createElement('textarea');
-    ta.value = linhas;
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); btn.innerText = '✅ Copiado!';
-      setTimeout(function(){ btn.innerText = '📋 Copiar relatório'; }, 1800); } catch(e){}
-    document.body.removeChild(ta);
-  }
-}
-
-window.addEventListener('DOMContentLoaded', function(){
-  renderizarQuestoes();
-  atualizarProgresso();
-  if(window.location.hash){
-    ativarAba(window.location.hash.substring(1));
-  }
 });
 </script>
 </body>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✅ Gabarito • Agência Digital (Tema 02) — Exemplo Completo</title>
+<style>
+  :root{
+    --bg:#0b1220; --surface:#151f36; --surface-2:#1c2a44;
+    --primary:#38bdf8; --primary-dark:#0284c7; --accent:#f59e0b;
+    --purple:#8b5cf6; --pink:#ec4899; --ok:#10b981; --no:#ef4444;
+    --text:#f8fafc; --text-muted:#cbd5e1; --border:#2a3854;
+    --radius:16px; --trans:all .2s ease;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at 10% 12%,#1e3a8a 0%,var(--bg) 65%);
+    color:var(--text);min-height:100vh;line-height:1.65;padding:20px 14px 80px;}
+  .container{max-width:1000px;margin:0 auto;}
+  .header{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 45%,#7c3aed 100%);
+    border-radius:var(--radius);padding:32px 22px;text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.4);margin-bottom:20px;position:relative;}
+  .header h1{font-size:clamp(1.3rem,3.5vw,1.85rem);font-weight:900;letter-spacing:-.5px;
+    color:#fff;margin-bottom:6px;display:flex;align-items:center;justify-content:center;
+    gap:8px;flex-wrap:wrap;}
+  .header h1 span{color:#fef08a;}
+  .header p{color:#e0f2fe;font-size:.94rem;max-width:760px;margin:0 auto;}
+  .header-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;}
+  .header-badges span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);
+    padding:4px 12px;border-radius:30px;font-size:.72rem;font-weight:700;color:#fff;}
+  .header .fonte{margin-top:12px;font-size:.7rem;color:#fef08a;opacity:.85;font-style:italic;}
+  .selo-gabarito{display:inline-block;background:#16a34a;color:#fff;padding:6px 16px;
+    border-radius:30px;font-size:.78rem;font-weight:900;letter-spacing:.5px;
+    margin-top:14px;box-shadow:0 4px 14px rgba(22,163,74,.5);}
+  .intro-box{background:rgba(56,189,248,.1);border-left:5px solid var(--primary);
+    border-radius:12px;padding:18px 20px;margin-bottom:20px;font-size:.92rem;
+    line-height:1.7;color:#e0f2fe;}
+  .intro-box strong{color:#fff;}
+  .progresso-bar{background:#0f172a;border-radius:10px;padding:12px 16px;margin-bottom:20px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    color:#e2e8f0;font-size:.82rem;border:1px solid var(--border);}
+  .barra-fundo{flex:1;height:10px;background:#334155;border-radius:5px;overflow:hidden;min-width:120px;}
+  .barra-preench{height:100%;width:100%;background:linear-gradient(90deg,#38bdf8,#10b981);}
+  .card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);
+    padding:24px 22px;margin-bottom:20px;box-shadow:0 8px 22px rgba(0,0,0,.3);}
+  .card h2{font-size:1.2rem;color:#fff;margin-bottom:14px;display:flex;align-items:center;
+    gap:10px;border-left:5px solid var(--primary);padding-left:12px;line-height:1.35;}
+  .card h3{font-size:.98rem;color:var(--primary);margin:18px 0 8px;display:flex;align-items:center;gap:6px;}
+  .card p{color:var(--text-muted);font-size:.92rem;margin-bottom:10px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+  .form-grid.full{grid-template-columns:1fr;}
+  .campo{display:flex;flex-direction:column;gap:4px;}
+  .campo label{font-size:.78rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;}
+  .campo input,.campo select,.campo textarea{width:100%;padding:9px 12px;background:#0b1120;
+    border:1px solid var(--border);border-radius:8px;color:#fff;font-size:.86rem;
+    font-family:inherit;outline:none;transition:var(--trans);}
+  .campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(56,189,248,.15);}
+  .campo textarea{min-height:70px;resize:vertical;}
+  .missao{background:#0d1e1b;border:1px solid var(--ok);border-left:4px solid var(--ok);
+    border-radius:10px;padding:14px 16px;margin-bottom:10px;transition:var(--trans);}
+  .missao-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .missao-head input[type=checkbox]{width:20px;height:20px;cursor:pointer;accent-color:var(--ok);flex-shrink:0;}
+  .missao-head strong{font-size:.92rem;color:#fff;flex:1;min-width:180px;}
+  .missao-head .tag{font-size:.66rem;background:rgba(16,185,129,.2);color:#6ee7b7;
+    padding:2px 8px;border-radius:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;}
+  .missao-head a{font-size:.72rem;color:var(--primary);text-decoration:none;font-weight:800;
+    background:rgba(56,189,248,.12);padding:3px 10px;border-radius:10px;border:1px solid rgba(56,189,248,.3);}
+  .missao-head a:hover{background:rgba(56,189,248,.25);}
+  .missao input[type=text]{width:100%;padding:8px 10px;background:#071812;border:1px solid var(--ok);
+    border-radius:6px;color:#d1fae5;font-size:.84rem;font-family:inherit;outline:none;}
+  .btn{background:linear-gradient(135deg,var(--primary-dark),#2563eb);color:#fff;
+    border:none;padding:12px 24px;border-radius:30px;font-size:.9rem;font-weight:800;
+    cursor:pointer;transition:var(--trans);font-family:inherit;
+    display:inline-flex;align-items:center;gap:6px;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,.4);}
+  .btn.sec{background:#1e293b;border:1px solid var(--border);color:#cbd5e1;}
+  .btn.sec:hover{border-color:var(--primary);color:#fff;}
+  .btn.verde{background:linear-gradient(135deg,#059669,#10b981);}
+  .botoes-centro{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+  .previa-pagina{background:#fff;color:#0f172a;border-radius:12px;padding:24px;
+    margin-top:14px;font-family:Georgia,serif;line-height:1.6;}
+  .previa-pagina h1{font-size:1.5rem;color:#0f172a;margin-bottom:8px;font-family:'Segoe UI',sans-serif;line-height:1.3;}
+  .previa-pagina .url-previa{font-size:.74rem;color:#16a34a;font-family:monospace;margin-bottom:10px;word-break:break-all;}
+  .previa-pagina .meta-previa{font-size:.8rem;color:#64748b;font-family:'Segoe UI',sans-serif;
+    border-bottom:1px solid #e2e8f0;padding-bottom:10px;margin-bottom:14px;font-style:italic;}
+  .previa-pagina .corpo-previa{font-size:.92rem;color:#334155;white-space:pre-wrap;}
+  .relatorio-box{background:#0f182c;border:2px solid var(--primary-dark);border-radius:12px;
+    padding:18px 20px;margin-top:16px;}
+  .relatorio-box h4{color:#fff;font-size:.94rem;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .relatorio-textarea{width:100%;height:320px;background:#070c16;border:1px solid var(--border);
+    border-radius:8px;padding:14px;color:#e2e8f0;font-family:monospace;font-size:.8rem;
+    margin-bottom:12px;resize:vertical;line-height:1.6;}
+  .callout{border-left:5px solid var(--accent);padding:14px 18px;border-radius:10px;
+    background:rgba(245,158,11,.1);color:#fef3c7;font-size:.88rem;line-height:1.7;margin:14px 0;}
+  .callout.azul{background:rgba(56,189,248,.1);border-color:var(--primary);color:#e0f2fe;}
+  .callout.verde{background:rgba(16,185,129,.12);border-color:var(--ok);color:#d1fae5;}
+  .callout.roxo{background:rgba(139,92,246,.12);border-color:var(--purple);color:#ede9fe;}
+  .callout strong{color:#fff;}
+  .footer-card{background:var(--surface);border-radius:var(--radius);padding:22px;
+    margin-top:24px;text-align:center;border:2px solid var(--border);}
+  .footer-card h4{font-size:.94rem;color:#fff;margin-bottom:10px;}
+  .footer-card a{display:inline-flex;align-items:center;gap:10px;background:#0f182c;
+    border:1px solid var(--ok);padding:10px 18px;border-radius:10px;
+    color:var(--text);text-decoration:none;font-size:.86rem;transition:var(--trans);}
+  .footer-card a:hover{background:#0d1e1b;border-color:#34d399;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);
+    background:#16a34a;color:#fff;padding:12px 24px;border-radius:30px;font-weight:800;
+    font-size:.88rem;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s;z-index:999;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  @media (max-width:720px){
+    .form-grid{grid-template-columns:1fr;}
+    .card{padding:18px 14px;}
+    .card h2{font-size:1.05rem;}
+    .missao-head{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <h1>✅ Gabarito <span>Agência Digital</span></h1>
+    <p>Exemplo completo de projeto integrador do Tema 02 — use como modelo demonstrado antes de os alunos começarem.</p>
+    <div class="header-badges">
+      <span>🎭 Persona</span>
+      <span>🎯 SMART</span>
+      <span>🗺️ Jornada</span>
+      <span>💡 Tópicos</span>
+      <span>✍️ Conteúdo</span>
+      <span>📢 Distribuição</span>
+      <span>🎯 Personalização</span>
+      <span>🔍 SEO</span>
+      <span>❤️ Engajamento</span>
+      <span>🔄 Iteração</span>
+      <span>🚀 Tendências</span>
+      <span>🕵️ Concorrência</span>
+    </div>
+    <div class="fonte">Base: apostila oficial Proz • Administração de Websites • Tema 02</div>
+    <div class="selo-gabarito">📋 EXEMPLO DEMONSTRATIVO — NÃO É PARA ENTREGA</div>
+  </header>
+
+  <div class="intro-box">
+    <strong>Este é o gabarito do projeto.</strong> Ele mostra como um projeto completo deve ficar, usando o exemplo da <strong>TechFix Assistência Técnica</strong>. Use para demonstrar em sala, comparar com o projeto dos alunos e tirar dúvidas. As 12 missões estão preenchidas e marcadas como concluídas.
+  </div>
+
+  <div class="progresso-bar">
+    <span>📊 Progresso do projeto (exemplo)</span>
+    <div class="barra-fundo"><div class="barra-preench"></div></div>
+    <span>12 de 12 missões ✓</span>
+  </div>
+
+  <!-- BLOCO 1: NEGÓCIO -->
+  <section class="card">
+    <h2>🏪 1. Negócio Escolhido</h2>
+    <div class="form-grid">
+      <div class="campo">
+        <label>Nome do negócio</label>
+        <input type="text" value="TechFix Assistência Técnica" readonly>
+      </div>
+      <div class="campo">
+        <label>Tipo de negócio</label>
+        <input type="text" value="Assistência técnica" readonly>
+      </div>
+      <div class="campo full" style="grid-column:1/-1;">
+        <label>Descrição em uma frase</label>
+        <input type="text" value="Assistência técnica especializada em computadores e notebooks, com atendimento rápido, orçamento sem compromisso e garantia de 90 dias." readonly>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 2: MISSÕES -->
+  <section class="card">
+    <h2>🎯 2. As 12 Missões (Gabarito)</h2>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🎭 Persona — crie um cliente fictício</strong>
+        <span class="tag">Missão 1</span>
+        <a href="lab.html#lab01" target="_blank">→ Lab 01</a>
+      </div>
+      <input type="text" value="João, 19 anos, estudante universitário. Usa o notebook diariamente para aulas e trabalhos. Pesquisa no celular, compara preços e valoriza atendimento rápido e orçamento sem compromisso. Dor principal: não pode ficar sem o computador por muitos dias." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🎯 Objetivo SMART — meta mensurável</strong>
+        <span class="tag">Missão 2</span>
+        <a href="lab.html#lab02" target="_blank">→ Lab 02</a>
+      </div>
+      <input type="text" value="Conseguir 30 solicitações de orçamento pelo site em 60 dias (específico: formulário de orçamento; mensurável: 30 solicitações; alcançável: média de 0,5/dia; relevante: meta principal do negócio; prazo: 60 dias)." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🗺️ Jornada — descoberta, consideração e decisão</strong>
+        <span class="tag">Missão 3</span>
+        <a href="lab.html#lab03" target="_blank">→ Lab 03</a>
+      </div>
+      <input type="text" value="1) Descoberta: pesquisa no Google por 'consertar notebook lento'. 2) Consideração: compara avaliações no Google Maps e preços em 2 ou 3 assistências. 3) Decisão: solicita orçamento pelo formulário do site. 4) Pós-compra: avalia o atendimento. 5) Lealdade: indica para colegas da faculdade." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>💡 Tópicos — cinco assuntos relevantes</strong>
+        <span class="tag">Missão 4</span>
+        <a href="lab.html#lab04" target="_blank">→ Lab 04</a>
+      </div>
+      <input type="text" value="1) 5 sinais de que seu computador precisa de manutenção. 2) Como aumentar a velocidade do notebook sem gastar muito. 3) Quando vale a pena trocar o HD por SSD? 4) Como evitar vírus e golpes no computador. 5) Cuidados para aumentar a vida útil do notebook." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>✍️ Conteúdo — uma publicação completa</strong>
+        <span class="tag">Missão 5</span>
+        <a href="lab.html#lab05" target="_blank">→ Lab 05</a>
+      </div>
+      <input type="text" value="Título: 'Seu notebook está lento? 5 maneiras de melhorar o desempenho sem comprar outro'. Corpo: 'Seu notebook está lento? Descubra cinco maneiras de melhorar o desempenho do seu computador sem precisar comprar outro! Desde limpeza de arquivos até upgrade de SSD, mostramos o passo a passo. Agende uma avaliação com nossa equipe.' CTA: Solicite seu orçamento agora!" readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>📢 Distribuição — três canais de divulgação</strong>
+        <span class="tag">Missão 6</span>
+        <a href="lab.html#lab06" target="_blank">→ Lab 06</a>
+      </div>
+      <input type="text" value="1) Blog do site (artigo completo, SEO). 2) Instagram (teaser em carrossel + Stories com link). 3) E-mail marketing (newsletter para clientes antigos com dica + oferta). Canais secundários: Google Meu Negócio e YouTube Shorts (vídeos de 60s)." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🎯 Personalização — duas versões da mensagem</strong>
+        <span class="tag">Missão 7</span>
+        <a href="lab.html#lab07" target="_blank">→ Lab 07</a>
+      </div>
+      <input type="text" value="Versão A (estudante João): 'Não fique sem o notebook na semana de provas. Manutenção expressa com orçamento sem compromisso.' Versão B (empresa/escritório): 'Evite paradas na equipe com suporte técnico ágil e contrato de manutenção preventiva.'" readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🔍 SEO — título, palavra-chave e descrição</strong>
+        <span class="tag">Missão 8</span>
+        <a href="lab.html#lab09" target="_blank">→ Lab 09</a>
+      </div>
+      <input type="text" value="Palavra-chave: assistência técnica de computadores. Título: Assistência Técnica de Computadores | TechFix (54 caracteres). URL: assistencia-tecnica-computadores. Meta description: Serviços de manutenção e otimização de computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias. (135 caracteres)." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>❤️ Engajamento — chamada para ação</strong>
+        <span class="tag">Missão 9</span>
+        <a href="lab.html#lab10" target="_blank">→ Lab 10</a>
+      </div>
+      <input type="text" value="CTA principal: 'Solicite seu orçamento agora!' (botão no fim do artigo). CTA secundário: 'Qual seu maior problema com o computador hoje? Comente abaixo — vamos responder!' Pergunta para estimular comentários e enquete no Instagram: 'Você já trocou HD por SSD? Sim / Ainda não.'" readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🔄 Iteração — como avaliar e melhorar</strong>
+        <span class="tag">Missão 10</span>
+        <a href="lab.html#lab08" target="_blank">→ Lab 08</a>
+      </div>
+      <input type="text" value="Métricas: CTR do título no Google, tempo na página, taxa de conversão do formulário. Teste A/B: duas versões de CTA ('Solicite seu orçamento' × 'Peça uma avaliação grátis'). Ciclo: revisar a cada 2 semanas. Ajuste: se CTR baixo, reescrever título; se conversão baixa, simplificar formulário." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🚀 Tendências — uma tendência identificada</strong>
+        <span class="tag">Missão 11</span>
+        <a href="lab.html#lab11" target="_blank">→ Lab 11</a>
+      </div>
+      <input type="text" value="Tendência: vídeo curto dominante. Aplicação: criar tutoriais de 60s no Instagram Reels e YouTube Shorts ('Como limpar o notebook em 1 minuto', 'HD x SSD em 60s'). Formato ideal para o público jovem (persona João) e para o algoritmo das plataformas." readonly>
+    </div>
+
+    <div class="missao">
+      <div class="missao-head">
+        <input type="checkbox" checked disabled>
+        <strong>🕵️ Concorrência — análise de um concorrente</strong>
+        <span class="tag">Missão 12</span>
+        <a href="lab.html#lab12" target="_blank">→ Lab 12</a>
+      </div>
+      <input type="text" value="Concorrente analisado: 'Assistência Rápida PC' (bairro vizinho). Pontos fortes: preço baixo e avaliações no Google. Pontos fracos: site desatualizado, sem blog e sem vídeos. Oportunidade de diferenciação: criar conteúdo educativo (blog + vídeos), SEO para 'consertar notebook' e atendimento expresso como diferencial." readonly>
+    </div>
+  </section>
+
+  <!-- BLOCO 3: PÁGINA DE CONTEÚDO -->
+  <section class="card">
+    <h2>📄 3. Página de Conteúdo (exemplo)</h2>
+    <div class="form-grid">
+      <div class="campo">
+        <label>Título SEO (title)</label>
+        <input type="text" value="Assistência Técnica de Computadores | TechFix" readonly>
+      </div>
+      <div class="campo">
+        <label>URL amigável (slug)</label>
+        <input type="text" value="assistencia-tecnica-computadores" readonly>
+      </div>
+      <div class="campo full" style="grid-column:1/-1;">
+        <label>Meta description</label>
+        <input type="text" value="Serviços de manutenção e otimização de computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias." readonly>
+      </div>
+      <div class="campo full" style="grid-column:1/-1;">
+        <label>Corpo do conteúdo</label>
+        <textarea readonly>Seu notebook está lento?
+
+Descubra cinco maneiras de melhorar o desempenho do seu computador sem precisar comprar outro!
+
+1. Limpe arquivos temporários e a lixeira.
+2. Desinstale programas que você não usa.
+3. Atualize o sistema operacional.
+4. Aumente a memória RAM (se possível).
+5. Troque o HD por um SSD — o upgrade que mais acelera.
+
+Agende uma avaliação com nossa equipe e recupere o desempenho do seu equipamento.
+
+CTA: Solicite seu orçamento agora!</textarea>
+      </div>
+    </div>
+    <div class="previa-pagina">
+      <div class="url-previa">https://techfix.com.br/assistencia-tecnica-computadores</div>
+      <h1>Assistência Técnica de Computadores | TechFix</h1>
+      <div class="meta-previa">Serviços de manutenção e otimização de computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias.</div>
+      <div class="corpo-previa">Seu notebook está lento?
+
+Descubra cinco maneiras de melhorar o desempenho do seu computador sem precisar comprar outro!
+
+1. Limpe arquivos temporários e a lixeira.
+2. Desinstale programas que você não usa.
+3. Atualize o sistema operacional.
+4. Aumente a memória RAM (se possível).
+5. Troque o HD por um SSD — o upgrade que mais acelera.
+
+Agende uma avaliação com nossa equipe e recupere o desempenho do seu equipamento.
+
+CTA: Solicite seu orçamento agora!</div>
+    </div>
+  </section>
+
+  <!-- BLOCO 4: RELATÓRIO -->
+  <section class="card">
+    <h2>📋 4. Relatório Final (exemplo gerado)</h2>
+    <p>Este é o texto que o aluno deve produzir ao final. Abaixo, a versão do exemplo TechFix.</p>
+    <div class="relatorio-box">
+      <h4>📄 Relatório de Exemplo</h4>
+      <textarea class="relatorio-textarea" readonly>====================================================
+RELATÓRIO FINAL — AGÊNCIA DIGITAL (TEMA 02)
+Estratégia de Conteúdo Avançada
+Data: 25/11/2026
+Missões concluídas: 12 de 12
+====================================================
+
+🏪 NEGÓCIO ESCOLHIDO
+Nome: TechFix Assistência Técnica
+Tipo: Assistência técnica
+Descrição: Assistência técnica especializada em computadores e notebooks, com atendimento rápido, orçamento sem compromisso e garantia de 90 dias.
+
+----------------------------------------------------
+🎯 MISSÕES PRÁTICAS
+----------------------------------------------------
+[✔] 🎭 Persona
+    → João, 19 anos, estudante universitário. Usa o notebook diariamente para aulas e trabalhos. Pesquisa no celular, compara preços e valoriza atendimento rápido e orçamento sem compromisso. Dor principal: não pode ficar sem o computador por muitos dias.
+
+[✔] 🎯 Objetivo SMART
+    → Conseguir 30 solicitações de orçamento pelo site em 60 dias (específico: formulário de orçamento; mensurável: 30 solicitações; alcançável: média de 0,5/dia; relevante: meta principal do negócio; prazo: 60 dias).
+
+[✔] 🗺️ Jornada do Consumidor
+    → 1) Descoberta: pesquisa no Google por 'consertar notebook lento'. 2) Consideração: compara avaliações no Google Maps e preços em 2 ou 3 assistências. 3) Decisão: solicita orçamento pelo formulário do site. 4) Pós-compra: avalia o atendimento. 5) Lealdade: indica para colegas da faculdade.
+
+[✔] 💡 Tópicos de Conteúdo
+    → 1) 5 sinais de que seu computador precisa de manutenção. 2) Como aumentar a velocidade do notebook sem gastar muito. 3) Quando vale a pena trocar o HD por SSD? 4) Como evitar vírus e golpes no computador. 5) Cuidados para aumentar a vida útil do notebook.
+
+[✔] ✍️ Conteúdo (publicação)
+    → Título: 'Seu notebook está lento? 5 maneiras de melhorar o desempenho sem comprar outro'. Corpo: 'Seu notebook está lento? Descubra cinco maneiras de melhorar o desempenho do seu computador sem precisar comprar outro! Desde limpeza de arquivos até upgrade de SSD, mostramos o passo a passo. Agende uma avaliação com nossa equipe.' CTA: Solicite seu orçamento agora!
+
+[✔] 📢 Distribuição
+    → 1) Blog do site (artigo completo, SEO). 2) Instagram (teaser em carrossel + Stories com link). 3) E-mail marketing (newsletter para clientes antigos com dica + oferta). Canais secundários: Google Meu Negócio e YouTube Shorts (vídeos de 60s).
+
+[✔] 🎯 Personalização
+    → Versão A (estudante João): 'Não fique sem o notebook na semana de provas. Manutenção expressa com orçamento sem compromisso.' Versão B (empresa/escritório): 'Evite paradas na equipe com suporte técnico ágil e contrato de manutenção preventiva.'
+
+[✔] 🔍 SEO
+    → Palavra-chave: assistência técnica de computadores. Título: Assistência Técnica de Computadores | TechFix (54 caracteres). URL: assistencia-tecnica-computadores. Meta description: Serviços de manutenção e otimização de computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias. (135 caracteres).
+
+[✔] ❤️ Engajamento
+    → CTA principal: 'Solicite seu orçamento agora!' (botão no fim do artigo). CTA secundário: 'Qual seu maior problema com o computador hoje? Comente abaixo — vamos responder!' Pergunta para estimular comentários e enquete no Instagram: 'Você já trocou HD por SSD? Sim / Ainda não.'
+
+[✔] 🔄 Iteração
+    → Métricas: CTR do título no Google, tempo na página, taxa de conversão do formulário. Teste A/B: duas versões de CTA ('Solicite seu orçamento' × 'Peça uma avaliação grátis'). Ciclo: revisar a cada 2 semanas. Ajuste: se CTR baixo, reescrever título; se conversão baixa, simplificar formulário.
+
+[✔] 🚀 Tendências
+    → Tendência: vídeo curto dominante. Aplicação: criar tutoriais de 60s no Instagram Reels e YouTube Shorts ('Como limpar o notebook em 1 minuto', 'HD x SSD em 60s'). Formato ideal para o público jovem (persona João) e para o algoritmo das plataformas.
+
+[✔] 🕵️ Concorrência
+    → Concorrente analisado: 'Assistência Rápida PC' (bairro vizinho). Pontos fortes: preço baixo e avaliações no Google. Pontos fracos: site desatualizado, sem blog e sem vídeos. Oportunidade de diferenciação: criar conteúdo educativo (blog + vídeos), SEO para 'consertar notebook' e atendimento expresso como diferencial.
+
+----------------------------------------------------
+📄 PÁGINA DE CONTEÚDO (mini-editor)
+----------------------------------------------------
+Título SEO: Assistência Técnica de Computadores | TechFix
+URL amigável: https://techfix.com.br/assistencia-tecnica-computadores
+Meta description: Serviços de manutenção e otimização de computadores e notebooks. Orçamento rápido, atendimento especializado e garantia de 90 dias.
+Corpo do conteúdo:
+Seu notebook está lento?
+
+Descubra cinco maneiras de melhorar o desempenho do seu computador sem precisar comprar outro!
+
+1. Limpe arquivos temporários e a lixeira.
+2. Desinstale programas que você não usa.
+3. Atualize o sistema operacional.
+4. Aumente a memória RAM (se possível).
+5. Troque o HD por um SSD — o upgrade que mais acelera.
+
+Agende uma avaliação com nossa equipe e recupere o desempenho do seu equipamento.
+
+CTA: Solicite seu orçamento agora!
+
+====================================================
+FIM DO RELATÓRIO
+====================================================</textarea>
+      <div class="botoes-centro" style="margin-top:0;">
+        <button type="button" class="btn" onclick="copiarTexto()">📋 Copiar Relatório de Exemplo</button>
+      </div>
+    </div>
+    <div class="callout verde" style="margin-top:16px;">
+      ✅ <strong>Este é o padrão esperado.</strong> Um projeto completo tem: negócio definido, 12 missões preenchidas e uma página de conteúdo montada. Use este exemplo como referência de qualidade mínima.
+    </div>
+  </section>
+
+  <!-- RUBRICA -->
+  <section class="card">
+    <h2>📊 Rubrica de Avaliação (para o professor)</h2>
+    <p>Sugestão de pontuação para o projeto integrador, alinhada ao currículo de Front-End.</p>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem;color:var(--text-muted);">
+        <thead>
+          <tr style="background:#0f182c;">
+            <th style="padding:10px;text-align:left;border:1px solid var(--border);color:#fff;">Critério</th>
+            <th style="padding:10px;text-align:center;border:1px solid var(--border);color:#fff;">Pontos</th>
+            <th style="padding:10px;text-align:left;border:1px solid var(--border);color:#fff;">O que observar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:10px;border:1px solid var(--border);">Aplicação dos 12 conceitos</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">20</td><td style="padding:10px;border:1px solid var(--border);">As 12 missões estão preenchidas e coerentes entre si?</td></tr>
+          <tr><td style="padding:10px;border:1px solid var(--border);">Criatividade e qualidade do conteúdo</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">15</td><td style="padding:10px;border:1px solid var(--border);">A persona, o conteúdo e a página são originais e bem escritos?</td></tr>
+          <tr><td style="padding:10px;border:1px solid var(--border);">Estratégia e coerência</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">15</td><td style="padding:10px;border:1px solid var(--border);">Persona → tópicos → conteúdo → distribuição fazem sentido juntos?</td></tr>
+          <tr><td style="padding:10px;border:1px solid var(--border);">SEO e distribuição</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">10</td><td style="padding:10px;border:1px solid var(--border);">Título e description cabem nos limites? URL amigável? 3 canais justificados?</td></tr>
+          <tr><td style="padding:10px;border:1px solid var(--border);">Análise de público e concorrência</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">10</td><td style="padding:10px;border:1px solid var(--border);">A persona tem dor clara? A análise do concorrente aponta oportunidade real?</td></tr>
+          <tr><td style="padding:10px;border:1px solid var(--border);">Implementação front-end da página</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">20</td><td style="padding:10px;border:1px solid var(--border);">A página foi publicada com HTML semântico, CSS e o título/meta corretos?</td></tr>
+          <tr><td style="padding:10px;border:1px solid var(--border);">Apresentação da equipe</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:var(--ok);font-weight:800;">10</td><td style="padding:10px;border:1px solid var(--border);">Clareza, domínio do conteúdo e trabalho em equipe.</td></tr>
+          <tr style="background:#0f182c;"><td style="padding:10px;border:1px solid var(--border);color:#fff;font-weight:800;">TOTAL</td><td style="padding:10px;text-align:center;border:1px solid var(--border);color:#fbbf24;font-weight:900;">100</td><td style="padding:10px;border:1px solid var(--border);">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <h4>📤 Envio Oficial (para os alunos)</h4>
+    <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:12px;">Este é o gabarito — os alunos devem preencher o próprio <strong>projeto.html</strong> e enviar no formulário.</p>
+    <a href="https://forms.gle/zbUB57A4FteUDsKSA" target="_blank" rel="noopener">
+      📝 Abrir Google Forms
+    </a>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">✅ Copiado!</div>
+
+<script>
+function copiarTexto(){
+  var box = document.querySelector(".relatorio-textarea");
+  box.select();
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(box.value).then(function(){
+      mostrarToast("✅ Relatório de exemplo copiado!");
+    }).catch(function(){
+      try{ document.execCommand("copy"); mostrarToast("✅ Copiado!"); }
+      catch(e){ alert("Selecione o texto manualmente (Ctrl+A / Ctrl+C)."); }
+    });
+  } else {
+    try{ document.execCommand("copy"); mostrarToast("✅ Copiado!"); }
+    catch(e){ alert("Selecione o texto manualmente (Ctrl+A / Ctrl+C)."); }
+  }
+}
+function mostrarToast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show"); }, 2500);
+}
+</script>
+</body>
+</html>

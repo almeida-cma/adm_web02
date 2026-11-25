@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 Agência Digital • Projeto Integrador do Tema 02</title>
+<style>
+  :root{
+    --bg:#0b1220; --surface:#151f36; --surface-2:#1c2a44;
+    --primary:#38bdf8; --primary-dark:#0284c7; --accent:#f59e0b;
+    --purple:#8b5cf6; --pink:#ec4899; --ok:#10b981; --no:#ef4444;
+    --text:#f8fafc; --text-muted:#cbd5e1; --border:#2a3854;
+    --radius:16px; --trans:all .2s ease;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at 10% 12%,#1e3a8a 0%,var(--bg) 65%);
+    color:var(--text);min-height:100vh;line-height:1.65;padding:20px 14px 80px;}
+  .container{max-width:1000px;margin:0 auto;}
+  .header{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 45%,#7c3aed 100%);
+    border-radius:var(--radius);padding:32px 22px;text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.4);margin-bottom:20px;}
+  .header h1{font-size:clamp(1.3rem,3.5vw,1.85rem);font-weight:900;letter-spacing:-.5px;
+    color:#fff;margin-bottom:6px;display:flex;align-items:center;justify-content:center;
+    gap:8px;flex-wrap:wrap;}
+  .header h1 span{color:#fef08a;}
+  .header p{color:#e0f2fe;font-size:.94rem;max-width:760px;margin:0 auto;}
+  .header-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;}
+  .header-badges span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);
+    padding:4px 12px;border-radius:30px;font-size:.72rem;font-weight:700;color:#fff;}
+  .header .fonte{margin-top:12px;font-size:.7rem;color:#fef08a;opacity:.85;font-style:italic;}
+  .intro-box{background:rgba(56,189,248,.1);border-left:5px solid var(--primary);
+    border-radius:12px;padding:18px 20px;margin-bottom:20px;font-size:.92rem;
+    line-height:1.7;color:#e0f2fe;}
+  .intro-box strong{color:#fff;}
+  .progresso-bar{background:#0f172a;border-radius:10px;padding:12px 16px;margin-bottom:20px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    color:#e2e8f0;font-size:.82rem;border:1px solid var(--border);}
+  .barra-fundo{flex:1;height:10px;background:#334155;border-radius:5px;overflow:hidden;min-width:120px;}
+  .barra-preench{height:100%;width:0%;background:linear-gradient(90deg,#38bdf8,#10b981);transition:width .3s;}
+  .card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);
+    padding:24px 22px;margin-bottom:20px;box-shadow:0 8px 22px rgba(0,0,0,.3);}
+  .card h2{font-size:1.2rem;color:#fff;margin-bottom:14px;display:flex;align-items:center;
+    gap:10px;border-left:5px solid var(--primary);padding-left:12px;line-height:1.35;}
+  .card h3{font-size:.98rem;color:var(--primary);margin:18px 0 8px;display:flex;align-items:center;gap:6px;}
+  .card p{color:var(--text-muted);font-size:.92rem;margin-bottom:10px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+  .form-grid.full{grid-template-columns:1fr;}
+  .campo{display:flex;flex-direction:column;gap:4px;}
+  .campo label{font-size:.78rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;}
+  .campo input,.campo select,.campo textarea{width:100%;padding:9px 12px;background:#0b1120;
+    border:1px solid var(--border);border-radius:8px;color:#fff;font-size:.86rem;
+    font-family:inherit;outline:none;transition:var(--trans);}
+  .campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(56,189,248,.15);}
+  .campo textarea{min-height:70px;resize:vertical;}
+  .missao{background:#0f182c;border:1px solid var(--border);border-left:4px solid var(--primary);
+    border-radius:10px;padding:14px 16px;margin-bottom:10px;transition:var(--trans);}
+  .missao.concluida{border-left-color:var(--ok);background:#0d1e1b;}
+  .missao-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .missao-head input[type=checkbox]{width:20px;height:20px;cursor:pointer;accent-color:var(--ok);flex-shrink:0;}
+  .missao-head strong{font-size:.92rem;color:#fff;flex:1;min-width:180px;}
+  .missao-head .tag{font-size:.66rem;background:rgba(139,92,246,.15);color:#c4b5fd;
+    padding:2px 8px;border-radius:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;}
+  .missao-head a{font-size:.72rem;color:var(--primary);text-decoration:none;font-weight:800;
+    background:rgba(56,189,248,.12);padding:3px 10px;border-radius:10px;border:1px solid rgba(56,189,248,.3);}
+  .missao-head a:hover{background:rgba(56,189,248,.25);}
+  .missao input[type=text]{width:100%;padding:8px 10px;background:#0b1120;border:1px solid var(--border);
+    border-radius:6px;color:#fff;font-size:.84rem;font-family:inherit;outline:none;}
+  .missao input[type=text]:focus{border-color:var(--primary);}
+  .missao.concluida input[type=text]{border-color:var(--ok);background:#071812;}
+  .btn{background:linear-gradient(135deg,var(--primary-dark),#2563eb);color:#fff;
+    border:none;padding:12px 24px;border-radius:30px;font-size:.9rem;font-weight:800;
+    cursor:pointer;transition:var(--trans);font-family:inherit;
+    display:inline-flex;align-items:center;gap:6px;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,.4);}
+  .btn.sec{background:#1e293b;border:1px solid var(--border);color:#cbd5e1;}
+  .btn.sec:hover{border-color:var(--primary);color:#fff;}
+  .btn.verde{background:linear-gradient(135deg,#059669,#10b981);}
+  .btn.roxo{background:linear-gradient(135deg,#7c3aed,#8b5cf6);}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+  .botoes-centro{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+  .previa-pagina{background:#fff;color:#0f172a;border-radius:12px;padding:24px;
+    margin-top:14px;font-family:Georgia,serif;line-height:1.6;}
+  .previa-pagina h1{font-size:1.5rem;color:#0f172a;margin-bottom:8px;font-family:'Segoe UI',sans-serif;line-height:1.3;}
+  .previa-pagina .url-previa{font-size:.74rem;color:#16a34a;font-family:monospace;margin-bottom:10px;word-break:break-all;}
+  .previa-pagina .meta-previa{font-size:.8rem;color:#64748b;font-family:'Segoe UI',sans-serif;
+    border-bottom:1px solid #e2e8f0;padding-bottom:10px;margin-bottom:14px;font-style:italic;}
+  .previa-pagina .corpo-previa{font-size:.92rem;color:#334155;white-space:pre-wrap;}
+  .relatorio-box{background:#0f182c;border:2px solid var(--primary-dark);border-radius:12px;
+    padding:18px 20px;margin-top:16px;}
+  .relatorio-box h4{color:#fff;font-size:.94rem;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .relatorio-textarea{width:100%;height:320px;background:#070c16;border:1px solid var(--border);
+    border-radius:8px;padding:14px;color:#e2e8f0;font-family:monospace;font-size:.8rem;
+    margin-bottom:12px;resize:vertical;line-height:1.6;}
+  .callout{border-left:5px solid var(--accent);padding:14px 18px;border-radius:10px;
+    background:rgba(245,158,11,.1);color:#fef3c7;font-size:.88rem;line-height:1.7;margin:14px 0;}
+  .callout.azul{background:rgba(56,189,248,.1);border-color:var(--primary);color:#e0f2fe;}
+  .callout.verde{background:rgba(16,185,129,.12);border-color:var(--ok);color:#d1fae5;}
+  .callout.roxo{background:rgba(139,92,246,.12);border-color:var(--purple);color:#ede9fe;}
+  .callout strong{color:#fff;}
+  .footer-card{background:var(--surface);border-radius:var(--radius);padding:22px;
+    margin-top:24px;text-align:center;border:2px solid var(--border);}
+  .footer-card h4{font-size:.94rem;color:#fff;margin-bottom:10px;}
+  .footer-card a{display:inline-flex;align-items:center;gap:10px;background:#0f182c;
+    border:1px solid var(--ok);padding:10px 18px;border-radius:10px;
+    color:var(--text);text-decoration:none;font-size:.86rem;transition:var(--trans);}
+  .footer-card a:hover{background:#0d1e1b;border-color:#34d399;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);
+    background:#16a34a;color:#fff;padding:12px 24px;border-radius:30px;font-weight:800;
+    font-size:.88rem;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s;z-index:999;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  @media (max-width:720px){
+    .form-grid{grid-template-columns:1fr;}
+    .card{padding:18px 14px;}
+    .card h2{font-size:1.05rem;}
+    .missao-head{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <h1>🚀 Agência <span>Digital</span> • Projeto Integrador</h1>
+    <p>Use os 12 conceitos do Tema 02 para construir a estratégia de conteúdo de um negócio real ou fictício. Cada missão vira uma peça do relatório final.</p>
+    <div class="header-badges">
+      <span>🎭 Persona</span>
+      <span>🎯 SMART</span>
+      <span>🗺️ Jornada</span>
+      <span>💡 Tópicos</span>
+      <span>✍️ Conteúdo</span>
+      <span>📢 Distribuição</span>
+      <span>🎯 Personalização</span>
+      <span>🔍 SEO</span>
+      <span>❤️ Engajamento</span>
+      <span>🔄 Iteração</span>
+      <span>🚀 Tendências</span>
+      <span>🕵️ Concorrência</span>
+    </div>
+    <div class="fonte">Base: apostila oficial Proz • Administração de Websites • Tema 02</div>
+  </header>
+
+  <div class="intro-box">
+    <strong>Como funciona:</strong> escolha um negócio, preencha as 12 missões (uma por conceito do Tema 02) e gere o relatório final. Cada missão tem um link direto para o laboratório correspondente, onde você pode experimentar antes de responder. Ao final, copie o relatório e envie no Google Forms.
+  </div>
+
+  <div class="progresso-bar">
+    <span>📊 Progresso do projeto</span>
+    <div class="barra-fundo"><div class="barra-preench" id="barra"></div></div>
+    <span id="progresso-txt">0 de 12 missões</span>
+  </div>
+
+  <!-- BLOCO 1: NEGÓCIO -->
+  <section class="card">
+    <h2>🏪 1. Escolha do Negócio</h2>
+    <p>Defina o negócio para o qual você vai criar a estratégia de conteúdo. Pode ser real ou fictício.</p>
+    <div class="form-grid">
+      <div class="campo">
+        <label>Nome do negócio</label>
+        <input type="text" id="negocio-nome" placeholder="Ex: TechFix Assistência Técnica">
+      </div>
+      <div class="campo">
+        <label>Tipo de negócio</label>
+        <select id="negocio-tipo">
+          <option value="">-- escolha --</option>
+          <option>Restaurante</option>
+          <option>Loja de roupas</option>
+          <option>Academia</option>
+          <option>Assistência técnica</option>
+          <option>Loja virtual</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="campo full" style="grid-column:1/-1;">
+        <label>Descrição em uma frase</label>
+        <input type="text" id="negocio-desc" placeholder="Ex: Assistência técnica especializada em computadores e notebooks, com atendimento rápido e garantia.">
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 2: MISSÕES -->
+  <section class="card">
+    <h2>🎯 2. As 12 Missões Práticas</h2>
+    <p>Preencha cada missão. O checkbox marca a missão como concluída. O link abre o laboratório correspondente para você experimentar antes de responder.</p>
+
+    <div class="missao" id="m-1">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(1)">
+        <strong>🎭 Persona — crie um cliente fictício</strong>
+        <span class="tag">Missão 1</span>
+        <a href="lab.html#lab01" target="_blank">→ Lab 01</a>
+      </div>
+      <input type="text" id="r-1" placeholder="Ex: João, 19 anos, estudante, usa computador diariamente e procura assistência com preço acessível.">
+    </div>
+
+    <div class="missao" id="m-2">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(2)">
+        <strong>🎯 Objetivo SMART — meta mensurável</strong>
+        <span class="tag">Missão 2</span>
+        <a href="lab.html#lab02" target="_blank">→ Lab 02</a>
+      </div>
+      <input type="text" id="r-2" placeholder="Ex: Conseguir 30 solicitações de orçamento pelo site em 60 dias.">
+    </div>
+
+    <div class="missao" id="m-3">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(3)">
+        <strong>🗺️ Jornada — descoberta, consideração e decisão</strong>
+        <span class="tag">Missão 3</span>
+        <a href="lab.html#lab03" target="_blank">→ Lab 03</a>
+      </div>
+      <input type="text" id="r-3" placeholder="Ex: Pesquisa no Google → compara preços e avaliações → solicita orçamento pelo site.">
+    </div>
+
+    <div class="missao" id="m-4">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(4)">
+        <strong>💡 Tópicos — cinco assuntos relevantes</strong>
+        <span class="tag">Missão 4</span>
+        <a href="lab.html#lab04" target="_blank">→ Lab 04</a>
+      </div>
+      <input type="text" id="r-4" placeholder="Ex: 5 sinais de que o PC precisa de manutenção; como acelerar o notebook; HD x SSD; evitar vírus; aumentar a vida útil.">
+    </div>
+
+    <div class="missao" id="m-5">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(5)">
+        <strong>✍️ Conteúdo — uma publicação completa</strong>
+        <span class="tag">Missão 5</span>
+        <a href="lab.html#lab05" target="_blank">→ Lab 05</a>
+      </div>
+      <input type="text" id="r-5" placeholder="Ex: 'Seu notebook está lento? Descubra 5 maneiras de melhorar o desempenho sem comprar outro.'">
+    </div>
+
+    <div class="missao" id="m-6">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(6)">
+        <strong>📢 Distribuição — três canais de divulgação</strong>
+        <span class="tag">Missão 6</span>
+        <a href="lab.html#lab06" target="_blank">→ Lab 06</a>
+      </div>
+      <input type="text" id="r-6" placeholder="Ex: Blog (artigo), Instagram (teaser), e-mail marketing (newsletter).">
+    </div>
+
+    <div class="missao" id="m-7">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(7)">
+        <strong>🎯 Personalização — duas versões da mensagem</strong>
+        <span class="tag">Missão 7</span>
+        <a href="lab.html#lab07" target="_blank">→ Lab 07</a>
+      </div>
+      <input type="text" id="r-7" placeholder="Ex: Versão A (estudante): 'Economize tempo e dinheiro com manutenção preventiva.' Versão B (empresa): 'Evite paradas na equipe com suporte técnico ágil.'">
+    </div>
+
+    <div class="missao" id="m-8">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(8)">
+        <strong>🔍 SEO — título, palavra-chave e descrição</strong>
+        <span class="tag">Missão 8</span>
+        <a href="lab.html#lab09" target="_blank">→ Lab 09</a>
+      </div>
+      <input type="text" id="r-8" placeholder="Ex: Palavra-chave: assistência técnica de computadores. Título: Assistência Técnica de Computadores | Manutenção. Descrição: Serviços de manutenção e otimização de computadores e notebooks.">
+    </div>
+
+    <div class="missao" id="m-9">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(9)">
+        <strong>❤️ Engajamento — chamada para ação</strong>
+        <span class="tag">Missão 9</span>
+        <a href="lab.html#lab10" target="_blank">→ Lab 10</a>
+      </div>
+      <input type="text" id="r-9" placeholder="Ex: 'Solicite seu orçamento agora!' + pergunta: 'Qual seu maior problema com o computador hoje?'">
+    </div>
+
+    <div class="missao" id="m-10">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(10)">
+        <strong>🔄 Iteração — como avaliar e melhorar</strong>
+        <span class="tag">Missão 10</span>
+        <a href="lab.html#lab08" target="_blank">→ Lab 08</a>
+      </div>
+      <input type="text" id="r-10" placeholder="Ex: Medir CTR do título e taxa de conversão do formulário; testar A/B duas chamadas; ajustar após 2 semanas.">
+    </div>
+
+    <div class="missao" id="m-11">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(11)">
+        <strong>🚀 Tendências — uma tendência identificada</strong>
+        <span class="tag">Missão 11</span>
+        <a href="lab.html#lab11" target="_blank">→ Lab 11</a>
+      </div>
+      <input type="text" id="r-11" placeholder="Ex: Vídeo curto dominante — criar tutoriais de 60s no Instagram e YouTube Shorts sobre manutenção.">
+    </div>
+
+    <div class="missao" id="m-12">
+      <div class="missao-head">
+        <input type="checkbox" onchange="marcar(12)">
+        <strong>🕵️ Concorrência — análise de um concorrente</strong>
+        <span class="tag">Missão 12</span>
+        <a href="lab.html#lab12" target="_blank">→ Lab 12</a>
+      </div>
+      <input type="text" id="r-12" placeholder="Ex: Concorrente X tem blog ativo mas sem vídeos. Oportunidade: criar vídeos tutoriais e SEO para 'consertar notebook'.">
+    </div>
+  </section>
+
+  <!-- BLOCO 3: PÁGINA DE CONTEÚDO -->
+  <section class="card">
+    <h2>📄 3. Página de Conteúdo (mini-editor)</h2>
+    <p>Monte a página real do seu negócio com o conteúdo da Missão 5 e o SEO da Missão 8. A prévia abaixo mostra como ela ficaria no navegador.</p>
+    <div class="form-grid">
+      <div class="campo">
+        <label>Título SEO (title)</label>
+        <input type="text" id="pag-titulo" placeholder="Ex: Assistência Técnica de Computadores | Manutenção">
+      </div>
+      <div class="campo">
+        <label>URL amigável (slug)</label>
+        <input type="text" id="pag-url" placeholder="Ex: assistencia-tecnica-computadores">
+      </div>
+      <div class="campo full" style="grid-column:1/-1;">
+        <label>Meta description</label>
+        <input type="text" id="pag-desc" placeholder="Ex: Serviços de manutenção e otimização de computadores e notebooks.">
+      </div>
+      <div class="campo full" style="grid-column:1/-1;">
+        <label>Corpo do conteúdo</label>
+        <textarea id="pag-corpo" placeholder="Ex: Seu notebook está lento? Descubra cinco maneiras de melhorar o desempenho do seu computador sem precisar comprar outro!"></textarea>
+      </div>
+    </div>
+    <div class="botoes-centro">
+      <button type="button" class="btn" onclick="gerarPrevia()">👁️ Gerar Prévia da Página</button>
+    </div>
+    <div id="previa-pagina" class="previa-pagina" style="display:none;">
+      <div class="url-previa" id="pv-url">https://seusite.com.br/</div>
+      <h1 id="pv-titulo">Título</h1>
+      <div class="meta-previa" id="pv-desc">Descrição</div>
+      <div class="corpo-previa" id="pv-corpo">Corpo</div>
+    </div>
+  </section>
+
+  <!-- BLOCO 4: RELATÓRIO -->
+  <section class="card">
+    <h2>📋 4. Relatório Final</h2>
+    <p>Gere o relatório com todas as 12 missões. Copie o texto e envie no Google Forms.</p>
+    <div class="botoes-centro">
+      <button type="button" class="btn verde" onclick="gerarRelatorio()">📝 Gerar Relatório Completo</button>
+      <button type="button" class="btn sec" onclick="limparTudo()">🔄 Limpar Tudo</button>
+    </div>
+    <div class="relatorio-box" id="relatorio-box" style="display:none;">
+      <h4>📄 Relatório Gerado</h4>
+      <textarea class="relatorio-textarea" id="relatorio-texto" readonly></textarea>
+      <div class="botoes-centro" style="margin-top:0;">
+        <button type="button" class="btn" onclick="copiarRelatorio()">📋 Copiar Relatório</button>
+      </div>
+    </div>
+    <div class="callout azul" style="margin-top:16px;">
+      💡 <strong>Dica:</strong> se alguma missão estiver vazia, o relatório vai indicar "(não preenchido)". Volte e complete antes de enviar.
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <h4>📤 Envio Oficial</h4>
+    <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:12px;">Depois de copiar o relatório, envie no formulário oficial do Tema 02.</p>
+    <a href="https://forms.gle/zbUB57A4FteUDsKSA" target="_blank" rel="noopener">
+      📝 Enviar no Google Forms
+    </a>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">✅ Relatório copiado!</div>
+
+<script>
+// ===== ESTADO =====
+var estado = {
+  negocio: { nome:"", tipo:"", desc:"" },
+  missoes: { 1:"",2:"",3:"",4:"",5:"",6:"",7:"",8:"",9:"",10:"",11:"",12:"" },
+  concluidas: {},
+  pagina: { titulo:"", url:"", desc:"", corpo:"" }
+};
+
+// ===== PROGRESSO =====
+function atualizarProgresso(){
+  var total = 12;
+  var feitas = Object.keys(estado.concluidas).filter(function(k){ return estado.concluidas[k]; }).length;
+  var pct = (feitas/total)*100;
+  document.getElementById("barra").style.width = pct + "%";
+  document.getElementById("progresso-txt").textContent = feitas + " de " + total + " missões";
+}
+
+function marcar(n){
+  var chk = document.querySelector("#m-" + n + " input[type=checkbox]");
+  var el = document.getElementById("m-" + n);
+  estado.concluidas[n] = chk.checked;
+  if(chk.checked){ el.classList.add("concluida"); }
+  else { el.classList.remove("concluida"); }
+  atualizarProgresso();
+}
+
+// ===== PRÉVIA =====
+function gerarPrevia(){
+  var t = document.getElementById("pag-titulo").value || "(sem título)";
+  var u = document.getElementById("pag-url").value || "pagina";
+  var d = document.getElementById("pag-desc").value || "(sem descrição)";
+  var c = document.getElementById("pag-corpo").value || "(sem conteúdo)";
+  document.getElementById("pv-titulo").textContent = t;
+  document.getElementById("pv-url").textContent = "https://seusite.com.br/" + u;
+  document.getElementById("pv-desc").textContent = d;
+  document.getElementById("pv-corpo").textContent = c;
+  document.getElementById("previa-pagina").style.display = "block";
+  document.getElementById("previa-pagina").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+// ===== RELATÓRIO =====
+function gerarRelatorio(){
+  // coleta negócio
+  estado.negocio.nome = document.getElementById("negocio-nome").value || "(não informado)";
+  estado.negocio.tipo = document.getElementById("negocio-tipo").value || "(não informado)";
+  estado.negocio.desc = document.getElementById("negocio-desc").value || "(não informado)";
+
+  // coleta missões
+  for(var i=1;i<=12;i++){
+    estado.missoes[i] = document.getElementById("r-" + i).value || "(não preenchido)";
+    estado.concluidas[i] = document.querySelector("#m-" + i + " input[type=checkbox]").checked;
+  }
+
+  // coleta página
+  estado.pagina.titulo = document.getElementById("pag-titulo").value || "(não informado)";
+  estado.pagina.url = document.getElementById("pag-url").value || "(não informado)";
+  estado.pagina.desc = document.getElementById("pag-desc").value || "(não informado)";
+  estado.pagina.corpo = document.getElementById("pag-corpo").value || "(não informado)";
+
+  // monta texto
+  var feitas = Object.keys(estado.concluidas).filter(function(k){ return estado.concluidas[k]; }).length;
+  var linhas = [];
+  linhas.push("====================================================");
+  linhas.push("RELATÓRIO FINAL — AGÊNCIA DIGITAL (TEMA 02)");
+  linhas.push("Estratégia de Conteúdo Avançada");
+  linhas.push("Data: " + new Date().toLocaleString("pt-BR"));
+  linhas.push("Missões concluídas: " + feitas + " de 12");
+  linhas.push("====================================================");
+  linhas.push("");
+  linhas.push("🏪 NEGÓCIO ESCOLHIDO");
+  linhas.push("Nome: " + estado.negocio.nome);
+  linhas.push("Tipo: " + estado.negocio.tipo);
+  linhas.push("Descrição: " + estado.negocio.desc);
+  linhas.push("");
+  linhas.push("----------------------------------------------------");
+  linhas.push("🎯 MISSÕES PRÁTICAS");
+  linhas.push("----------------------------------------------------");
+  var titulos = {
+    1:"🎭 Persona",
+    2:"🎯 Objetivo SMART",
+    3:"🗺️ Jornada do Consumidor",
+    4:"💡 Tópicos de Conteúdo",
+    5:"✍️ Conteúdo (publicação)",
+    6:"📢 Distribuição",
+    7:"🎯 Personalização",
+    8:"🔍 SEO",
+    9:"❤️ Engajamento",
+    10:"🔄 Iteração",
+    11:"🚀 Tendências",
+    12:"🕵️ Concorrência"
+  };
+  for(var i=1;i<=12;i++){
+    var status = estado.concluidas[i] ? "[✔]" : "[ ]";
+    linhas.push(status + " " + titulos[i]);
+    linhas.push("    → " + estado.missoes[i]);
+    linhas.push("");
+  }
+  linhas.push("----------------------------------------------------");
+  linhas.push("📄 PÁGINA DE CONTEÚDO (mini-editor)");
+  linhas.push("----------------------------------------------------");
+  linhas.push("Título SEO: " + estado.pagina.titulo);
+  linhas.push("URL amigável: https://seusite.com.br/" + estado.pagina.url);
+  linhas.push("Meta description: " + estado.pagina.desc);
+  linhas.push("Corpo do conteúdo:");
+  linhas.push(estado.pagina.corpo);
+  linhas.push("");
+  linhas.push("====================================================");
+  linhas.push("FIM DO RELATÓRIO");
+  linhas.push("====================================================");
+
+  var texto = linhas.join("\n");
+  document.getElementById("relatorio-texto").value = texto;
+  document.getElementById("relatorio-box").style.display = "block";
+  document.getElementById("relatorio-box").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+// ===== COPIAR =====
+function copiarRelatorio(){
+  var box = document.getElementById("relatorio-texto");
+  box.select();
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(box.value).then(function(){
+      mostrarToast("✅ Relatório copiado!");
+    }).catch(function(){
+      try{ document.execCommand("copy"); mostrarToast("✅ Relatório copiado!"); }
+      catch(e){ alert("Selecione o texto manualmente (Ctrl+A / Ctrl+C)."); }
+    });
+  } else {
+    try{ document.execCommand("copy"); mostrarToast("✅ Relatório copiado!"); }
+    catch(e){ alert("Selecione o texto manualmente (Ctrl+A / Ctrl+C)."); }
+  }
+}
+
+function mostrarToast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show"); }, 2500);
+}
+
+// ===== LIMPAR =====
+function limparTudo(){
+  if(!confirm("Isso vai apagar todas as missões e a página. Deseja continuar?")) return;
+  document.getElementById("negocio-nome").value = "";
+  document.getElementById("negocio-tipo").value = "";
+  document.getElementById("negocio-desc").value = "";
+  for(var i=1;i<=12;i++){
+    document.getElementById("r-" + i).value = "";
+    document.querySelector("#m-" + i + " input[type=checkbox]").checked = false;
+    document.getElementById("m-" + i).classList.remove("concluida");
+  }
+  document.getElementById("pag-titulo").value = "";
+  document.getElementById("pag-url").value = "";
+  document.getElementById("pag-desc").value = "";
+  document.getElementById("pag-corpo").value = "";
+  document.getElementById("previa-pagina").style.display = "none";
+  document.getElementById("relatorio-box").style.display = "none";
+  estado = { negocio:{nome:"",tipo:"",desc:""}, missoes:{}, concluidas:{}, pagina:{} };
+  atualizarProgresso();
+  mostrarToast("🔄 Tudo limpo!");
+}
+
+// ===== INIT =====
+atualizarProgresso();
+</script>
+</body>
+</html>
