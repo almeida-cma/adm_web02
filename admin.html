@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Painel de Analytics — TechFix (didático)</title>
+<style>
+  :root{
+    --bg:#0b1220; --surface:#151f36; --surface-2:#1c2a44;
+    --primary:#38bdf8; --primary-dark:#0284c7; --accent:#f59e0b;
+    --purple:#8b5cf6; --pink:#ec4899; --ok:#10b981; --no:#ef4444;
+    --text:#f8fafc; --text-muted:#cbd5e1; --border:#2a3854;
+    --radius:16px; --trans:all .2s ease;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at 10% 12%,#1e3a8a 0%,var(--bg) 65%);
+    color:var(--text);min-height:100vh;line-height:1.6;padding:20px 14px 80px;}
+  .container{max-width:1200px;margin:0 auto;}
+  .header{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 45%,#7c3aed 100%);
+    border-radius:var(--radius);padding:28px 22px;text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.4);margin-bottom:18px;}
+  .header h1{font-size:clamp(1.3rem,3.5vw,1.7rem);font-weight:900;color:#fff;margin-bottom:6px;}
+  .header h1 span{color:#fef08a;}
+  .header p{color:#e0f2fe;font-size:.9rem;max-width:680px;margin:0 auto;}
+  .header .aviso{margin-top:10px;font-size:.76rem;color:#fef08a;opacity:.9;}
+
+  .upload-card{background:var(--surface);border:2px dashed var(--border);border-radius:var(--radius);
+    padding:28px 24px;margin-bottom:20px;text-align:center;transition:var(--trans);}
+  .upload-card.drag{border-color:var(--primary);background:rgba(56,189,248,.08);}
+  .upload-card h3{color:#fff;font-size:1.05rem;margin-bottom:8px;}
+  .upload-card p{color:var(--text-muted);font-size:.88rem;margin-bottom:16px;}
+  .upload-card input[type=file]{display:none;}
+  .upload-card .btn{background:linear-gradient(135deg,var(--primary-dark),#2563eb);color:#fff;
+    border:none;padding:12px 26px;border-radius:30px;font-size:.9rem;font-weight:800;
+    cursor:pointer;transition:var(--trans);font-family:inherit;display:inline-flex;align-items:center;gap:6px;}
+  .upload-card .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,.4);}
+  .upload-card .info{margin-top:12px;font-size:.76rem;color:#94a3b8;}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;transition:var(--trans);}
+  .kpi:hover{border-color:var(--primary);transform:translateY(-2px);}
+  .kpi .label{font-size:.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:4px;}
+  .kpi .valor{font-size:1.6rem;font-weight:900;color:var(--primary);line-height:1.2;}
+  .kpi .sub{font-size:.76rem;color:var(--text-muted);margin-top:2px;}
+  .kpi.verde .valor{color:var(--ok);}
+  .kpi.vermelho .valor{color:var(--no);}
+  .kpi.amarelo .valor{color:var(--accent);}
+
+  .section{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 20px;margin-bottom:20px;}
+  .section h2{font-size:1.1rem;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px;border-left:5px solid var(--primary);padding-left:12px;line-height:1.35;}
+  .section h3{font-size:.9rem;color:#38bdf8;margin:18px 0 8px;}
+  .section .vazio{color:#94a3b8;font-size:.88rem;text-align:center;padding:30px 10px;font-style:italic;}
+
+  .grid-tabelas{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .card-tabela{background:#0f182c;border:1px solid var(--border);border-radius:10px;padding:14px;}
+  .card-tabela h4{font-size:.82rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;font-weight:800;}
+
+  table{width:100%;border-collapse:collapse;font-size:.82rem;}
+  th{text-align:left;padding:9px 10px;background:#0a1220;color:#94a3b8;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);}
+  td{padding:8px 10px;border-bottom:1px solid #1e293b;color:var(--text-muted);}
+  tr:hover td{background:#1a2540;}
+  td.mono{font-family:monospace;font-size:.76rem;color:#38bdf8;}
+  td.num{font-family:monospace;font-size:.82rem;color:#38bdf8;text-align:right;}
+  th.num{text-align:right;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;}
+  .badge.ok{background:rgba(16,185,129,.2);color:#6ee7b7;}
+  .badge.no{background:rgba(239,68,68,.2);color:#fca5a5;}
+  .badge.info{background:rgba(56,189,248,.2);color:#7dd3fc;}
+  .badge.warn{background:rgba(245,158,11,.2);color:#fcd34d;}
+
+  .barras{display:flex;flex-direction:column;gap:8px;}
+  .barra-item{background:#0f182c;border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+  .barra-item .linha{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;}
+  .barra-item .linha strong{color:#fff;}
+  .barra-item .linha span{color:var(--text-muted);font-weight:700;}
+  .barra-item .trilha{height:10px;background:#1e293b;border-radius:5px;overflow:hidden;}
+  .barra-item .fill{height:100%;border-radius:5px;transition:width .3s;background:linear-gradient(90deg,#0284c7,#38bdf8);}
+  .barra-item.verde .fill{background:linear-gradient(90deg,#059669,#10b981);}
+  .barra-item.amarelo .fill{background:linear-gradient(90deg,#d97706,#f59e0b);}
+  .barra-item.rosa .fill{background:linear-gradient(90deg,#be185d,#ec4899);}
+
+  .insight{background:rgba(56,189,248,.08);border-left:4px solid var(--primary);padding:14px 18px;border-radius:8px;font-size:.86rem;color:#e0f2fe;line-height:1.7;margin-top:16px;}
+  .insight strong{color:#fff;}
+  .insight ul{padding-left:20px;margin-top:6px;}
+  .insight li{margin-bottom:4px;}
+
+  .heatmap-wrapper{position:relative;background:#f8fafc;border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+  .heatmap-canvas{display:block;width:100%;height:auto;}
+  .heatmap-legenda{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:.78rem;color:var(--text-muted);}
+  .heatmap-legenda span{display:flex;align-items:center;gap:6px;}
+  .heat-dot{width:14px;height:14px;border-radius:50%;display:inline-block;}
+
+  .scroll-map{background:#0f172a;border-radius:10px;padding:14px;border:1px solid var(--border);}
+  .scroll-bar{height:24px;background:#1e293b;border-radius:6px;overflow:hidden;margin-bottom:8px;position:relative;}
+  .scroll-fill{height:100%;background:linear-gradient(90deg,#38bdf8,#10b981);border-radius:6px;transition:width .3s;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.74rem;font-weight:800;color:#0f172a;min-width:30px;}
+  .scroll-label{font-size:.76rem;color:#94a3b8;margin-bottom:6px;font-weight:700;}
+
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .btn{background:linear-gradient(135deg,var(--primary-dark),#2563eb);color:#fff;
+    border:none;padding:10px 20px;border-radius:30px;font-size:.84rem;font-weight:800;
+    cursor:pointer;transition:var(--trans);font-family:inherit;display:inline-flex;align-items:center;gap:6px;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,.4);}
+  .btn.sec{background:#1e293b;border:1px solid var(--border);color:#cbd5e1;}
+  .btn.sec:hover{border-color:var(--primary);color:#fff;}
+  .btn.verde{background:linear-gradient(135deg,#059669,#10b981);}
+  .btn.roxo{background:linear-gradient(135deg,#7c3aed,#8b5cf6);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
+
+  .relatorio-textarea{width:100%;height:340px;background:#070c16;border:1px solid var(--border);
+    border-radius:8px;padding:14px;color:#e2e8f0;font-family:monospace;font-size:.78rem;
+    resize:vertical;line-height:1.6;margin-top:10px;}
+
+  .filtros{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .filtro{background:#1e293b;border:1px solid var(--border);color:#cbd5e1;padding:6px 14px;
+    border-radius:20px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:inherit;transition:var(--trans);}
+  .filtro:hover{border-color:var(--primary);color:#fff;}
+  .filtro.active{background:var(--primary-dark);color:#fff;border-color:var(--primary);}
+
+  @media (max-width:820px){
+    .grid-tabelas{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    .kpi .valor{font-size:1.3rem;}
+    .section{padding:16px 14px;}
+    th,td{padding:7px 8px;font-size:.76rem;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <h1>📊 Painel de <span>Analytics</span> — TechFix</h1>
+    <p>Importe o JSON exportado do protótipo e veja as métricas de navegação, o mapa de calor e a análise dos formulários enviados.</p>
+    <div class="aviso">🔒 Os dados nunca saem do seu computador — o processamento é 100% local.</div>
+  </header>
+
+  <!-- UPLOAD -->
+  <div class="upload-card" id="uploadCard">
+    <h3>📁 Importar JSON de analytics</h3>
+    <p>Exporte o arquivo no <strong>prototipo.html</strong> (botão 📊 → Exportar JSON) e arraste aqui.</p>
+    <input type="file" id="fileInput" accept="application/json,.json">
+    <button type="button" class="btn" id="btnUpload">📁 Selecionar arquivo</button>
+    <div class="info" id="uploadInfo">Arraste o arquivo ou clique no botão. Também funciona com Ctrl+V se você copiou o JSON.</div>
+  </div>
+
+  <!-- KPIs GERAIS -->
+  <div class="kpis" id="kpis" style="display:none;">
+    <div class="kpi"><div class="label">Sessões</div><div class="valor" id="kpi-sessoes">0</div><div class="sub">usuários únicos</div></div>
+    <div class="kpi"><div class="label">Eventos</div><div class="valor" id="kpi-eventos">0</div><div class="sub">total no arquivo</div></div>
+    <div class="kpi"><div class="label">Tempo médio</div><div class="valor" id="kpi-tempo">0s</div><div class="sub">por sessão</div></div>
+    <div class="kpi amarelo"><div class="label">Scroll médio</div><div class="valor" id="kpi-scroll">0%</div><div class="sub">profundidade máxima</div></div>
+    <div class="kpi verde"><div class="label">Conversão</div><div class="valor" id="kpi-conversao">0%</div><div class="sub">formulário enviado</div></div>
+    <div class="kpi vermelho"><div class="label">Abandono</div><div class="valor" id="kpi-abandono">0%</div><div class="sub">form iniciado, não enviado</div></div>
+  </div>
+
+  <!-- ===== ANÁLISE DOS FORMULÁRIOS ===== -->
+  <section class="section" id="section-formularios" style="display:none;">
+    <h2>📊 Análise dos formulários enviados</h2>
+    <p style="color:#94a3b8;font-size:.84rem;margin-bottom:14px;">Dados capturados via preenchimento do formulário no protótipo — mascarados para fins didáticos.</p>
+
+    <!-- KPIs de formulário -->
+    <div class="kpis" id="kpis-formulario">
+      <div class="kpi verde"><div class="label">Formulários enviados</div><div class="valor" id="kpi-total-forms">0</div><div class="sub">total de submissões</div></div>
+      <div class="kpi"><div class="label">Com mensagem</div><div class="valor" id="kpi-com-msg">0</div><div class="sub">respondentes que escreveram</div></div>
+      <div class="kpi amarelo"><div class="label">Tamanho médio</div><div class="valor" id="kpi-tam-medio">0</div><div class="sub">caracteres por mensagem</div></div>
+      <div class="kpi"><div class="label">Personas distintas</div><div class="valor" id="kpi-personas-distintas">0</div><div class="sub">grupos declarados</div></div>
+    </div>
+
+    <!-- Distribuições -->
+    <div class="grid-tabelas">
+      <div class="card-tabela">
+        <h4>🎭 Distribuição por persona declarada</h4>
+        <div class="barras" id="barras-personas"></div>
+      </div>
+      <div class="card-tabela">
+        <h4>📋 Distribuição por serviço solicitado</h4>
+        <div class="barras" id="barras-servicos"></div>
+      </div>
+    </div>
+
+    <!-- Cruzamento persona x serviço -->
+    <h3>🔀 Cruzamento: persona × serviço</h3>
+    <div style="overflow-x:auto;">
+      <table id="tabela-cruzamento">
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Serviço</th>
+            <th class="num">Qtd</th>
+            <th class="num">% do total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Contexto: dispositivo e horário -->
+    <h3>🕒 Contexto dos respondentes</h3>
+    <div class="grid-tabelas">
+      <div class="card-tabela">
+        <h4>📱 Dispositivo (viewport)</h4>
+        <div class="barras" id="barras-dispositivo"></div>
+      </div>
+      <div class="card-tabela">
+        <h4>🌅 Horário de envio</h4>
+        <div class="barras" id="barras-horario"></div>
+      </div>
+    </div>
+
+    <!-- Tabela de formulários -->
+    <h3>📨 Formulários enviados</h3>
+    <div style="max-height:340px;overflow-y:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Serviço</th>
+            <th>Persona</th>
+            <th>Mensagem</th>
+            <th>Horário</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-formularios"></tbody>
+      </table>
+    </div>
+
+    <!-- Insight analítico -->
+    <div class="insight" id="insight-formularios"></div>
+  </section>
+
+  <!-- ===== MAPA DE CALOR ===== -->
+  <section class="section" id="section-heatmap" style="display:none;">
+    <h2>🔥 Mapa de calor de cliques</h2>
+    <p style="color:#94a3b8;font-size:.84rem;margin-bottom:12px;">Cada ponto representa um clique registrado. Quanto mais vermelho, mais cliques naquela região.</p>
+    <div class="heatmap-wrapper">
+      <canvas class="heatmap-canvas" id="heatmapCanvas" width="1100" height="2400"></canvas>
+    </div>
+    <div class="heatmap-legenda">
+      <span><span class="heat-dot" style="background:#facc15;"></span> Poucos cliques</span>
+      <span><span class="heat-dot" style="background:#f97316;"></span> Média de cliques</span>
+      <span><span class="heat-dot" style="background:#ef4444;"></span> Muitos cliques</span>
+      <span id="heatmap-total" style="margin-left:auto;font-weight:700;color:#e2e8f0;"></span>
+    </div>
+  </section>
+
+  <!-- ===== SCROLL MAP ===== -->
+  <section class="section" id="section-scroll" style="display:none;">
+    <h2>📜 Mapa de scroll</h2>
+    <p style="color:#94a3b8;font-size:.84rem;margin-bottom:12px;">Distribuição das sessões por profundidade máxima de scroll.</p>
+    <div class="scroll-map" id="scrollMap"></div>
+  </section>
+
+  <!-- ===== TEMPO POR SEÇÃO ===== -->
+  <section class="section" id="section-tempo" style="display:none;">
+    <h2>⏱️ Tempo médio por seção</h2>
+    <div id="tempoSecoes"></div>
+  </section>
+
+  <!-- ===== CTAs ===== -->
+  <section class="section" id="section-ctas" style="display:none;">
+    <h2>🎯 Cliques em CTAs</h2>
+    <table>
+      <thead><tr><th>CTA</th><th class="num">Cliques</th><th class="num">% do total</th></tr></thead>
+      <tbody id="tabelaCtas"></tbody>
+    </table>
+  </section>
+
+  <!-- ===== EVENTOS ===== -->
+  <section class="section" id="section-eventos" style="display:none;">
+    <h2>📋 Eventos registrados</h2>
+    <div class="filtros" id="filtros">
+      <button class="filtro active" data-filtro="todos">Todos</button>
+      <button class="filtro" data-filtro="page_view">Page View</button>
+      <button class="filtro" data-filtro="click">Cliques</button>
+      <button class="filtro" data-filtro="scroll">Scroll</button>
+      <button class="filtro" data-filtro="cta_click">CTAs</button>
+      <button class="filtro" data-filtro="time_on_section">Tempo/seção</button>
+      <button class="filtro" data-filtro="form_start">Form start</button>
+      <button class="filtro" data-filtro="form_submit">Form submit</button>
+      <button class="filtro" data-filtro="form_abandon">Form abandon</button>
+      <button class="filtro" data-filtro="persona_declared">Persona</button>
+      <button class="filtro" data-filtro="exit">Exit</button>
+    </div>
+    <div style="max-height:400px;overflow-y:auto;">
+      <table>
+        <thead><tr><th>Sessão</th><th>Tipo</th><th>Dados</th><th>Timestamp</th></tr></thead>
+        <tbody id="tabelaEventos"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== RELATÓRIO ===== -->
+  <section class="section" id="section-relatorio" style="display:none;">
+    <h2>📝 Relatório copiável</h2>
+    <div class="actions">
+      <button class="btn verde" id="btnGerarRelatorio">📝 Gerar Relatório</button>
+      <button class="btn sec" id="btnCopiarRelatorio">📋 Copiar</button>
+      <button class="btn roxo" id="btnBaixarRelatorio">⬇️ Baixar .txt</button>
+    </div>
+    <textarea class="relatorio-textarea" id="relatorioTexto" readonly placeholder="Clique em 'Gerar Relatório' para montar o resumo..."></textarea>
+  </section>
+
+  <div class="actions" id="acoesGerais" style="display:none;justify-content:center;margin-top:20px;">
+    <button class="btn sec" id="btnRecarregar">🔄 Importar outro JSON</button>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   PAINEL DE ANALYTICS — processa o JSON exportado do protótipo
+   ============================================================ */
+var eventos = [];
+var filtroAtual = 'todos';
+
+// ===== UPLOAD =====
+var fileInput = document.getElementById('fileInput');
+var uploadCard = document.getElementById('uploadCard');
+var btnUpload = document.getElementById('btnUpload');
+
+btnUpload.addEventListener('click', function(){ fileInput.click(); });
+fileInput.addEventListener('change', function(e){
+  var f = e.target.files[0];
+  if(!f) return;
+  lerArquivo(f);
+});
+
+['dragover','dragenter'].forEach(function(ev){
+  uploadCard.addEventListener(ev, function(e){ e.preventDefault(); uploadCard.classList.add('drag'); });
+});
+['dragleave','drop'].forEach(function(ev){
+  uploadCard.addEventListener(ev, function(e){ e.preventDefault(); uploadCard.classList.remove('drag'); });
+});
+uploadCard.addEventListener('drop', function(e){
+  var f = e.dataTransfer.files[0];
+  if(f) lerArquivo(f);
+});
+
+document.addEventListener('paste', function(e){
+  if(document.activeElement.tagName === 'TEXTAREA' || document.activeElement.tagName === 'INPUT') return;
+  var texto = (e.clipboardData || window.clipboardData).getData('text');
+  if(!texto) return;
+  try {
+    var json = JSON.parse(texto);
+    if(Array.isArray(json)){
+      eventos = json;
+      processar();
+    }
+  } catch(err){}
+});
+
+function lerArquivo(f){
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    try {
+      var json = JSON.parse(ev.target.result);
+      if(!Array.isArray(json)) throw new Error('JSON não é um array de eventos.');
+      eventos = json;
+      processar();
+    } catch(err){
+      alert('❌ Erro ao ler o JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(f);
+}
+
+// ===== PROCESSAMENTO =====
+function processar(){
+  document.getElementById('uploadCard').style.display = 'none';
+  ['kpis','section-formularios','section-heatmap','section-scroll','section-tempo','section-ctas','section-eventos','section-relatorio','acoesGerais'].forEach(function(id){
+    document.getElementById(id).style.display = '';
+  });
+
+  // ----- Sessões e eventos gerais -----
+  var sessoes = {};
+  var totalCliques = 0;
+  var cliquesPorCta = {};
+  var tempoPorSecao = {};
+  var scrollPorSessao = {};
+  var conversoes = 0;
+  var abandonos = 0;
+  var iniciosForm = 0;
+
+  // ----- Dados de formulário -----
+  var formularios = [];
+  var servicosCount = {};
+  var personasCount = {};
+  var mensagensCount = 0;
+  var totalFormularios = 0;
+  var somaTamanhoMensagem = 0;
+  var dispositivoCount = { mobile: 0, desktop: 0 };
+  var horarioCount = { manha: 0, tarde: 0, noite: 0 };
+
+  eventos.forEach(function(ev){
+    var sid = ev.sessao || 'sem_sessao';
+    if(!sessoes[sid]){
+      sessoes[sid] = { eventos: 0, inicio: ev.timestamp, fim: ev.timestamp, scroll: 0, formIniciado: false, formEnviado: false };
+    }
+    var s = sessoes[sid];
+    s.eventos++;
+    s.inicio = Math.min(s.inicio, ev.timestamp);
+    s.fim = Math.max(s.fim, ev.timestamp);
+
+    if(ev.tipo === 'click') totalCliques++;
+    if(ev.tipo === 'cta_click' && ev.dados && ev.dados.track){
+      cliquesPorCta[ev.dados.track] = (cliquesPorCta[ev.dados.track] || 0) + 1;
+    }
+    if(ev.tipo === 'scroll' && ev.dados && typeof ev.dados.profundidade === 'number'){
+      if(ev.dados.profundidade > (scrollPorSessao[sid] || 0)){
+        scrollPorSessao[sid] = ev.dados.profundidade;
+      }
+    }
+    if(ev.tipo === 'time_on_section' && ev.dados && ev.dados.secao){
+      if(!tempoPorSecao[ev.dados.secao]) tempoPorSecao[ev.dados.secao] = { total: 0, sessoes: 0 };
+      tempoPorSecao[ev.dados.secao].total += (ev.dados.duracao_s || 0);
+      tempoPorSecao[ev.dados.secao].sessoes++;
+    }
+    if(ev.tipo === 'form_start'){ s.formIniciado = true; iniciosForm++; }
+    if(ev.tipo === 'form_submit'){ s.formEnviado = true; conversoes++; }
+    if(ev.tipo === 'form_abandon'){ abandonos++; }
+    if(ev.tipo === 'exit' && ev.dados && ev.dados.scroll_max){
+      if(ev.dados.scroll_max > (scrollPorSessao[sid] || 0)){
+        scrollPorSessao[sid] = ev.dados.scroll_max;
+      }
+    }
+
+    // ----- Formulário: captura -----
+    if(ev.tipo === 'form_submit' && ev.dados){
+      totalFormularios++;
+      var serv = ev.dados.servico || '(não selecionado)';
+      servicosCount[serv] = (servicosCount[serv] || 0) + 1;
+      var pers = ev.dados.persona_hint || '(não informado)';
+      personasCount[pers] = (personasCount[pers] || 0) + 1;
+      if(ev.dados.tem_mensagem){
+        mensagensCount++;
+        somaTamanhoMensagem += (ev.dados.tamanho_mensagem || 0);
+      }
+
+      // Dispositivo (viewport do evento)
+      var vw = ev.viewport && ev.viewport.w ? ev.viewport.w : 0;
+      if(vw > 0){
+        if(vw <= 768) dispositivoCount.mobile++;
+        else dispositivoCount.desktop++;
+      }
+
+      // Horário
+      var hora = new Date(ev.timestamp).getHours();
+      if(hora < 12) horarioCount.manha++;
+      else if(hora < 18) horarioCount.tarde++;
+      else horarioCount.noite++;
+
+      formularios.push({
+        nome: ev.dados.nome_mascarado || '***',
+        email: ev.dados.email_mascarado || '***',
+        telefone: ev.dados.telefone_mascarado || '***',
+        servico: serv,
+        persona: pers,
+        temMensagem: ev.dados.tem_mensagem,
+        tamanhoMensagem: ev.dados.tamanho_mensagem || 0,
+        timestamp: ev.timestamp,
+        dispositivo: vw <= 768 ? 'mobile' : 'desktop'
+      });
+    }
+  });
+
+  // ----- Cálculos gerais -----
+  var listaSessoes = Object.keys(sessoes);
+  var totalSessoes = listaSessoes.length;
+  var tempoTotal = 0;
+  listaSessoes.forEach(function(sid){
+    tempoTotal += Math.round((sessoes[sid].fim - sessoes[sid].inicio) / 1000);
+  });
+  var tempoMedio = totalSessoes ? Math.round(tempoTotal / totalSessoes) : 0;
+  var scrollMedio = 0;
+  listaSessoes.forEach(function(sid){ scrollMedio += (scrollPorSessao[sid] || 0); });
+  scrollMedio = totalSessoes ? Math.round(scrollMedio / totalSessoes) : 0;
+  var taxaConversao = totalSessoes ? Math.round((conversoes / totalSessoes) * 100) : 0;
+  var taxaAbandono = iniciosForm ? Math.round((abandonos / iniciosForm) * 100) : 0;
+
+  document.getElementById('kpi-sessoes').textContent = totalSessoes;
+  document.getElementById('kpi-eventos').textContent = eventos.length;
+  document.getElementById('kpi-tempo').textContent = tempoMedio + 's';
+  document.getElementById('kpi-scroll').textContent = scrollMedio + '%';
+  document.getElementById('kpi-conversao').textContent = taxaConversao + '%';
+  document.getElementById('kpi-abandono').textContent = taxaAbandono + '%';
+
+  // ===== ANÁLISE DOS FORMULÁRIOS =====
+  document.getElementById('kpi-total-forms').textContent = totalFormularios;
+  document.getElementById('kpi-com-msg').textContent = mensagensCount;
+  var tamMedio = mensagensCount ? Math.round(somaTamanhoMensagem / mensagensCount) : 0;
+  document.getElementById('kpi-tam-medio').textContent = tamMedio;
+  document.getElementById('kpi-personas-distintas').textContent = Object.keys(personasCount).filter(function(k){ return k !== '(não informado)'; }).length;
+
+  // Barras: personas
+  var barrasPersonas = document.getElementById('barras-personas');
+  barrasPersonas.innerHTML = '';
+  if(totalFormularios === 0){
+    barrasPersonas.innerHTML = '<div class="vazio">Nenhum formulário enviado.</div>';
+  } else {
+    var coresPersona = ['info','verde','amarelo','rosa'];
+    Object.keys(personasCount).sort(function(a,b){ return personasCount[b] - personasCount[a]; }).forEach(function(p, idx){
+      var qtd = personasCount[p];
+      var pct = Math.round((qtd / totalFormularios) * 100);
+      var cor = coresPersona[idx % coresPersona.length];
+      barrasPersonas.innerHTML +=
+        '<div class="barra-item ' + cor + '">' +
+          '<div class="linha"><strong>' + p + '</strong><span>' + qtd + ' (' + pct + '%)</span></div>' +
+          '<div class="trilha"><div class="fill" style="width:' + pct + '%"></div></div>' +
+        '</div>';
+    });
+  }
+
+  // Barras: serviços
+  var barrasServicos = document.getElementById('barras-servicos');
+  barrasServicos.innerHTML = '';
+  if(totalFormularios === 0){
+    barrasServicos.innerHTML = '<div class="vazio">Nenhum formulário enviado.</div>';
+  } else {
+    Object.keys(servicosCount).sort(function(a,b){ return servicosCount[b] - servicosCount[a]; }).forEach(function(s){
+      var qtd = servicosCount[s];
+      var pct = Math.round((qtd / totalFormularios) * 100);
+      barrasServicos.innerHTML +=
+        '<div class="barra-item info">' +
+          '<div class="linha"><strong>' + s + '</strong><span>' + qtd + ' (' + pct + '%)</span></div>' +
+          '<div class="trilha"><div class="fill" style="width:' + pct + '%"></div></div>' +
+        '</div>';
+    });
+  }
+
+  // Cruzamento persona × serviço
+  var cruzamento = {};
+  formularios.forEach(function(f){
+    var chave = f.persona + '|||' + f.servico;
+    cruzamento[chave] = (cruzamento[chave] || 0) + 1;
+  });
+  var tbodyCruz = document.querySelector('#tabela-cruzamento tbody');
+  tbodyCruz.innerHTML = '';
+  if(Object.keys(cruzamento).length === 0){
+    tbodyCruz.innerHTML = '<tr><td colspan="4" class="vazio">Nenhum formulário enviado.</td></tr>';
+  } else {
+    Object.keys(cruzamento).sort(function(a,b){ return cruzamento[b] - cruzamento[a]; }).forEach(function(chave){
+      var partes = chave.split('|||');
+      var qtd = cruzamento[chave];
+      var pct = Math.round((qtd / totalFormularios) * 100);
+      tbodyCruz.innerHTML +=
+        '<tr>' +
+          '<td><span class="badge info">' + partes[0] + '</span></td>' +
+          '<td>' + partes[1] + '</td>' +
+          '<td class="num">' + qtd + '</td>' +
+          '<td class="num">' + pct + '%</td>' +
+        '</tr>';
+    });
+  }
+
+  // Dispositivo
+  var barrasDisp = document.getElementById('barras-dispositivo');
+  barrasDisp.innerHTML = '';
+  var totalDisp = dispositivoCount.mobile + dispositivoCount.desktop;
+  if(totalDisp === 0){
+    barrasDisp.innerHTML = '<div class="vazio">Sem dados de dispositivo.</div>';
+  } else {
+    var pctMobile = Math.round((dispositivoCount.mobile / totalDisp) * 100);
+    var pctDesktop = 100 - pctMobile;
+    barrasDisp.innerHTML =
+      '<div class="barra-item rosa"><div class="linha"><strong>📱 Mobile (≤768px)</strong><span>' + dispositivoCount.mobile + ' (' + pctMobile + '%)</span></div><div class="trilha"><div class="fill" style="width:' + pctMobile + '%"></div></div></div>' +
+      '<div class="barra-item info"><div class="linha"><strong>💻 Desktop (>768px)</strong><span>' + dispositivoCount.desktop + ' (' + pctDesktop + '%)</span></div><div class="trilha"><div class="fill" style="width:' + pctDesktop + '%"></div></div></div>';
+  }
+
+  // Horário
+  var barrasHorario = document.getElementById('barras-horario');
+  barrasHorario.innerHTML = '';
+  var totalHorario = horarioCount.manha + horarioCount.tarde + horarioCount.noite;
+  if(totalHorario === 0){
+    barrasHorario.innerHTML = '<div class="vazio">Sem dados de horário.</div>';
+  } else {
+    var pctManha = Math.round((horarioCount.manha / totalHorario) * 100);
+    var pctTarde = Math.round((horarioCount.tarde / totalHorario) * 100);
+    var pctNoite = 100 - pctManha - pctTarde;
+    barrasHorario.innerHTML =
+      '<div class="barra-item amarelo"><div class="linha"><strong>🌅 Manhã (0h–12h)</strong><span>' + horarioCount.manha + ' (' + pctManha + '%)</span></div><div class="trilha"><div class="fill" style="width:' + pctManha + '%"></div></div></div>' +
+      '<div class="barra-item verde"><div class="linha"><strong>☀️ Tarde (12h–18h)</strong><span>' + horarioCount.tarde + ' (' + pctTarde + '%)</span></div><div class="trilha"><div class="fill" style="width:' + pctTarde + '%"></div></div></div>' +
+      '<div class="barra-item info"><div class="linha"><strong>🌙 Noite (18h–24h)</strong><span>' + horarioCount.noite + ' (' + pctNoite + '%)</span></div><div class="trilha"><div class="fill" style="width:' + pctNoite + '%"></div></div></div>';
+  }
+
+  // Tabela de formulários
+  var tbodyForm = document.getElementById('tabela-formularios');
+  tbodyForm.innerHTML = '';
+  if(formularios.length === 0){
+    tbodyForm.innerHTML = '<tr><td colspan="7" class="vazio">Nenhum formulário enviado.</td></tr>';
+  } else {
+    formularios.slice(-30).reverse().forEach(function(f){
+      tbodyForm.innerHTML +=
+        '<tr>' +
+          '<td>' + f.nome + '</td>' +
+          '<td class="mono">' + f.email + '</td>' +
+          '<td class="mono">' + f.telefone + '</td>' +
+          '<td>' + f.servico + '</td>' +
+          '<td><span class="badge info">' + f.persona + '</span></td>' +
+          '<td>' + (f.temMensagem ? '✅ (' + f.tamanhoMensagem + ' chars)' : '—') + '</td>' +
+          '<td class="mono">' + new Date(f.timestamp).toLocaleString('pt-BR') + '</td>' +
+        '</tr>';
+    });
+  }
+
+  // Insight analítico
+  var insight = document.getElementById('insight-formularios');
+  if(totalFormularios === 0){
+    insight.innerHTML = '<strong>📌 Nenhum formulário enviado ainda.</strong> Navegue pelo protótipo, preencha o formulário e exporte o JSON novamente para ver a análise.';
+  } else {
+    var personaTop = Object.keys(personasCount).sort(function(a,b){ return personasCount[b] - personasCount[a]; })[0];
+    var servicoTop = Object.keys(servicosCount).sort(function(a,b){ return servicosCount[b] - servicosCount[a]; })[0];
+    var pctPersonaTop = Math.round((personasCount[personaTop] / totalFormularios) * 100);
+    var pctServicoTop = Math.round((servicosCount[servicoTop] / totalFormularios) * 100);
+    var pctMsg = Math.round((mensagensCount / totalFormularios) * 100);
+
+    insight.innerHTML =
+      '<strong>💡 Interpretação analítica dos números:</strong>' +
+      '<ul>' +
+        '<li><strong>' + totalFormularios + ' formulário(s)</strong> enviado(s). ' + mensagensCount + ' (' + pctMsg + '%) incluíram mensagem escrita — tamanho médio de ' + tamMedio + ' caracteres.</li>' +
+        '<li>A persona mais declarada foi <strong>"' + personaTop + '"</strong>, com ' + personasCount[personaTop] + ' respondente(s) (' + pctPersonaTop + '% do total).</li>' +
+        '<li>O serviço mais solicitado foi <strong>"' + servicoTop + '"</strong>, com ' + servicosCount[servicoTop] + ' pedido(s) (' + pctServicoTop + '%).</li>' +
+        '<li>Dispositivo: ' + (totalDisp ? Math.round((dispositivoCount.mobile / totalDisp) * 100) + '% mobile e ' + Math.round((dispositivoCount.desktop / totalDisp) * 100) + '% desktop.' : 'sem dados.') + '</li>' +
+        '<li>Horário: ' + (totalHorario ? 'manhã ' + pctManha + '%, tarde ' + pctTarde + '%, noite ' + pctNoite + '%.' : 'sem dados.') + '</li>' +
+      '</ul>' +
+      '<strong>🔍 Pergunta para o aluno:</strong> os números acima confirmam ou refutam a persona que você definiu no projeto? Se a persona era "estudante", mas ' + (personasCount['estudante'] ? personasCount['estudante'] + ' estudante(s)' : '0 estudante(s)') + ' responderam, o que isso diz sobre a estratégia?';
+  }
+
+  // ===== HEATMAP =====
+  desenharHeatmap();
+  document.getElementById('heatmap-total').textContent = totalCliques + ' cliques registrados';
+
+  // ===== SCROLL MAP =====
+  var faixas = { '0-25%': 0, '26-50%': 0, '51-75%': 0, '76-100%': 0 };
+  listaSessoes.forEach(function(sid){
+    var pct = scrollPorSessao[sid] || 0;
+    if(pct <= 25) faixas['0-25%']++;
+    else if(pct <= 50) faixas['26-50%']++;
+    else if(pct <= 75) faixas['51-75%']++;
+    else faixas['76-100%']++;
+  });
+  var scrollHTML = '';
+  Object.keys(faixas).forEach(function(f){
+    var qtd = faixas[f];
+    var pctBarra = totalSessoes ? Math.round((qtd / totalSessoes) * 100) : 0;
+    scrollHTML += '<div class="scroll-label">' + f + ' — ' + qtd + ' sessão(ões) (' + pctBarra + '%)</div>';
+    scrollHTML += '<div class="scroll-bar"><div class="scroll-fill" style="width:' + pctBarra + '%">' + (pctBarra > 15 ? pctBarra + '%' : '') + '</div></div>';
+  });
+  document.getElementById('scrollMap').innerHTML = scrollHTML;
+
+  // ===== TEMPO POR SEÇÃO =====
+  var tempoHTML = '';
+  Object.keys(tempoPorSecao).forEach(function(sec){
+    var t = tempoPorSecao[sec];
+    var media = t.sessoes ? Math.round(t.total / t.sessoes) : 0;
+    tempoHTML += '<div class="scroll-label">' + sec + ' — média ' + media + 's (total ' + t.total + 's em ' + t.sessoes + ' registros)</div>';
+    tempoHTML += '<div class="scroll-bar"><div class="scroll-fill" style="width:' + Math.min(100, media * 5) + '%">' + media + 's</div></div>';
+  });
+  if(!tempoHTML) tempoHTML = '<div class="vazio">Nenhum evento de tempo por seção registrado.</div>';
+  document.getElementById('tempoSecoes').innerHTML = tempoHTML;
+
+  // ===== CTAs =====
+  var tabelaCtas = document.getElementById('tabelaCtas');
+  tabelaCtas.innerHTML = '';
+  var totalCtaCliques = Object.keys(cliquesPorCta).reduce(function(acc, k){ return acc + cliquesPorCta[k]; }, 0);
+  if(totalCtaCliques === 0){
+    tabelaCtas.innerHTML = '<tr><td colspan="3" class="vazio">Nenhum clique em CTA registrado.</td></tr>';
+  } else {
+    Object.keys(cliquesPorCta).sort(function(a,b){ return cliquesPorCta[b] - cliquesPorCta[a]; }).forEach(function(cta){
+      var qtd = cliquesPorCta[cta];
+      var pct = Math.round((qtd / totalCtaCliques) * 100);
+      tabelaCtas.innerHTML += '<tr><td><span class="badge info">' + cta + '</span></td><td class="num">' + qtd + '</td><td class="num">' + pct + '%</td></tr>';
+    });
+  }
+
+  // ===== EVENTOS =====
+  renderizarEventos();
+
+  // ===== RELATÓRIO =====
+  document.getElementById('btnGerarRelatorio').onclick = function(){
+    var linhas = [];
+    linhas.push('====================================================');
+    linhas.push('RELATÓRIO DE ANALYTICS — TECHFIX (DIDÁTICO)');
+    linhas.push('Gerado em: ' + new Date().toLocaleString('pt-BR'));
+    linhas.push('====================================================');
+    linhas.push('');
+    linhas.push('📊 MÉTRICAS GERAIS');
+    linhas.push('Sessões registradas: ' + totalSessoes);
+    linhas.push('Eventos totais: ' + eventos.length);
+    linhas.push('Tempo médio por sessão: ' + tempoMedio + 's');
+    linhas.push('Scroll médio: ' + scrollMedio + '%');
+    linhas.push('Taxa de conversão (form enviado): ' + taxaConversao + '%');
+    linhas.push('Taxa de abandono (form iniciado, não enviado): ' + taxaAbandono + '%');
+    linhas.push('');
+    linhas.push('📋 ANÁLISE DOS FORMULÁRIOS');
+    linhas.push('Formulários enviados: ' + totalFormularios);
+    linhas.push('Com mensagem: ' + mensagensCount + ' (' + (totalFormularios ? Math.round((mensagensCount/totalFormularios)*100) : 0) + '%)');
+    linhas.push('Tamanho médio da mensagem: ' + tamMedio + ' caracteres');
+    linhas.push('Personas distintas declaradas: ' + document.getElementById('kpi-personas-distintas').textContent);
+    linhas.push('');
+    linhas.push('Distribuição por persona:');
+    Object.keys(personasCount).sort(function(a,b){ return personasCount[b] - personasCount[a]; }).forEach(function(p){
+      var pct = Math.round((personasCount[p] / totalFormularios) * 100);
+      linhas.push('  • ' + p + ': ' + personasCount[p] + ' (' + pct + '%)');
+    });
+    linhas.push('');
+    linhas.push('Distribuição por serviço:');
+    Object.keys(servicosCount).sort(function(a,b){ return servicosCount[b] - servicosCount[a]; }).forEach(function(s){
+      var pct = Math.round((servicosCount[s] / totalFormularios) * 100);
+      linhas.push('  • ' + s + ': ' + servicosCount[s] + ' (' + pct + '%)');
+    });
+    linhas.push('');
+    linhas.push('Cruzamento persona × serviço:');
+    Object.keys(cruzamento).sort(function(a,b){ return cruzamento[b] - cruzamento[a]; }).forEach(function(chave){
+      var partes = chave.split('|||');
+      linhas.push('  • ' + partes[0] + ' + ' + partes[1] + ': ' + cruzamento[chave]);
+    });
+    linhas.push('');
+    linhas.push('Dispositivo: mobile ' + dispositivoCount.mobile + ', desktop ' + dispositivoCount.desktop);
+    linhas.push('Horário: manhã ' + horarioCount.manha + ', tarde ' + horarioCount.tarde + ', noite ' + horarioCount.noite);
+    linhas.push('');
+    linhas.push('🎯 CLIQUES EM CTAs');
+    if(totalCtaCliques === 0){ linhas.push('Nenhum clique registrado.'); }
+    else {
+      Object.keys(cliquesPorCta).sort(function(a,b){ return cliquesPorCta[b] - cliquesPorCta[a]; }).forEach(function(cta){
+        var pct = Math.round((cliquesPorCta[cta] / totalCtaCliques) * 100);
+        linhas.push('• ' + cta + ': ' + cliquesPorCta[cta] + ' cliques (' + pct + '%)');
+      });
+    }
+    linhas.push('');
+    linhas.push('⏱️ TEMPO MÉDIO POR SEÇÃO');
+    Object.keys(tempoPorSecao).forEach(function(sec){
+      var t = tempoPorSecao[sec];
+      var media = t.sessoes ? Math.round(t.total / t.sessoes) : 0;
+      linhas.push('• ' + sec + ': ' + media + 's (média)');
+    });
+    linhas.push('');
+    linhas.push('📜 DISTRIBUIÇÃO DE SCROLL');
+    Object.keys(faixas).forEach(function(f){
+      var qtd = faixas[f];
+      var pct = totalSessoes ? Math.round((qtd / totalSessoes) * 100) : 0;
+      linhas.push('• ' + f + ': ' + qtd + ' sessão(ões) (' + pct + '%)');
+    });
+    linhas.push('');
+    linhas.push('====================================================');
+    linhas.push('FIM DO RELATÓRIO');
+    document.getElementById('relatorioTexto').value = linhas.join('\n');
+  };
+
+  document.getElementById('btnCopiarRelatorio').onclick = function(){
+    var ta = document.getElementById('relatorioTexto');
+    if(!ta.value){ alert('Gere o relatório primeiro.'); return; }
+    ta.select();
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(ta.value).then(function(){ alert('✅ Relatório copiado!'); });
+    } else {
+      try{ document.execCommand('copy'); alert('✅ Relatório copiado!'); }
+      catch(e){ alert('Selecione o texto manualmente.'); }
+    }
+  };
+
+  document.getElementById('btnBaixarRelatorio').onclick = function(){
+    var ta = document.getElementById('relatorioTexto');
+    if(!ta.value){ alert('Gere o relatório primeiro.'); return; }
+    var blob = new Blob([ta.value], {type:'text/plain;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'relatorio-analytics-' + Date.now() + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+}
+
+// ===== HEATMAP =====
+function desenharHeatmap(){
+  var canvas = document.getElementById('heatmapCanvas');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 1;
+  for(var x = 0; x < canvas.width; x += 100){
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+  }
+  for(var y = 0; y < canvas.height; y += 100){
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+  }
+  var cliques = eventos.filter(function(e){ return e.tipo === 'click' || e.tipo === 'cta_click'; });
+  var pontos = [];
+  cliques.forEach(function(c){
+    if(!c.dados) return;
+    var x = c.dados.x;
+    var y = c.dados.y;
+    if(typeof x !== 'number' || typeof y !== 'number') return;
+    if(c.dados.scrollY) y += c.dados.scrollY;
+    var escalaX = canvas.width / 1100;
+    var escalaY = canvas.height / 2400;
+    pontos.push({ x: x * escalaX, y: y * escalaY });
+  });
+  var raio = pontos.length < 10 ? 40 : (pontos.length < 50 ? 25 : 15);
+  pontos.forEach(function(p){
+    var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, raio);
+    grad.addColorStop(0, 'rgba(239, 68, 68, 0.7)');
+    grad.addColorStop(0.5, 'rgba(249, 115, 22, 0.4)');
+    grad.addColorStop(1, 'rgba(250, 204, 21, 0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, raio, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  var secoes = [
+    { nome: 'HERO', y: 200 },
+    { nome: 'SERVIÇOS', y: 700 },
+    { nome: 'CONTEÚDO', y: 1300 },
+    { nome: 'CONTATO', y: 1900 }
+  ];
+  ctx.font = 'bold 14px sans-serif';
+  secoes.forEach(function(s){
+    ctx.fillStyle = 'rgba(2, 132, 199, 0.85)';
+    ctx.fillRect(10, s.y - 20, 110, 26);
+    ctx.fillStyle = '#fff';
+    ctx.fillText(s.nome, 18, s.y - 2);
+  });
+  ctx.fillStyle = '#64748b';
+  ctx.font = '12px sans-serif';
+  ctx.fillText('Representação aproximada — a escala real depende do tamanho da página no momento do clique.', 20, canvas.height - 20);
+}
+
+// ===== EVENTOS =====
+function renderizarEventos(){
+  var tbody = document.getElementById('tabelaEventos');
+  tbody.innerHTML = '';
+  var filtrados = eventos.filter(function(e){ return filtroAtual === 'todos' || e.tipo === filtroAtual; });
+  if(filtrados.length === 0){
+    tbody.innerHTML = '<tr><td colspan="4" class="vazio">Nenhum evento com esse filtro.</td></tr>';
+    return;
+  }
+  filtrados.slice(-100).reverse().forEach(function(ev){
+    var dados = ev.dados ? JSON.stringify(ev.dados) : '—';
+    if(dados.length > 60) dados = dados.slice(0, 60) + '...';
+    var badge = ev.tipo === 'form_submit' || ev.tipo === 'cta_click' ? 'ok' :
+                ev.tipo === 'form_abandon' ? 'no' : 'info';
+    tbody.innerHTML +=
+      '<tr><td class="mono">' + (ev.sessao ? ev.sessao.slice(-8) : '—') + '</td>' +
+      '<td><span class="badge ' + badge + '">' + ev.tipo + '</span></td>' +
+      '<td class="mono" title="' + (ev.dados ? JSON.stringify(ev.dados) : '') + '">' + dados + '</td>' +
+      '<td class="mono">' + new Date(ev.timestamp).toLocaleTimeString('pt-BR') + '</td></tr>';
+  });
+}
+
+document.querySelectorAll('.filtro').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.filtro').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    filtroAtual = btn.dataset.filtro;
+    renderizarEventos();
+  });
+});
+
+document.getElementById('btnRecarregar').addEventListener('click', function(){
+  location.reload();
+});
+</script>
+</body>
+</html>
